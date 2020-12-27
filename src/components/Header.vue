@@ -6,7 +6,6 @@
                     class="logo"
                     :src="logo"
                 >
-                <span class="title">Balancer</span>
             </div>
         </router-link>
         <div class="header-right">
@@ -25,8 +24,7 @@
 <script>
 import { defineComponent } from 'vue';
 
-import logo from '@/assets/logo.svg';
-import title from '@/assets/title.svg';
+import logo from '@/assets/cent-logo-white.svg';
 
 import Account from '@/components/Account.vue';
 
@@ -37,7 +35,6 @@ export default defineComponent({
     setup() {
         return {
             logo,
-            title,
         };
     },
 });
@@ -75,7 +72,6 @@ a {
 
 .logo {
     height: 40px;
-    width: 40px;
 }
 
 .title {
