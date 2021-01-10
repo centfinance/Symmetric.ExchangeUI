@@ -2,22 +2,22 @@
     "network": "kovan",
     "chainId": 42,
     "precision": 6,
-    "infuraKey": "237c3102f39b4940abbe12dc49165cd6",
-    "subgraphUrl": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-kovan",
-    "subgraphBackupUrl": "https://ipfs.fleek.co/ipns/balancer-team-bucket.storage.fleek.co/balancer-exchange-kovan/pools/",
+    "infuraKey": "e68cb3352f7d4fb7848c4650917e4422",
+    "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/cent-swap-kovan",
+    "subgraphBackupUrl": "https://switch1983-team-bucket.storage.fleek.co/cent-exchange-kovan/pools",
     "addresses": {
-        "bFactory": "0x8f7F78080219d4066A8036ccD30D588B416a40DB",
-        "bActions": "0x02EFDB542B9390ae7C1620B29674e02F9c0d86CC",
-        "dsProxyRegistry": "0x130767E0cf05469CF11Fa3fcf270dfC1f52b9072",
-        "exchangeProxy": "0x2641f150669739986CDa3ED6860DeD44BC3Cda5d",
+        "bFactory": "0x56be9D40676e470F48E22e49D6D4A522D2aDa19D",
+        "bActions": "0x25Ee0D6A0D6C3a0C6E155DDB76e726a60df11E4E",
+        "dsProxyRegistry": "0x3E5374D835Ce79B990A37f13022776C3172664C2",
+        "exchangeProxy": "0x3E1537c7083E127F777Eed836bacBcD682BD2bD6",
         "weth": "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
-        "multicall": "0x2cc8688C5f75E365aaEEb4ea8D6a480405A48D2A"
+        "multicall": "0xa1A5Ed38406f12681B9F010717b51573Dff97a3c"
     },
     "connectors": {
         "injected": {},
         "walletconnect": {
             "rpc": {
-                "42": "https://kovan.infura.io/v3/237c3102f39b4940abbe12dc49165cd6"
+                "42": "https://eth-kovan.alchemyapi.io/v2/C467LJc7Aa761LLxlcxXvhIG9HzDTtKw"
             }
         },
         "portis": {

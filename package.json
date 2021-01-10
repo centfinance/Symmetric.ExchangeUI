@@ -1,11 +1,11 @@
 {
-  "name": "balancer-frontend",
+  "name": "cent.eth.dex_exchangeui",
   "version": "1.0.0",
-  "description": "Balancer Protocol Frontend",
+  "description": "Cent Protocol Frontend",
   "license": "GPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "git://github.com/balancer-labs/balancer-frontend.git"
+    "url": "git://github.com/centfinance/cent.eth.dex_exchangeui.git"
   },
   "scripts": {
     "build": "webpack",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@balancer-labs/assets": "github:balancer-labs/assets#master",
-    "@balancer-labs/sor": "^1.0.0-1",
+    "@centfinance/sor-kovan": "^0.0.3",
     "@ethersproject/address": "^5.0.6",
     "@ethersproject/constants": "^5.0.6",
     "@ethersproject/contracts": "^5.0.6",

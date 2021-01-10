@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 import { Contract } from '@ethersproject/contracts';
 import { ErrorCode } from '@ethersproject/logger';
 import { Web3Provider } from '@ethersproject/providers';
-import { Swap } from '@balancer-labs/sor/dist/types';
+import { Swap } from '@centfinance/sor-kovan/dist/types';
 
 import ExchangeProxyABI from '../abi/ExchangeProxy.json';
 
