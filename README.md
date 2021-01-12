@@ -1,4 +1,9 @@
-# Balancer Exchange
+<div align="center">
+  <img alt="ReDoc logo" src="https://raw.githubusercontent.com/centfinance/Community/main/media-pack/logo.png" width="400px" />
+
+  ### Cent.Dex_PoolsUI - Pool management interface for users to add and remove liquidity to Cent.Dex pools.
+ 
+</div>
 
 ## Development
 
