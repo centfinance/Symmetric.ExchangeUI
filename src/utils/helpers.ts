@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js';
 import { getAddress } from '@ethersproject/address';
 import { Contract } from '@ethersproject/contracts';
 import { Wallet } from '@ethersproject/wallet';
-import assets from '@balancer-labs/assets/assets/index.json';
+import assets from '@centfinance/cent.dex_assets/assets/index.json';
 
 import config from '@/config';
 import provider from '@/utils/provider';
@@ -79,13 +79,13 @@ export function getPoolLink(pool: string): string {
         42: 'kovan.',
     };
     const prefix = prefixMap[chainId];
-    const link = `https://${prefix}pools.balancer.exchange/#/pool/${pool}`;
+    const link = `https://${prefix}dex.cent.finance/#/pool/${pool}`;
     return link;
 }
 
 export function getAssetLogo(address: string): string {
     if (assets.includes(address.toLowerCase())) {
-        return `https://raw.githubusercontent.com/balancer-labs/assets/master/assets/${address.toLowerCase()}.png`;
+        return `https://raw.githubusercontent.com/centfinance/cent.dex_assets/master/assets/${address.toLowerCase()}.png`;
     }
     return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`;
 }

@@ -11,7 +11,7 @@
         <div class="header-right">
             <a
                 class="link"
-                href="https://pools.balancer.exchange"
+                href="https://dex.cent.finance"
                 target="_blank"
             >
                 Add Liquidity

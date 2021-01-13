@@ -1,5 +1,5 @@
 {
-    "name": "Balancer",
+    "name": "Cent",
     "timestamp": "2020-11-13T20:17:19.506Z",
     "version": {
         "major": 0,
@@ -157,7 +157,7 @@
             "name": "PieDAO DOUGH v2",
             "symbol": "DOUGH",
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0xad32a8e6220741182940c5abf610bde99e737b2d.png"
+            "logoURI": "https://raw.githubusercontent.com/centfinance/cent.dex_assets/master/assets/0xad32a8e6220741182940c5abf610bde99e737b2d.png"
         },
         {
             "address": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
@@ -189,7 +189,7 @@
             "name": "PieDAO BTC++",
             "symbol": "BTC++",
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0x0327112423f3a68efdf1fcf402f6c5cb9f7c33fd.png"
+            "logoURI": "https://raw.githubusercontent.com/centfinance/cent.dex_assets/master/assets/0x0327112423f3a68efdf1fcf402f6c5cb9f7c33fd.png"
         },
         {
             "address": "0x9A48BD0EC040ea4f1D3147C025cd4076A2e71e3e",
@@ -197,7 +197,7 @@
             "name": "PieDAO USD++ Pool",
             "symbol": "USD++",
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0x9a48bd0ec040ea4f1d3147c025cd4076a2e71e3e.png"
+            "logoURI": "https://raw.githubusercontent.com/centfinance/cent.dex_assets/master/assets/0x9a48bd0ec040ea4f1d3147c025cd4076a2e71e3e.png"
         },
         {
             "address": "0xaD6A626aE2B43DCb1B39430Ce496d2FA0365BA9C",
@@ -205,7 +205,7 @@
             "name": "PieDAO DEFI Small Cap",
             "symbol": "DEFI+S",
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0xad6a626ae2b43dcb1b39430ce496d2fa0365ba9c.png"
+            "logoURI": "https://raw.githubusercontent.com/centfinance/cent.dex_assets/master/assets/0xad6a626ae2b43dcb1b39430ce496d2fa0365ba9c.png"
         },
         {
             "address": "0x78F225869c08d478c34e5f645d07A87d3fe8eb78",
@@ -213,7 +213,7 @@
             "name": "PieDAO DEFI Large Cap",
             "symbol": "DEFI+L",
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0x78f225869c08d478c34e5f645d07a87d3fe8eb78.png"
+            "logoURI": "https://raw.githubusercontent.com/centfinance/cent.dex_assets/master/assets/0x78f225869c08d478c34e5f645d07a87d3fe8eb78.png"
         },
         {
             "address": "0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F",
@@ -406,7 +406,7 @@
             "name": "Rally",
             "symbol": "RLY",
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0xf1f955016ecbcd7321c7266bccfb96c68ea5e49b.png"
+            "logoURI": "https://raw.githubusercontent.com/centfinance/cent.dex_assets/master/assets/0xf1f955016ecbcd7321c7266bccfb96c68ea5e49b.png"
         },
         {
             "address": "0xa117000000f279D81A1D3cc75430fAA017FA5A2e",
@@ -422,7 +422,7 @@
             "name": "Nsure Network Token",
             "symbol": "Nsure",
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/balancer-labs/assets/master/assets/0x20945ca1df56d237fd40036d47e866c7dccd2114.png"
+            "logoURI": "https://raw.githubusercontent.com/centfinance/cent.dex_assets/master/assets/0x20945ca1df56d237fd40036d47e866c7dccd2114.png"
         },
         {
             "address": "0xfC1E690f61EFd961294b3e1Ce3313fBD8aa4f85d",

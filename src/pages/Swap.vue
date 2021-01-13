@@ -411,7 +411,7 @@ export default defineComponent({
                     store.dispatch('ui/notify', {
                         text: `${text} failed`,
                         type: 'warning',
-                        link: 'https://help.balancer.finance',
+                        link: 'https://help.cent.finance',
                     });
                 }
                 return;
