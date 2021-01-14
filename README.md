@@ -21,3 +21,11 @@ npm install
 npm run serve
 npm run build
 ```
+
+### Supported Networks
+```
+Ethereum main network
+Kovan
+XDAI
+POA
+```
