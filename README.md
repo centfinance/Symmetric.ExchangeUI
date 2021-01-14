@@ -28,4 +28,6 @@ Ethereum main network
 Kovan
 XDAI
 POA
+Catalyst (coming soon)
+Cent public network (coming soon)
 ```
