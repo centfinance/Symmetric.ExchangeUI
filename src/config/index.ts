@@ -1,5 +1,7 @@
 import homestead from './homestead.json';
 import kovan from './kovan.json';
+import sokol from './sokol.json';
+import xdai from './xdai.json';
 
 interface Connector {
     id: string;
@@ -20,6 +22,7 @@ interface Config {
     chainId: number;
     precision: number;
     infuraKey: string;
+    rpcUrl: string;
     subgraphUrl: string;
     subgraphBackupUrl: string;
     addresses: {
@@ -43,6 +46,14 @@ const configs = {
     42:{
         untrusted: [],
         ...kovan,
+    },
+    77:{
+        untrusted: [],
+        ...sokol,
+    },
+    100:{
+        untrusted: [],
+        ...xdai,
     },
 };
 // eslint-disable-next-line no-undef

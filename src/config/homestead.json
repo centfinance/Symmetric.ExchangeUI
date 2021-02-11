@@ -3,6 +3,7 @@
     "chainId": 1,
     "precision": 6,
     "infuraKey": "237c3102f39b4940abbe12dc49165cd6",
+    "rpcUrl": "https://cloudflare-eth.com",
     "subgraphUrl": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer",
     "subgraphBackupUrl": "https://ipfs.fleek.co/ipns/balancer-team-bucket.storage.fleek.co/balancer-exchange/pools",
     "addresses": {
@@ -25,7 +26,7 @@
             "dappId": "3f1c3cfc-7dd5-4e8a-aa03-71ff7396d9fe"
         },
         "walletlink": {
-            "appName": "Balancer Exchange",
+            "appName": "Cent Exchange",
             "darkMode": true,
             "chainId": 1,
             "ethJsonrpcUrl": "https://mainnet.infura.io/v3/237c3102f39b4940abbe12dc49165cd6"

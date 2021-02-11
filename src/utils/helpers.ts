@@ -55,6 +55,8 @@ export function getEtherscanLink(txHash: string): string {
     const prefixMap = {
         1: '',
         42: 'kovan.',
+        77: 'sokol.',
+        100: 'xdai.',
     };
     const prefix = prefixMap[chainId];
     const link = `https://${prefix}etherscan.io/tx/${txHash}`;
@@ -66,6 +68,8 @@ export function getAccountLink(address: string): string {
     const prefixMap = {
         1: '',
         42: 'kovan.',
+        77: 'sokol.',
+        100: 'xdai.',
     };
     const prefix = prefixMap[chainId];
     const link = `https://${prefix}etherscan.io/address/${address}`;
@@ -77,9 +81,11 @@ export function getPoolLink(pool: string): string {
     const prefixMap = {
         1: '',
         42: 'kovan.',
+        77: 'sokol.',
+        100: 'xdai.',
     };
     const prefix = prefixMap[chainId];
-    const link = `https://${prefix}dex.cent.finance/#/pool/${pool}`;
+    const link = `https://pools-${prefix}.cent.finance/#/pool/${pool}`;
     return link;
 }
 

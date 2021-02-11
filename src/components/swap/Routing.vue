@@ -123,7 +123,7 @@ import BigNumber from 'bignumber.js';
 import { PropType, defineComponent, ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { getAddress } from '@ethersproject/address';
-import { Swap, Pool } from '@centfinance/sor-kovan/dist/types';
+import { Swap, Pool } from '@centfinance/cent.dex.sor-xdai/dist/types';
 
 import { RootState } from '@/store';
 

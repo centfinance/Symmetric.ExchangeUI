@@ -1,0 +1,82 @@
+{
+    "tokens": {
+      "0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e": {
+        "address": "0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e",
+        "id": "xdai-stake",
+        "decimals": 18,
+        "color": "#f4b731",
+        "name": "Stake",
+        "symbol": "STAKE",
+        "precision": 4,
+        "hasIcon": true,
+        "ethAddress": "0x0ae055097c6d159879521c384f1d2123d1f195e6"
+      },
+      "0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1": {
+        "address": "0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1",
+        "id": "weth",
+        "decimals": 18,
+        "color": "#f4b731",
+        "name": "Wrapped Ether on xDai",
+        "symbol": "ETH",
+        "precision": 4,
+        "hasIcon": true,
+        "ethAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+      },
+      "0x8e5bBbb09Ed1ebdE8674Cda39A0c169401db4252": {
+        "address": "0x8e5bBbb09Ed1ebdE8674Cda39A0c169401db4252",
+        "id": "wrapped-bitcoin",
+        "decimals": 18,
+        "color": "#f4b731",
+        "name": "Wrapped Bitcoin on xDai",
+        "symbol": "WBTC",
+        "precision": 4,
+        "hasIcon": true,
+        "ethAddress": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
+      },
+      "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83": {
+        "address": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83",
+        "id": "usd-coin",
+        "decimals": 18,
+        "color": "#f4b731",
+        "name": "USDC on xDai",
+        "symbol": "USDC",
+        "precision": 4,
+        "hasIcon": true,
+        "ethAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+      },
+      "0x4537e328Bf7e4eFA29D05CAeA260D7fE26af9D74": {
+        "address": "0x4537e328Bf7e4eFA29D05CAeA260D7fE26af9D74",
+        "id": "uniswap",
+        "decimals": 18,
+        "color": "#f4b731",
+        "name": "Uniswap on xDai",
+        "symbol": "UNI",
+        "precision": 4,
+        "hasIcon": true,
+        "ethAddress": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
+      },
+      "0xE2e73A1c69ecF83F464EFCE6A5be353a37cA09b2": {
+        "address": "0xE2e73A1c69ecF83F464EFCE6A5be353a37cA09b2",
+        "id": "link",
+        "decimals": 18,
+        "color": "#f4b731",
+        "name": "Link on xDai",
+        "symbol": "LINK",
+        "precision": 4,
+        "hasIcon": true,
+        "ethAddress": "0x514910771af9ca656af840dff83e8264ecf986ca"
+      },
+      "0x2977893F4C04bfbd6EFc68d0e46598d27810d3dB": {
+        "address": "0x2977893F4C04bfbd6EFc68d0e46598d27810d3dB",
+        "id": "bid",
+        "decimals": 18,
+        "color": "#f4b731",
+        "name": "Bidao on xDai",
+        "symbol": "BID",
+        "precision": 4,
+        "hasIcon": false,
+        "ethAddress": "0x25e1474170c4c0aa64fa98123bdc8db49d7802fa"
+      }
+    },
+    "untrusted": []
+}

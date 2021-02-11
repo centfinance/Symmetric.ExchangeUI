@@ -153,6 +153,14 @@ function getPreferences(): Preferences {
                 inputAsset: '0x1528F3FCc26d13F7079325Fb78D9442607781c8C',
                 outputAsset: '0xef13C0c8abcaf5767160018d268f9697aE4f5375',
             },
+            77: {
+                inputAsset: '0x2E422C7fb2b5149A28d2c408f830504b873f14B1',
+                outputAsset: '0x408eC1Bb883dA0EA0fb3C955ea6BEfcd05Aa7C3A',
+            },
+            100: {
+                inputAsset: '0x4537e328Bf7e4eFA29D05CAeA260D7fE26af9D74',
+                outputAsset: '0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e',
+            },
         },
         list: 'balancer',
     };

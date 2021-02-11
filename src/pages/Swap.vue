@@ -56,8 +56,8 @@ import { useIntervalFn } from '@vueuse/core';
 import BigNumber from 'bignumber.js';
 import { getAddress } from '@ethersproject/address';
 import { ErrorCode } from '@ethersproject/logger';
-import { SOR } from '@centfinance/sor-kovan';
-import { Swap, Pool } from '@centfinance/sor-kovan/dist/types';
+import { SOR } from '@centfinance/cent.dex.sor-xdai';
+import { Swap, Pool } from '@centfinance/cent.dex.sor-xdai/dist/types';
 
 import config from '@/config';
 import provider from '@/utils/provider';
@@ -112,6 +112,7 @@ export default defineComponent({
         
         const account = computed(() => {
             const { connector, address } = store.state.account;
+            
             if (!connector || !connector.id || !address) {
                 return '';
             }
@@ -278,12 +279,15 @@ export default defineComponent({
         }
 
         async function initSor(): Promise<void> {
+            const poolsUrl = `${config.subgraphBackupUrl}?timestamp=${Date.now()}`;
+            // const poolsUrl = `https://ipfs.fleek.co/ipns/balancer-bucket.storage.fleek.co/balancer-exchange-kovan/pools?timestamp=${Date.now()}`;
+            console.error(poolsUrl);
             sor = new SOR(
                 provider,
                 new BigNumber(GAS_PRICE),
                 MAX_POOLS,
                 config.chainId,
-                config.subgraphBackupUrl,
+                poolsUrl,
             );
 
             const assetInAddress = assetInAddressInput.value === ETH_KEY

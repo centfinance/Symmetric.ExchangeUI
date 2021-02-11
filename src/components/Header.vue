@@ -6,12 +6,16 @@
                     class="logo"
                     :src="logo"
                 >
+                <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #dc3bf9;">
+                    xdai
+                </span>
+
             </div>
         </router-link>
         <div class="header-right">
             <a
                 class="link"
-                href="https://dex.cent.finance"
+                href="https://pools-xdai.cent.finance"
                 target="_blank"
             >
                 Add Liquidity

@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@centfinance/cent.dex_assets": "github:centfinance/cent.dex_assets#master",
-    "@centfinance/sor-kovan": "^0.0.3",
+    "@centfinance/cent.dex.sor-xdai": "0.0.3",
     "@ethersproject/address": "^5.0.6",
     "@ethersproject/constants": "^5.0.6",
     "@ethersproject/contracts": "^5.0.6",

@@ -42,15 +42,15 @@ export async function getTokenlist(id: string): Promise<TokenList> {
 
 export function getAssetsFromTokenlist(chainId: number, list: TokenList): Record<string, AssetMetadata> {
     const assets: Record<string, AssetMetadata> = {};
-    if (list.tokens.findIndex(token => token.address === config.addresses.weth) !== -1) {
-        assets.ether = {
-            address: 'ether',
-            name: 'Ether',
-            symbol: 'ETH',
-            decimals: 18,
-            logoURI: ETH_LOGO,
-        };
-    }
+    //if (list.tokens.findIndex(token => token.address === config.addresses.weth) !== -1) {
+    //    assets.ether = {
+    //        address: 'ether',
+    //        name: 'Ether',
+    //        symbol: 'ETH',
+    //        decimals: 18,
+    //        logoURI: ETH_LOGO,
+    //    };
+    //}
     for (const token of list.tokens) {
         if (token.chainId !== chainId) {
             continue;
