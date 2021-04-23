@@ -158,7 +158,7 @@ function getPreferences(): Preferences {
                 outputAsset: '0x408eC1Bb883dA0EA0fb3C955ea6BEfcd05Aa7C3A',
             },
             100: {
-                inputAsset: '0x4537e328Bf7e4eFA29D05CAeA260D7fE26af9D74',
+                inputAsset: '0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83',
                 outputAsset: '0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e',
             },
         },

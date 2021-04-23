@@ -281,7 +281,6 @@ export default defineComponent({
         async function initSor(): Promise<void> {
             const poolsUrl = `${config.subgraphBackupUrl}?timestamp=${Date.now()}`;
             // const poolsUrl = `https://ipfs.fleek.co/ipns/balancer-bucket.storage.fleek.co/balancer-exchange-kovan/pools?timestamp=${Date.now()}`;
-            console.error(poolsUrl);
             sor = new SOR(
                 provider,
                 new BigNumber(GAS_PRICE),

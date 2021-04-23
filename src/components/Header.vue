@@ -2,12 +2,11 @@
     <div class="header">
         <router-link :to="'/'">
             <div class="brand">
-                <img
-                    class="logo"
-                    :src="logo"
-                >
+                <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: FFFFFF;">
+                    Symmetric&nbsp;
+                </span>
                 <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #dc3bf9;">
-                    xdai
+                    (xDai)
                 </span>
 
             </div>
