@@ -52,7 +52,7 @@ button {
 }
 
 button.primary {
-    background: linear-gradient(185deg, #00f -100%, #dd3dff 100%) 40% / 200%;
+    background-color:#FB6706;
     transition: background 0.25s ease-in;
 }
 

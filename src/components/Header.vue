@@ -8,13 +8,12 @@
                 <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #dc3bf9;">
                     (xDai)
                 </span>
-
             </div>
         </router-link>
         <div class="header-right">
             <a
                 class="link"
-                href="https://pools-xdai.cent.finance"
+                href="https://xdai-pools.symmetric.exchange/"
                 target="_blank"
             >
                 Add Liquidity
