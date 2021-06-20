@@ -1,0 +1,38 @@
+{
+  "network": "celo",
+  "chainId": 42220,
+  "defaultPrecision": 2,
+  "infuraKey": "e68cb3352f7d4fb7848c4650917e4422",
+  "rpcUrl": "https://celo-mainnet--rpc.datahub.figment.io/apikey/156ef461796cafbed135cb33f419b312/",
+  "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/cent-swap-alfajores",
+  "subgraphBackupUrl": "https://switch1983-team-bucket.storage.fleek.co/cent-exchange-alfajores/pools",
+  "addresses": {
+    "bFactory": "0xf5fc5042d8424619BB318bAeDd0f0F1A591f2a3A",
+    "bActions": "0x57562A82F2Fd9Eb21E7edf87b62e8353027f280E",
+    "dsProxyRegistry": "0xD89ab91c7ad31bf488CB78CD7459B347Aca48E43",
+    "proxy": "0x89C5b0120591c1AE4c8BccF11E255aa84F956182",
+    "weth": "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
+    "multicall": "0x07A919F3Ef49B4caD33673aF8ECEC996cb64e726"
+  },
+  "connectors": {
+      "injected": {},
+      "walletconnect": {
+          "rpc": {
+            "42220": "https://celo-mainnet--rpc.datahub.figment.io/apikey/156ef461796cafbed135cb33f419b312/"
+          }
+      },
+      "portis": {
+          "network": "celo",
+          "dappId": "3f1c3cfc-7dd5-4e8a-aa03-71ff7396d9fe"
+      },
+      "walletlink": {
+          "appName": "Cent Exchange",
+          "darkMode": true,
+          "chainId": 42220,
+          "ethJsonrpcUrl": "https://celo-mainnet--rpc.datahub.figment.io/apikey/156ef461796cafbed135cb33f419b312/"
+      },
+      "fortmatic": {
+          "apiKey": "pk_live_9CE8FD92E54684ED"
+      }
+  }
+}

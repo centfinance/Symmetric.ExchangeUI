@@ -7,7 +7,7 @@ import assets from '@centfinance/cent.dex_assets/assets/index.json';
 import config from '@/config';
 import provider from '@/utils/provider';
 
-export const ETH_KEY = 'ether';
+export const ETH_KEY = 'xdai';
 
 export function formatAddress(address: string, length = 8): string {
     const ellipsizedAddress = `${address.substr(0, 2 + length / 2)}…${address.substr(42 - length / 2)}`;
@@ -57,9 +57,11 @@ export function getEtherscanLink(txHash: string): string {
         42: 'kovan.',
         77: 'sokol.',
         100: 'xdai.',
+        44787: 'alfajores.',
+        42220: 'celo',
     };
     const prefix = prefixMap[chainId];
-    const link = `https://${prefix}etherscan.io/tx/${txHash}`;
+    const link = `https://blockscout.com/xdai/mainnet/tx/${txHash}`;
     return link;
 }
 
@@ -70,9 +72,11 @@ export function getAccountLink(address: string): string {
         42: 'kovan.',
         77: 'sokol.',
         100: 'xdai.',
+        44787: 'alfajores.',
+        42220: 'celo',
     };
     const prefix = prefixMap[chainId];
-    const link = `https://${prefix}etherscan.io/address/${address}`;
+    const link = `https://blockscout.com/xdai/mainnet/address/${address}`;
     return link;
 }
 
@@ -83,9 +87,11 @@ export function getPoolLink(pool: string): string {
         42: 'kovan.',
         77: 'sokol.',
         100: 'xdai.',
+        44787: 'alfajores.',
+        42220: 'celo',
     };
     const prefix = prefixMap[chainId];
-    const link = `https://pools-${prefix}.cent.finance/#/pool/${pool}`;
+    const link = `https://${prefix}-pools.symmetric.exchange/#/pool/${pool}`;
     return link;
 }
 
