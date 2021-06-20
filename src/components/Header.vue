@@ -8,7 +8,6 @@
                 <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #dc3bf9;">
                     (xdai)
                 </span>
-
             </div>
         </router-link>
         <div class="header-right">

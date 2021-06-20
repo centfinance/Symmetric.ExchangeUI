@@ -94,7 +94,7 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background: linear-gradient(221.96deg, #1f1f1f -3.26%, #181818 100.91%);
+    background: linear-gradient(221.96deg, #3e4e59 -3.26%, #253743 100.91%);
     border-radius: var(--border-radius-large);
 }
 
