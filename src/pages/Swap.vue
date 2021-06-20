@@ -56,8 +56,8 @@ import { useIntervalFn } from '@vueuse/core';
 import BigNumber from 'bignumber.js';
 import { getAddress } from '@ethersproject/address';
 import { ErrorCode } from '@ethersproject/logger';
-import { SOR } from '@centfinance/cent.dex.sor-xdai';
-import { Swap, Pool } from '@centfinance/cent.dex.sor-xdai/dist/types';
+import { SOR } from '@centfinance/sor_xdai';
+import { Swap, Pool } from '@centfinance/sor_xdai/dist/types';
 
 import config from '@/config';
 import provider from '@/utils/provider';
