@@ -60,14 +60,14 @@ export default defineComponent({
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
-    --background-primary: #181818;
+    --background-primary: #253743;
     --background-secondary: #21222c;
-    --background-header: #1a1a1a;
-    --background-form: #1f1f1f;
+    --background-header: #253743;
+    --background-form: #3e4e59;
     --background-control: #2c2d3a;
-    --background-hover: #1c1c24;
+    --background-hover: #FB6706;
     --border-form: #262626;
-    --border-input: #2a2a2a;
+    --border-input: #253743;
     --accent: #4965ff;
     --accent-dark: #3c56e3;
     --text-primary: #fff;
@@ -77,7 +77,7 @@ export default defineComponent({
     --success: #21b66f;
     --info: #7685d5;
     --warning: #ffc780;
-    --error: #ff8a80;
+    --error: #F25B2A;
     --font-size-tiny: 11px;
     --font-size-small: 14px;
     --font-size-medium: 16px;

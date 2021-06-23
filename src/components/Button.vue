@@ -52,7 +52,7 @@ button {
 }
 
 button.primary {
-    background: linear-gradient(185deg, #00f -100%, #dd3dff 100%) 40% / 200%;
+    background-color:#FB6706;
     transition: background 0.25s ease-in;
 }
 
@@ -61,7 +61,7 @@ button:hover {
 }
 
 button.primary:hover {
-    background: linear-gradient(185deg, #f0f -100%, #00f 100%) 70% / 200%;
+    background-color:#fb6806cb;
 }
 
 button:disabled,

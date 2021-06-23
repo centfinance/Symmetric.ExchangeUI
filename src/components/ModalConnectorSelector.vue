@@ -32,6 +32,7 @@ import { RootState } from '@/store';
 import { hasInjectedProvider, getConnectorName, getConnectorLogo } from '@/utils/connectors';
 
 import ModalBase from '@/components/ModalBase.vue';
+// import Connector from '@snapshot-labs/lock/src/connector';
 
 export default defineComponent({
     components: {
@@ -50,11 +51,18 @@ export default defineComponent({
             return Object.keys(config.connectors)
                 .filter(connectorId => {
                     if (connectorId === 'injected') {
+                        console.log(`Connector3 ${connectorId}`);
                         return hasInjectedProvider();
                     }
                     return true;
                 })
+                .filter(connectorId => {
+                    if(connectorId === 'walletconnect' || connectorId ==='injected'){
+                        return true;
+                    }
+                })
                 .map(connectorId => {
+                    console.log(`Connector2 ${connectorId}`);
                     return {
                         id: connectorId,
                         name: getConnectorName(connectorId),
