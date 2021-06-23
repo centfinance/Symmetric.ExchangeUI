@@ -61,7 +61,7 @@ button:hover {
 }
 
 button.primary:hover {
-    background: linear-gradient(185deg, #f0f -100%, #00f 100%) 70% / 200%;
+    background-color:#fb6806cb;
 }
 
 button:disabled,

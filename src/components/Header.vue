@@ -2,10 +2,10 @@
     <div class="header">
         <router-link :to="'/'">
             <div class="brand">
-                <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: FFFFFF;">
+                <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #FB6706;">
                     Symmetric&nbsp;
                 </span>
-                <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #dc3bf9;">
+                <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #ffffff;">
                     (xDai)
                 </span>
             </div>
