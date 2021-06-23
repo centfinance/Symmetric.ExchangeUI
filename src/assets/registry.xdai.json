@@ -1,81 +1,104 @@
 {
-  "tokens": {
-  "0x437a044fb4693890E61D2C1c88E3718E928B8E90": {
-      "address": "0x437a044fb4693890E61D2C1c88E3718E928B8E90",
-      "id": "aragon",
-      "name": "Aragon Network Token on xDai",
-      "symbol": "ANT",
-      "decimals": 18,
-      "precision": 3,
-      "color": "#5d6872",
-      "hasIcon": true,
-      "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x960b236A07cf122663c4303350609A66A7B288C0/logo.png",
-      "ethAddress": "0x960b236a07cf122663c4303350609a66a7b288c0"
-  },
-  "0x71850b7E9Ee3f13Ab46d67167341E4bDc905Eef9": {
-      "address": "0x71850b7E9Ee3f13Ab46d67167341E4bDc905Eef9",
-      "id": "honey",
-      "name": "Honey",
-      "symbol": "HNY",
-      "decimals": 18,
-      "precision": 3,
-      "color": "#5d6872",
-      "hasIcon": true,
-      "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/xdai/assets/0x71850b7E9Ee3f13Ab46d67167341E4bDc905Eef9/logo.png",
-      "ethAddress": "0xc3589F56B6869824804A5EA29F2c9886Af1B0FcE"
-  },
-  "0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e": {
-      "address": "0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e",
-      "id": "xdai-stake",
-      "name": "STAKE on xDai",
-      "symbol": "STAKE",
-      "decimals": 18,
-      "precision": 3,
-      "color": "#a593a5",
-      "hasIcon": true,
-      "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x0Ae055097C6d159879521C384F1D2123D1f195e6/logo.png",
-      "ethAddress": "0x0ae055097c6d159879521c384f1d2123d1f195e6"
-  },
-  "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83": {
-      "address": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83",
-      "id": "usd-coin",
-      "name": "USD//C on xDai",
-      "symbol": "USDC",
-      "decimals": 6,
-      "precision": 2,
-      "color": "#9d9f7f",
-      "hasIcon": true,
-      "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
-      "ethAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
-  },
-  "0x8e5bBbb09Ed1ebdE8674Cda39A0c169401db4252": {
-      "address": "0x8e5bBbb09Ed1ebdE8674Cda39A0c169401db4252",
-      "id": "wrapped-bitcoin",
-      "name": "Wrapped BTC on xDai",
-      "symbol": "WBTC",
-      "decimals": 8,
-      "precision": 6,
-      "color": "#68aca9",
-      "hasIcon": true,
-      "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599/logo.png",
-      "ethAddress": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
-  },
-  "0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1": {
-      "address": "0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1",
-      "id": "ethereum",
-      "name": "Wrapped Ether on xDai",
-      "symbol": "WETH",
-      "decimals": 18,
-      "precision": 5,
-      "color": "#433455",
-      "hasIcon": true,
-      "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
-      "ethAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+    "tokens": {
+    "0x437a044fb4693890E61D2C1c88E3718E928B8E90": {
+        "address": "0x437a044fb4693890E61D2C1c88E3718E928B8E90",
+        "id": "aragon",
+        "name": "Aragon Network Token on xDai",
+        "symbol": "ANT",
+        "decimals": 18,
+        "precision": 3,
+        "color": "#5d6872",
+        "hasIcon": true,
+        "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x960b236A07cf122663c4303350609A66A7B288C0/logo.png",
+        "ethAddress": "0x960b236a07cf122663c4303350609a66a7b288c0"
+    },
+    "0x71850b7E9Ee3f13Ab46d67167341E4bDc905Eef9": {
+        "address": "0x71850b7E9Ee3f13Ab46d67167341E4bDc905Eef9",
+        "id": "honey",
+        "name": "Honey",
+        "symbol": "HNY",
+        "decimals": 18,
+        "precision": 3,
+        "color": "#6f6776",
+        "hasIcon": true,
+        "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/xdai/assets/0x71850b7E9Ee3f13Ab46d67167341E4bDc905Eef9/logo.png",
+        "ethAddress": "0xc3589F56B6869824804A5EA29F2c9886Af1B0FcE"
+    },
+    "0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e": {
+        "address": "0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e",
+        "id": "xdai-stake",
+        "name": "STAKE on xDai",
+        "symbol": "STAKE",
+        "decimals": 18,
+        "precision": 3,
+        "color": "#a593a5",
+        "hasIcon": true,
+        "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x0Ae055097C6d159879521C384F1D2123D1f195e6/logo.png",
+        "ethAddress": "0x0ae055097c6d159879521c384f1d2123d1f195e6"
+    },
+    "0x4537e328Bf7e4eFA29D05CAeA260D7fE26af9D74": {
+        "address": "0x4537e328Bf7e4eFA29D05CAeA260D7fE26af9D74",
+        "id": "uniswap",
+        "name": "Uniswap on xDai",
+        "symbol": "UNI",
+        "decimals": 18,
+        "precision": 3,
+        "hasIcon": true,
+        "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984/logo.png",
+        "ethAddress": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
+    },
+    "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83": {
+        "address": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83",
+        "id": "usd-coin",
+        "name": "USD//C on xDai",
+        "symbol": "USDC",
+        "decimals": 6,
+        "precision": 2,
+        "color": "#9d9f7f",
+        "hasIcon": true,
+        "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+        "ethAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    },
+    "0x8e5bBbb09Ed1ebdE8674Cda39A0c169401db4252": {
+        "address": "0x8e5bBbb09Ed1ebdE8674Cda39A0c169401db4252",
+        "id": "wrapped-bitcoin",
+        "name": "Wrapped BTC on xDai",
+        "symbol": "WBTC",
+        "decimals": 8,
+        "precision": 6,
+        "color": "#68aca9",
+        "hasIcon": true,
+        "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599/logo.png",
+        "ethAddress": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
+    },
+    "0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1": {
+        "address": "0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1",
+        "id": "ethereum",
+        "name": "Wrapped Ether on xDai",
+        "symbol": "WETH",
+        "decimals": 18,
+        "precision": 5,
+        "color": "#433455",
+        "hasIcon": true,
+        "logoUrl": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
+        "ethAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+    },
+    "0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d": {
+        "address": "0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d",
+        "id": "wrapped-xdai",
+        "name": "Wrapped XDAI",
+        "symbol": "WXDAI",
+        "decimals": 18,
+        "precision": 5,
+        "color": "#433455",
+        "hasIcon": true,
+        "logoUrl": "https://raw.githubusercontent.com/1Hive/default-token-list/master/src/assets/xdai/0xe91d153e0b41518a2ce8dd3d7944fa863463a97d/logo.png"
+    }
+    },
+    "untrusted": [
+      "0xbef02f140BFb37a75Ed6510e8D85C9E9e7e0ff1e",
+      "0xe7d8E7742ca6906a14F7e46770Fdfe6B7014e62D",
+      "0xEC4b4fFfb58B6c85D41025b07d93167B8192062E"
+    ]
   }
-  },
-  "untrusted": [
-    "0xbef02f140BFb37a75Ed6510e8D85C9E9e7e0ff1e",
-    "0xe7d8E7742ca6906a14F7e46770Fdfe6B7014e62D",
-    "0xEC4b4fFfb58B6c85D41025b07d93167B8192062E"
-  ]
-}
+  

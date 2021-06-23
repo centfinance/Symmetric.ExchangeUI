@@ -1,11 +1,11 @@
 {
-  "name": "cent.dex_exchangeui",
-  "version": "1.0.0",
-  "description": "Cent Protocol Frontend",
+  "name": "symmetric.exchangeui",
+  "version": "1.0.1",
+  "description": "Symmetric Exchange Frontend",
   "license": "GPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "git://github.com/centfinance/cent.dex_exchangeui.git"
+    "url": "git://github.com/centfinance/symmetric.exchangeui.git"
   },
   "scripts": {
     "build": "webpack",
@@ -15,8 +15,8 @@
     "stylelint": "stylelint \"src/**/*.vue\""
   },
   "dependencies": {
-    "@centfinance/cent.dex_assets": "github:centfinance/cent.dex_assets#master",
-    "@centfinance/cent.dex.sor-xdai": "0.0.3",
+    "@centfinance/cent.dex_assets": "github:centfinance/symmetric.assets#master",
+    "@centfinance/sor_xdai": "0.0.7",
     "@ethersproject/address": "^5.0.6",
     "@ethersproject/constants": "^5.0.6",
     "@ethersproject/contracts": "^5.0.6",

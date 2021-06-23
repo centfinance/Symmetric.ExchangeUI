@@ -56,8 +56,8 @@ import { useIntervalFn } from '@vueuse/core';
 import BigNumber from 'bignumber.js';
 import { getAddress } from '@ethersproject/address';
 import { ErrorCode } from '@ethersproject/logger';
-import { SOR } from '@centfinance/cent.dex.sor-xdai';
-import { Swap, Pool } from '@centfinance/cent.dex.sor-xdai/dist/types';
+import { SOR } from '@centfinance/sor_xdai';
+import { Swap, Pool } from '@centfinance/sor_xdai/dist/types';
 
 import config from '@/config';
 import provider from '@/utils/provider';
@@ -198,10 +198,20 @@ export default defineComponent({
         watch(assetOutAddressInput, async () => {
             Storage.saveOutputAsset(config.chainId, assetOutAddressInput.value);
             if (sor) {
-                const assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                    ? config.addresses.weth
+                if (config.network === 'xdai')
+                {
+                    const assetOutAddress = assetOutAddressInput.value === ETH_KEY
+                    ? config.addresses.wxdai
                     : assetOutAddressInput.value;
                 await sor.setCostOutputToken(assetOutAddress);
+                }
+                else
+                {
+                    const assetOutAddress = assetOutAddressInput.value === ETH_KEY
+                        ? config.addresses.weth
+                        : assetOutAddressInput.value;
+                    await sor.setCostOutputToken(assetOutAddress);
+                }
             }
             onAmountChange(activeInput.value);
         });
@@ -245,16 +255,32 @@ export default defineComponent({
             const slippageBufferRate = Storage.getSlippage();
             const provider = await store.getters['account/provider'];
             if (isWrapPair(assetInAddress, assetOutAddress)) {
-                if (assetInAddress === ETH_KEY) {
-                    const tx = await Helper.wrap(provider, assetInAmount);
-                    const text = 'Wrap ether';
-                    await handleTransaction(tx, text);
-                } else {
-                    const tx = await Helper.unwrap(provider, assetInAmount);
-                    const text = 'Unwrap ether';
-                    await handleTransaction(tx, text);
+                if (config.network === 'xdai')
+                {
+                    if (assetInAddress === ETH_KEY) {
+                        const tx = await Helper.wrap(provider, assetInAmount);
+                        const text = 'Wrap xdai';
+                        await handleTransaction(tx, text);
+                    } else {
+                        const tx = await Helper.unwrap(provider, assetInAmount);
+                        const text = 'Unwrap xdai';
+                        await handleTransaction(tx, text);
+                    }
+                    store.dispatch('account/fetchAssets', [ config.addresses.wxdai ]);
                 }
-                store.dispatch('account/fetchAssets', [ config.addresses.weth ]);
+                else
+                {
+                    if (assetInAddress === ETH_KEY) {
+                        const tx = await Helper.wrap(provider, assetInAmount);
+                        const text = 'Wrap ether';
+                        await handleTransaction(tx, text);
+                    } else {
+                        const tx = await Helper.unwrap(provider, assetInAmount);
+                        const text = 'Unwrap ether';
+                        await handleTransaction(tx, text);
+                    }
+                    store.dispatch('account/fetchAssets', [ config.addresses.weth ]);
+                }
                 return;
             }
             const assetInSymbol = metadata[assetInAddress].symbol;
@@ -271,6 +297,7 @@ export default defineComponent({
                 const tx = await Swapper.swapOut(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmountMax);
                 await handleTransaction(tx, text);
             }
+            
             store.dispatch('account/fetchAssets', [ assetInAddress, assetOutAddress ]);
             if (sor) {
                 sor.fetchPools();
@@ -289,12 +316,27 @@ export default defineComponent({
                 poolsUrl,
             );
 
-            const assetInAddress = assetInAddressInput.value === ETH_KEY
-                ? config.addresses.weth
-                : assetInAddressInput.value;
-            const assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                ? config.addresses.weth
-                : assetOutAddressInput.value;
+            let assetInAddress;
+            let assetOutAddress;
+
+            if (config.network === 'xdai')
+            {
+                assetInAddress = assetInAddressInput.value === ETH_KEY
+                    ? config.addresses.wxdai
+                    : assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value === ETH_KEY
+                    ? config.addresses.wxdai
+                    : assetOutAddressInput.value;
+            }
+            else
+            {
+                assetInAddress = assetInAddressInput.value === ETH_KEY
+                    ? config.addresses.weth
+                    : assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value === ETH_KEY
+                    ? config.addresses.weth
+                    : assetOutAddressInput.value;
+            }
             console.time(`[SOR] setCostOutputToken: ${assetOutAddress}`);
             await sor.setCostOutputToken(assetOutAddress);
             console.timeEnd(`[SOR] setCostOutputToken: ${assetOutAddress}`);
@@ -332,13 +374,27 @@ export default defineComponent({
                 return;
             }
 
-            const assetInAddress = assetInAddressInput.value === ETH_KEY
-                ? config.addresses.weth
-                : assetInAddressInput.value;
-            const assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                ? config.addresses.weth
-                : assetOutAddressInput.value;
+            let assetInAddress;
+            let assetOutAddress;
 
+            if (config.network === 'xdai')
+            {
+                assetInAddress = assetInAddressInput.value === ETH_KEY
+                    ? config.addresses.wxdai
+                    : assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value === ETH_KEY
+                    ? config.addresses.wxdai
+                    : assetOutAddressInput.value;
+            }
+            else
+            {
+                assetInAddress = assetInAddressInput.value === ETH_KEY
+                    ? config.addresses.weth
+                    : assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value === ETH_KEY
+                    ? config.addresses.weth
+                    : assetOutAddressInput.value;
+            }
             if (assetInAddress === assetOutAddress) {
                 return;
             }
@@ -414,7 +470,7 @@ export default defineComponent({
                     store.dispatch('ui/notify', {
                         text: `${text} failed`,
                         type: 'warning',
-                        link: 'https://help.cent.finance',
+                        link: 'https://pools.symmetric.exchange/',
                     });
                 }
                 return;
@@ -480,11 +536,23 @@ export default defineComponent({
         }
 
         function isWrapPair(assetIn: string, assetOut: string): boolean {
-            if (assetIn === ETH_KEY && assetOut === config.addresses.weth) {
+            if (config.network === 'xdai')
+            {
+                if (assetIn === ETH_KEY && assetOut === config.addresses.wxdai) {
+                    return true;
+                }
+                if (assetOut === ETH_KEY && assetIn === config.addresses.wxdai) {
+                    return true;
+                }
+            }
+            else
+            {
+                if (assetIn === ETH_KEY && assetOut === config.addresses.weth) {
                 return true;
             }
-            if (assetOut === ETH_KEY && assetIn === config.addresses.weth) {
-                return true;
+                if (assetOut === ETH_KEY && assetIn === config.addresses.weth) {
+                    return true;
+                }
             }
             return false;
         }

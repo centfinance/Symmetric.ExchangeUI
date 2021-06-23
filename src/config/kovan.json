@@ -8,9 +8,9 @@
     "subgraphBackupUrl": "https://switch1983-team-bucket.storage.fleek.co/cent-exchange-kovan/pools",
     "addresses": {
         "bFactory": "0xf5fc5042d8424619BB318bAeDd0f0F1A591f2a3A",
-        "bActions": "0xE3D111D85972Ab553E0457401d2d9Ee627Eb024D",
-        "dsProxyRegistry": "0xBA959dCdEadD9c668d9e89aE414b2A59fcFCCd10",
-        "exchangeProxy": "0x89C5b0120591c1AE4c8BccF11E255aa84F956182",
+        "bActions": "0x57562A82F2Fd9Eb21E7edf87b62e8353027f280E",
+        "dsProxyRegistry": "0xD89ab91c7ad31bf488CB78CD7459B347Aca48E43",
+        "proxy": "0x89C5b0120591c1AE4c8BccF11E255aa84F956182",
         "weth": "0xd0A1E359811322d97991E03f863a0C30C2cF029C",
         "multicall": "0x07A919F3Ef49B4caD33673aF8ECEC996cb64e726"
     },

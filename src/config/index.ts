@@ -2,6 +2,8 @@ import homestead from './homestead.json';
 import kovan from './kovan.json';
 import sokol from './sokol.json';
 import xdai from './xdai.json';
+import alfajores from './alfajores.json';
+import celo from './celo.json';
 
 interface Connector {
     id: string;
@@ -31,6 +33,7 @@ interface Config {
         dsProxyRegistry: string;
         exchangeProxy: string;
         weth: string;
+        wxdai: string;
         multicall: string;
     };
     assets: Record<string, AssetMetadata>;
@@ -54,6 +57,14 @@ const configs = {
     100:{
         untrusted: [],
         ...xdai,
+    },
+    44787:{
+        untrusted: [],
+        ...alfajores,
+    },
+    42220:{
+        untrusted: [],
+        ...celo,
     },
 };
 // eslint-disable-next-line no-undef
