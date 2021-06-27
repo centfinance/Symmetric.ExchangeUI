@@ -1,15 +1,36 @@
 <template>
     <div class="header">
         <router-link :to="'/'">
-            <div class="brand">
-                <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #FB6706;">
-                    Symmetric&nbsp;
-                </span>
-
+            <div class="container">
+                <div class="logo">
+                    <img
+                        width="70px"
+                        src="../assets/symmetric.png"
+                    >
+                </div>
+                <div
+                    class="name brand"
+                    style="letter-spacing: 1px; font-size: 24px; font-weight: 600;"
+                >
+                    SYMMETRIC
+                </div>
+                <div
+                    class="network"
+                    style="letter-spacing: 1px; font-size: 14px;color: #ffffff;"
+                >
+                    xDAI
+                </div>
+            </div>
+            <!-- <div
+                class="brand row"
+                style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #FB6706;"
+            >
+                Symmetric
+               
                 <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #ffffff;">
                     (xDai)
                 </span>
-            </div>
+            </div> -->
         </router-link>
         <div class="header-right">
             <a
@@ -100,4 +121,18 @@ a {
         display: none;
     }
 }
+
+.container {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "logo name name"
+    "logo network network"
+    ". . ."; 
+}
+.logo { grid-area: logo; }
+.name { grid-area: name; }
+.network { grid-area: network; }
 </style>
