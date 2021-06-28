@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@centfinance/cent.dex_assets": "github:centfinance/symmetric.assets#master",
-    "@centfinance/sor_xdai": "0.0.7",
+    "@centfinance/sor_xdai": "0.0.8",
     "@ethersproject/address": "^5.0.6",
     "@ethersproject/constants": "^5.0.6",
     "@ethersproject/contracts": "^5.0.6",
