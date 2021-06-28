@@ -11,7 +11,7 @@
       "bActions": "0x88602D7ef1a3026daF96729938d6184cDAbbED95",
       "dsProxyRegistry": "0x46AD1cB076f43126B9a89FdC06f3C8FdF3EEe6e5",
       "exchangeProxy": "0x48Cf5264bCfd23e411f4Eae7B950F7b95ba0079f",
-      "wxdai": "0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1",
+      "wxdai": "0xf1989A14689B8218Ee9e11D247E0BD0a7b3Bd6CA",
       "multicall": "0xb24898396f9E1D515CED0575A01BaC4d0735BF15"
     },
     "connectors": {
