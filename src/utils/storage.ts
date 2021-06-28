@@ -158,8 +158,8 @@ function getPreferences(): Preferences {
                 outputAsset: '0x408eC1Bb883dA0EA0fb3C955ea6BEfcd05Aa7C3A',
             },
             100: {
-                inputAsset: '0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83',
-                outputAsset: '0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e',
+                inputAsset: '0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d',
+                outputAsset: '0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1',
             },
             44787: {
                 inputAsset: '0x10c892A6EC43a53E45D0B916B4b7D383B1b78C0F',
