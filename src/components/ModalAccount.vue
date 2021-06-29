@@ -134,7 +134,7 @@ export default defineComponent({
             const { balances } = store.state.account;
             return Object.keys(balances)
                 .map(assetAddress => {
-                    const assetMetadata = metadata[assetAddress];
+                    const assetMetadata = assetAddress === 'xdai' ? "" : metadata[assetAddress];
                     const { address, name, symbol, decimals } = assetMetadata;
                     const balance = balances[address] || '0';
                     const balanceNumber = new BigNumber(balance);
@@ -149,7 +149,8 @@ export default defineComponent({
                         amount,
                     };
                 }).
-                filter(balance => balance.amount !== '');
+                filter(balance => balance.amount !== '').
+                filter(address => address.address !== undefined);
         });
 
         function copyAddress(): void {
