@@ -1,16 +1,18 @@
 <template>
     <div class="header">
-        <router-link :to="'/'">
-            <div class="brand">
-                <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #FB6706;">
-                    Symmetric&nbsp;
-                </span>
-
-                <span style="letter-spacing: 1px; font-size: 24px; font-weight: 600; color: #ffffff;">
-                    (xDai)
-                </span>
-            </div>
-        </router-link>
+        <div class="header-left">
+            <router-link
+                class="brand"
+                :to="'/'"
+            >
+                <Icon
+                    class="logo"
+                    :title="'symmetric'"
+                />
+                <div class="title">Symmetric </div><br>
+            </router-link>
+            <span class="network">  xDai</span>
+        </div>
         <div class="header-right">
             <a
                 class="link"
@@ -27,17 +29,18 @@
 <script>
 import { defineComponent } from 'vue';
 
-import logo from '@/assets/cent-logo-white.svg';
+import Icon from '@/components/Icon.vue';
 
 import Account from '@/components/Account.vue';
 
 export default defineComponent({
     components: {
         Account,
+        Icon,
     },
     setup() {
         return {
-            logo,
+            // logo,
         };
     },
 });
@@ -52,12 +55,20 @@ export default defineComponent({
     background: var(--background-header);
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.15);
 }
-
+.header-left {
+    display: flex;
+    align-items: flex-end;
+}
 .header-right {
     display: flex;
     align-items: center;
 }
 
+.network {
+    color: #48A9A6;
+    font-size: 12px; 
+    font-weight: 200;
+}
 .link {
     margin-right: 8px;
 }
@@ -68,18 +79,18 @@ a {
 }
 
 .brand {
-    margin-left: 40px;
+    margin-left: 20px;
     display: flex;
     align-items: center;
 }
 
-.logo {
-    height: 40px;
-}
+
 
 .title {
-    margin-left: 16px;
-    font-size: 20px;
+    margin-left: 2px;
+    letter-spacing: 1px; 
+    font-size: 24px; 
+    font-weight: 500;
 }
 
 .account {
