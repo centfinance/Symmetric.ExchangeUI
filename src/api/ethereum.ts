@@ -55,14 +55,23 @@ export default class Ethereum {
             allowances[exchangeProxyAddress][assetAddress] = data[2 * i + 1].toString();
             i++;
         }
-        if (config.network === 'xdai')
-        {
-            balances.xdai = data[2 * assetCount].toString();
+
+        switch (config.network) {
+            case 'xdai':
+              balances.xdai = data[2 * assetCount].toString();
+              break;
+            case 'sokol':
+              balances.spoa = data[2 * assetCount].toString();
+              break;
+            case 'celo':
+            case 'alfajores':
+              balances.celo = data[2 * assetCount].toString();
+              break;
+            case 'ethereum':
+            default:
+              balances.ether = data[2 * assetCount].toString();
         }
-        else
-        {
-            balances.ether = data[2 * assetCount].toString();
-        }
+
         const proxy = data[2 * assetCount + 1];
         return { allowances, balances, proxy };
     }

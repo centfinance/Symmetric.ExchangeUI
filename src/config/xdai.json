@@ -1,5 +1,6 @@
 {
     "network": "xdai",
+    "eth_key": "xdai",
     "chainId": 100,
     "precision": 6,
     "infuraKey": "92df310bb7f5c38db174697344e5be533a420d34",
@@ -20,19 +21,6 @@
         "rpc": {
           "100": "https://eth-cent.alchemyapi.io/v2/C467LJc7Aa761LLxlcxXvhIG9HzDTtKw"
         }
-      },
-      "portis": {
-        "network": "xdai",
-        "dappId": "3f1c3cfc-7dd5-4e8a-aa03-71ff7396d9fe"
-      },
-      "walletlink": {
-        "appName": "Cent Exchange",
-        "darkMode": true,
-        "chainId": 100,
-        "ethJsonrpcUrl": "https://rpc.xdaichain.com"
-      },
-      "fortmatic": {
-        "apiKey": "pk_live_9CE8FD92E54684ED"
       }
     }
   }

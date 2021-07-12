@@ -154,20 +154,20 @@ function getPreferences(): Preferences {
                 outputAsset: '0xef13C0c8abcaf5767160018d268f9697aE4f5375',
             },
             77: {
-                inputAsset: '0x2E422C7fb2b5149A28d2c408f830504b873f14B1',
-                outputAsset: '0x408eC1Bb883dA0EA0fb3C955ea6BEfcd05Aa7C3A',
+                inputAsset: '0xc655c6D80ac92d75fBF4F40e95280aEb855B1E87',
+                outputAsset: '0x705581f5830Cfd11715020543f5309ADEBdbd074',
             },
             100: {
                 inputAsset: '0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d',
-                outputAsset: '0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1',
+                outputAsset: '0xC45b3C1c24d5F54E7a2cF288ac668c74Dd507a84',
             },
             44787: {
-                inputAsset: '0x10c892A6EC43a53E45D0B916B4b7D383B1b78C0F',
+                inputAsset: '0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9',
                 outputAsset: '0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1',
             },
             42220: {
-                inputAsset: '0x765DE816845861e75A25fCA122bb6898B8B1282a',
-                outputAsset: '0xD8763CBa276a3738E6DE85b4b3bF5FDed6D6cA73',
+                inputAsset: '0x471EcE3750Da237f93B8E339c536989b8978a438',
+                outputAsset: '0x765DE816845861e75A25fCA122bb6898B8B1282a',
             },
         },
         list: 'balancer',

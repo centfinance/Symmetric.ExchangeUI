@@ -1,5 +1,6 @@
 {
     "network": "kovan",
+    "eth_key": "ethereum",
     "chainId": 42,
     "precision": 6,
     "infuraKey": "e68cb3352f7d4fb7848c4650917e4422",

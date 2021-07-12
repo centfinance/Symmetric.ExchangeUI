@@ -7,7 +7,7 @@ import assets from '@centfinance/cent.dex_assets/assets/index.json';
 import config from '@/config';
 import provider from '@/utils/provider';
 
-export const ETH_KEY = 'xdai';
+export const ETH_KEY = config.eth_key ;
 
 export function formatAddress(address: string, length = 8): string {
     const ellipsizedAddress = `${address.substr(0, 2 + length / 2)}…${address.substr(42 - length / 2)}`;
@@ -52,31 +52,31 @@ export function sleep(ms: number): Promise<void> {
 
 export function getEtherscanLink(txHash: string): string {
     const chainId = config.chainId;
-    const prefixMap = {
-        1: '',
-        42: 'kovan.',
-        77: 'sokol.',
-        100: 'xdai.',
-        44787: 'alfajores.',
-        42220: 'celo',
+    const urlMap = {
+        1: 'https://etherscan.io/tx',
+        42: 'https://kovan.etherscan.io/tx',
+        77: 'https://blockscout.com/poa/sokol/tx',
+        100: 'https://blockscout.com/xdai/mainnet/tx',
+        44787: 'https://alfajores-blockscout.celo-testnet.org/tx',
+        42220: 'https://explorer.celo.org/tx',
     };
-    const prefix = prefixMap[chainId];
-    const link = `https://blockscout.com/xdai/mainnet/tx/${txHash}`;
+    const url = urlMap[chainId];
+    const link = `${url}/${txHash}`;
     return link;
 }
 
 export function getAccountLink(address: string): string {
     const chainId = config.chainId;
-    const prefixMap = {
-        1: '',
-        42: 'kovan.',
-        77: 'sokol.',
-        100: 'xdai.',
-        44787: 'alfajores.',
-        42220: 'celo',
+    const urlMap = {
+        1: 'https://etherscan.io/address',
+        42: 'https://kovan.etherscan.io/address',
+        77: 'https://blockscout.com/poa/sokol/address',
+        100: 'https://blockscout.com/xdai/mainnet/address',
+        44787: 'https://alfajores-blockscout.celo-testnet.org/address',
+        42220: 'https://explorer.celo.org/address',
     };
-    const prefix = prefixMap[chainId];
-    const link = `https://blockscout.com/xdai/mainnet/address/${address}`;
+    const url = urlMap[chainId];
+    const link = `${url}/${address}`;
     return link;
 }
 

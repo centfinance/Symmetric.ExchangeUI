@@ -43,26 +43,92 @@ export async function getTokenlist(id: string): Promise<TokenList> {
 export function getAssetsFromTokenlist(chainId: number, list: TokenList): Record<string, AssetMetadata> {
     const assets: Record<string, AssetMetadata> = {};
     
-    if (list.tokens.findIndex(token => token.address === config.addresses.wxdai) !== -1) {
-        assets.xdai = {
-            address: 'xdai',
-            name: 'Xdai',
-            symbol: 'XDAI',
-            decimals: 18,
-            logoURI: ETH_LOGO,
-        };
-    }
-    for (const token of list.tokens) {
-        if (token.chainId !== chainId) {
-            continue;
-        }
-        assets[token.address] = {
-            address: token.address,
-            name: token.name,
-            symbol: token.symbol,
-            decimals: token.decimals,
-            logoURI: token.logoURI,
-        };
+    switch (config.network) {
+        case 'xdai':
+            if (list.tokens.findIndex(token => token.address === config.addresses.wxdai) !== -1) {
+                assets.xdai = {
+                    address: 'xdai',
+                    name: 'Xdai',
+                    symbol: 'XDAI',
+                    decimals: 18,
+                    logoURI: ETH_LOGO,
+                };
+            }
+            for (const token of list.tokens) {
+                if (token.chainId !== chainId) {
+                    continue;
+                }
+                assets[token.address] = {
+                    address: token.address,
+                    name: token.name,
+                    symbol: token.symbol,
+                    decimals: token.decimals,
+                    logoURI: token.logoURI,
+                };
+            }
+            break;
+        case 'sokol':
+            if (list.tokens.findIndex(token => token.address === config.addresses.wspoa) !== -1) {
+                assets.spoa = {
+                    address: 'spoa',
+                    name: 'Spoa',
+                    symbol: 'SPOA',
+                    decimals: 18,
+                    logoURI: ETH_LOGO,
+                };
+            }
+            for (const token of list.tokens) {
+                if (token.chainId !== chainId) {
+                    continue;
+                }
+                assets[token.address] = {
+                    address: token.address,
+                    name: token.name,
+                    symbol: token.symbol,
+                    decimals: token.decimals,
+                    logoURI: token.logoURI,
+                };
+            }
+            break;
+        case 'celo':
+        case 'alfajores':
+            for (const token of list.tokens) {
+                if (token.chainId !== chainId) {
+                    continue;
+                }
+                assets[token.address] = {
+                    address: token.address,
+                    name: token.name,
+                    symbol: token.symbol,
+                    decimals: token.decimals,
+                    logoURI: token.logoURI,
+                };
+            }
+            break;
+        case 'ethereum':
+        default:
+            if (list.tokens.findIndex(token => token.address === config.addresses.weth) !== -1) {
+                assets.ether = {
+                    address: 'ether',
+                    name: 'Ether',
+                    symbol: 'ETH',
+                    decimals: 18,
+                    logoURI: ETH_LOGO,
+                };
+            }
+            for (const token of list.tokens) {
+                if (token.chainId !== chainId) {
+                    continue;
+                }
+                assets[token.address] = {
+                    address: token.address,
+                    name: token.name,
+                    symbol: token.symbol,
+                    decimals: token.decimals,
+                    logoURI: token.logoURI,
+                };
+            }
+            break;
     }
     return assets;
 }

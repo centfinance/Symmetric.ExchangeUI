@@ -182,24 +182,36 @@ export default defineComponent({
         }
 
         function isWrapPair(assetIn: string, assetOut: string): boolean {
-            if (config.network === 'xdai')
-            {
-                if (assetIn === ETH_KEY && assetOut === config.addresses.wxdai) {
-                    return true;
-                }
-                if (assetOut === ETH_KEY && assetIn === config.addresses.wxdai) {
-                    return true;
-                }
+            switch (config.network) {
+                case 'xdai':
+                    if (assetIn === ETH_KEY && assetOut === config.addresses.wxdai) {
+                        return true;
+                    }
+                    if (assetOut === ETH_KEY && assetIn === config.addresses.wxdai) {
+                        return true;
+                    }
+                    break;
+                case 'sokol':
+                    if (assetIn === ETH_KEY && assetOut === config.addresses.wspoa) {
+                        return true;
+                    }
+                    if (assetOut === ETH_KEY && assetIn === config.addresses.wspoa) {
+                        return true;
+                    }
+                    break;
+                case 'celo':
+                case 'alfajores':
+                    break;
+                case 'ethereum':
+                default:
+                    if (assetIn === ETH_KEY && assetOut === config.addresses.weth) {
+                        return true;
+                    }
+                    if (assetOut === ETH_KEY && assetIn === config.addresses.weth) {
+                        return true;
+                    }
             }
-            else
-            {
-                if (assetIn === ETH_KEY && assetOut === config.addresses.weth) {
-                    return true;
-                }
-                if (assetOut === ETH_KEY && assetIn === config.addresses.weth) {
-                    return true;
-                }
-            }
+
             return false;
         }
 

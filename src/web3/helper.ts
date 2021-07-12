@@ -33,37 +33,50 @@ export default class Helper {
         provider: Web3Provider,
         amount: BigNumber,
     ): Promise<any> {
-        if (config.network === 'xdai')
-        {
-            const wxdaiContract = new Contract(config.addresses.wxdai, WxdaiAbi, provider.getSigner());
-            const overrides = {
-                value: `0x${amount.toString(16)}`,
-            };
-            try {
-                return await wxdaiContract.deposit(overrides);
-            } catch(e) {
-                if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
-                    const sender = await provider.getSigner().getAddress();
-                    logRevertedTx(sender, wxdaiContract, 'deposit', [], overrides);
+        let overrides = {
+            value: `0x${amount.toString(16)}`,
+        };
+        switch (config.network) {
+            case 'xdai':
+                const wxdaiContract = new Contract(config.addresses.wxdai, WxdaiAbi, provider.getSigner());
+                try {
+                    return await wxdaiContract.deposit(overrides);
+                } catch(e) {
+                    if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
+                        const sender = await provider.getSigner().getAddress();
+                        logRevertedTx(sender, wxdaiContract, 'deposit', [], overrides);
+                    }
+                    return e;
                 }
-                return e;
-            }
-        }
-        else
-        {
-            const wethContract = new Contract(config.addresses.weth, WethAbi, provider.getSigner());
-            const overrides = {
-                value: `0x${amount.toString(16)}`,
-            };
-            try {
-                return await wethContract.deposit(overrides);
-            } catch(e) {
-                if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
-                    const sender = await provider.getSigner().getAddress();
-                    logRevertedTx(sender, wethContract, 'deposit', [], overrides);
+            case 'sokol':
+                const wspoaContract = new Contract(config.addresses.wspoa, WxdaiAbi, provider.getSigner());
+                try {
+                    return await wspoaContract.deposit(overrides);
+                } catch(e) {
+                    if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
+                        const sender = await provider.getSigner().getAddress();
+                        logRevertedTx(sender, wspoaContract, 'deposit', [], overrides);
+                    }
+                    return e;
                 }
-                return e;
-            }
+            case 'celo':
+            case 'alfajores':
+                break;
+            case 'ethereum':
+            default:
+                const wethContract = new Contract(config.addresses.weth, WethAbi, provider.getSigner());
+                overrides = {
+                    value: `0x${amount.toString(16)}`,
+                };
+                try {
+                    return await wethContract.deposit(overrides);
+                } catch(e) {
+                    if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
+                        const sender = await provider.getSigner().getAddress();
+                        logRevertedTx(sender, wethContract, 'deposit', [], overrides);
+                    }
+                    return e;
+                }
         }
     }
 
@@ -71,31 +84,44 @@ export default class Helper {
         provider: Web3Provider,
         amount: BigNumber,
     ): Promise<any> {
-        if (config.network === 'xdai')
-        {
-            const wxdaiContract = new Contract(config.addresses.wxdai, WxdaiAbi, provider.getSigner());
-            try {
-                return await wxdaiContract.withdraw(amount.toString(), {});
-            } catch(e) {
-                if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
-                    const sender = await provider.getSigner().getAddress();
-                    logRevertedTx(sender, wxdaiContract, 'withdraw', [amount.toString()], {});
+        switch (config.network) {
+            case 'xdai':
+                const wxdaiContract = new Contract(config.addresses.wxdai, WxdaiAbi, provider.getSigner());
+                try {
+                    return await wxdaiContract.withdraw(amount.toString(), {});
+                } catch(e) {
+                    if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
+                        const sender = await provider.getSigner().getAddress();
+                        logRevertedTx(sender, wxdaiContract, 'withdraw', [amount.toString()], {});
+                    }
+                    return e;
                 }
-                return e;
-            }
-        }
-        else
-        {
-            const wethContract = new Contract(config.addresses.weth, WethAbi, provider.getSigner());
-            try {
-                return await wethContract.withdraw(amount.toString(), {});
-            } catch(e) {
-                if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
-                    const sender = await provider.getSigner().getAddress();
-                    logRevertedTx(sender, wethContract, 'withdraw', [amount.toString()], {});
+            case 'sokol':
+                const wspoaContract = new Contract(config.addresses.wspoa, WxdaiAbi, provider.getSigner());
+                try {
+                    return await wspoaContract.withdraw(amount.toString(), {});
+                } catch(e) {
+                    if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
+                        const sender = await provider.getSigner().getAddress();
+                        logRevertedTx(sender, wspoaContract, 'withdraw', [amount.toString()], {});
+                    }
+                    return e;
                 }
-                return e;
-            }
+            case 'celo':
+            case 'alfajores':
+                break;
+            case 'ethereum':
+            default:
+                const wethContract = new Contract(config.addresses.weth, WethAbi, provider.getSigner());
+                try {
+                    return await wethContract.withdraw(amount.toString(), {});
+                } catch(e) {
+                    if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
+                        const sender = await provider.getSigner().getAddress();
+                        logRevertedTx(sender, wethContract, 'withdraw', [amount.toString()], {});
+                    }
+                    return e;
+                }
         }
     }
 }
