@@ -11,12 +11,12 @@
                 />
                 <div class="title">Symmetric </div><br>
             </router-link>
-            <span class="network">  xDai</span>
+            <span class="network">  {{ network }}</span>
         </div>
         <div class="header-right">
             <a
                 class="link"
-                href="https://xdai-pools.symmetric.exchange/"
+                :href="networkUrl"
                 target="_blank"
             >
                 Add Liquidity
@@ -27,11 +27,13 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
 
 import Icon from '@/components/Icon.vue';
 
 import Account from '@/components/Account.vue';
+
+import config from '@/config';
 
 export default defineComponent({
     components: {
@@ -39,8 +41,17 @@ export default defineComponent({
         Icon,
     },
     setup() {
+        const networkUrl = computed(() => {
+            return `https://${config.network}-pools.symmetric.exchange/`;;
+        });
+
+        const network = computed(() => {
+            return `${config.network}`;;
+        });
+
         return {
-            // logo,
+            network,
+            networkUrl
         };
     },
 });

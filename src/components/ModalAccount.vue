@@ -133,6 +133,7 @@ export default defineComponent({
             const metadata = store.getters['assets/metadata'];
             const { balances } = store.state.account;
             return Object.keys(balances)
+                .filter(balance => balance !== 'celo')
                 .map(assetAddress => {
                     const assetMetadata = metadata[assetAddress];
                     const { address, name, symbol, decimals } = assetMetadata;

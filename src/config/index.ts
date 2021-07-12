@@ -22,6 +22,7 @@ export interface AssetMetadata {
 interface Config {
     network: string;
     chainId: number;
+    eth_key: string;
     precision: number;
     infuraKey: string;
     rpcUrl: string;
@@ -34,6 +35,8 @@ interface Config {
         exchangeProxy: string;
         weth: string;
         wxdai: string;
+        celo: string;
+        wspoa: string;
         multicall: string;
     };
     assets: Record<string, AssetMetadata>;

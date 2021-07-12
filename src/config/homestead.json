@@ -1,5 +1,6 @@
 {
     "network": "homestead",
+    "eth_key": "ethereum",
     "chainId": 1,
     "precision": 6,
     "infuraKey": "237c3102f39b4940abbe12dc49165cd6",

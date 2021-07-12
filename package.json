@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@centfinance/cent.dex_assets": "github:centfinance/symmetric.assets#master",
-    "@centfinance/sor_xdai": "0.0.9",
+    "@centfinance/sor_sokol": "0.0.10",
     "@ethersproject/address": "^5.0.6",
     "@ethersproject/constants": "^5.0.6",
     "@ethersproject/contracts": "^5.0.6",
@@ -30,7 +30,7 @@
     "@walletconnect/web3-provider": "^1.2.2",
     "bignumber.js": "^9.0.1",
     "dotenv-webpack": "^2.0.0",
-    "ethcall": "^3.0.0",
+    "ethcall": "^3.4.1",
     "fortmatic": "^2.0.6",
     "vue": "^3.0.2",
     "vue-router": "^4.0.0-rc.6",

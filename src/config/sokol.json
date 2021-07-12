@@ -1,17 +1,19 @@
 {
     "network": "sokol",
+    "eth_key": "spoa",
     "chainId": 77,
     "precision": 6,
+    "infuraKey": "e68cb3352f7d4fb7848c4650917e4422",
     "rpcUrl": "https://sokol.poa.network",
     "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/cent-swap-sokol",
     "subgraphBackupUrl": "https://switch1983-team-bucket.storage.fleek.co/cent-exchange-sokol/pools",
     "addresses": {
         "bFactory": "0x3B4261a0A617a01ff7994bD15896ab1d384baABF",
-        "bActions": "0x924bd0B67d12Dd164546069d14c39c118888fd93",
-        "dsProxyRegistry": "0x83566f1ad652BAd8853C4116ACcCcb86548b764f",
-        "proxy": "0xBA959dCdEadD9c668d9e89aE414b2A59fcFCCd10",
-        "weth": "0xB7c91068aC96051573465E43603600C0684a7002",
-        "multicall": "0xD89ab91c7ad31bf488CB78CD7459B347Aca48E43"
+        "bActions": "0x2d9837C9ca00aB3A784fBfa6280539BA57Ab0233",
+        "dsProxyRegistry": "0x6e741a0bc8499FBa85E6889690FA040Fcc5fdaD8",
+        "exchangeProxy": "0xeE73082412592AFc86403B13946a963023237521",
+        "wspoa": "0xc655c6D80ac92d75fBF4F40e95280aEb855B1E87",
+        "multicall": "0xabbFE3C66D9ee256E1F1d218BA997fc7229103c9"
     },
     "connectors": {
         "injected": {},
@@ -19,19 +21,6 @@
             "rpc": {
                 "77": "https://eth-sokol.alchemyapi.io/v2/C467LJc7Aa761LLxlcxXvhIG9HzDTtKw"
             }
-        },
-        "portis": {
-            "network": "sokol",
-            "dappId": "3f1c3cfc-7dd5-4e8a-aa03-71ff7396d9fe"
-        },
-        "walletlink": {
-            "appName": "Cent Exchange",
-            "darkMode": true,
-            "chainId": 77,
-            "ethJsonrpcUrl": "https://sokol.infura.io/v3/237c3102f39b4940abbe12dc49165cd6"
-        },
-        "fortmatic": {
-            "apiKey": "pk_live_9CE8FD92E54684ED"
         }
     }
 }
