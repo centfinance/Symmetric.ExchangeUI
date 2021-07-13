@@ -9,9 +9,8 @@
                     class="logo"
                     :title="'symmetric'"
                 />
-                <div class="title">Symmetric </div><br>
+                <div class="title">SYMMETRIC </div><br>
             </router-link>
-            <span class="network">  {{ network }}</span>
         </div>
         <div class="header-right">
             <a
@@ -45,13 +44,8 @@ export default defineComponent({
             return `https://${config.network}-pools.symmetric.exchange/`;;
         });
 
-        const network = computed(() => {
-            return `${config.network}`;;
-        });
-
         return {
-            network,
-            networkUrl
+            networkUrl,
         };
     },
 });
