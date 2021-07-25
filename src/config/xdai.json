@@ -19,7 +19,7 @@
       "injected": {},
       "walletconnect": {
         "rpc": {
-          "100": "https://eth-cent.alchemyapi.io/v2/C467LJc7Aa761LLxlcxXvhIG9HzDTtKw"
+          "100": "https://rpc.xdaichain.com"
         }
       }
     }

@@ -15,6 +15,15 @@
         <div class="header-right">
             <a
                 class="link"
+                href="https://docs.symmetric.exchange"
+                target="_blank"
+                style="padding-right:10px;"
+            >
+                Documentation
+            </a>
+            <div style="padding-right:10px;">|</div>
+            <a
+                class="link"
                 :href="networkUrl"
                 target="_blank"
             >
