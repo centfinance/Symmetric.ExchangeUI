@@ -3,6 +3,8 @@ import tokenlist from '@centfinance/cent.dex_assets/generated/listed.tokenlist.j
 import config, { AssetMetadata } from '@/config';
 
 const ETH_LOGO = 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/info/logo.png';
+const XDAI_LOGO = 'https://raw.githubusercontent.com/centfinance/assets/master/blockchains/xdai/assets/0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d/logo.png';
+const CELO_LOGO = 'https://raw.githubusercontent.com/centfinance/assets/master/blockchains/celo/assets/0x471EcE3750Da237f93B8E339c536989b8978a438/logo.png';
 
 export interface TokenList {
     name: string;
@@ -51,7 +53,7 @@ export function getAssetsFromTokenlist(chainId: number, list: TokenList): Record
                     name: 'Xdai',
                     symbol: 'XDAI',
                     decimals: 18,
-                    logoURI: ETH_LOGO,
+                    logoURI: XDAI_LOGO,
                 };
             }
             for (const token of list.tokens) {
@@ -74,7 +76,7 @@ export function getAssetsFromTokenlist(chainId: number, list: TokenList): Record
                     name: 'Spoa',
                     symbol: 'SPOA',
                     decimals: 18,
-                    logoURI: ETH_LOGO,
+                    logoURI: XDAI_LOGO,
                 };
             }
             for (const token of list.tokens) {
