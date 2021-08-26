@@ -29,6 +29,11 @@
             >
                 Add Liquidity
             </a>
+            <Button
+                :text="'Switch Network'"
+                :primary="false"
+                @click="switchNetwork"
+            />
             <Account class="account" />
         </div>
     </div>
@@ -39,22 +44,73 @@ import { defineComponent, computed } from 'vue';
 
 import Icon from '@/components/Icon.vue';
 
+import Button from '@/components/Button.vue';
+
 import Account from '@/components/Account.vue';
 
 import config from '@/config';
 
 export default defineComponent({
     components: {
+        Button,
         Account,
         Icon,
     },
     setup() {
         const networkUrl = computed(() => {
-            return `https://${config.network}-pools.symmetric.exchange/`;;
+            return `https://${config.network}-pools.symmetric.exchange/`;
         });
+
+        function switchNetwork() {
+            if (!window.ethereum) {
+                console.error('No injected wallet found.');
+                return;
+            }
+            switch (config.network) {
+            case 100: // xdai
+                window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            'chainId': '0x64',
+                            'chainName': 'xDai',
+                            'rpcUrls': ['https://rpc.xdaichain.com'],
+                            'nativeCurrency': {
+                                'name': 'xDai Chain xDai',
+                                'symbol': 'xDai',
+                                'decimals': 18,
+                            },
+                            'blockExplorerUrls': ['https://blockscout.com/poa/xdai'],
+                        },
+                    ],
+                    id: 1,
+                }, console.log);
+                break;
+            case 42220: // celo
+                window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            'chainId': '0xa4ec',
+                            'chainName': 'Celo',
+                            'rpcUrls': ['https://forno.celo.org'],
+                            'nativeCurrency': {
+                                'name': 'Celo',
+                                'symbol': 'CELO',
+                                'decimals': 18,
+                            },
+                            'blockExplorerUrls': ['https://explorer.celo.org'],
+                        },
+                    ],
+                    id: 1,
+                }, console.log);
+                break;
+            }
+        }
 
         return {
             networkUrl,
+            switchNetwork,
         };
     },
 });
