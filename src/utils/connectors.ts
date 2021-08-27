@@ -1,16 +1,16 @@
-import { Lock } from '@snapshot-labs/lock/src';
-import injected from '@snapshot-labs/lock/connectors/injected';
-import fortmatic from '@snapshot-labs/lock/connectors/fortmatic';
-import portis from '@snapshot-labs/lock/connectors/portis';
-import walletconnect from '@snapshot-labs/lock/connectors/walletconnect';
-import walletlink from '@snapshot-labs/lock/connectors/walletlink';
+import Lock from '../lock';
+import injected from './connectors/injected';
+import celo from './connectors/celo';
+import fortmatic from './connectors/fortmatic';
+import walletconnect from './connectors/walletconnect';
+import walletlink from './connectors/walletlink';
 
+import celoLogo from '@/assets/connector/celo-logo.svg';
 import defaultLogo from '@/assets/connector/default.svg';
 import fortmaticLogo from '@/assets/connector/fortmatic.svg';
 import frameLogo from '@/assets/connector/frame.svg';
 import imtokenLogo from '@/assets/connector/imtoken.svg';
 import metamaskLogo from '@/assets/connector/metamask.svg';
-import portisLogo from '@/assets/connector/portis.svg';
 import statusLogo from '@/assets/connector/status.svg';
 import trustwalletLogo from '@/assets/connector/trustwallet.svg';
 import walletconnectLogo from '@/assets/connector/walletconnect.svg';
@@ -20,7 +20,7 @@ import config from '@/config';
 
 const lock = new Lock();
 
-const connectors = { injected, fortmatic, portis, walletconnect, walletlink };
+const connectors = { injected, celo, fortmatic, walletconnect, walletlink };
 
 for (const connectorId in connectors) {
     const connector = {
@@ -58,14 +58,14 @@ export function getConnectorName(connectorId: string): string {
     if (connectorId === 'fortmatic') {
         return 'Fortmatic';
     }
-    if (connectorId === 'portis') {
-        return 'Portis';
-    }
     if (connectorId === 'walletconnect') {
         return 'WalletConnect';
     }
     if (connectorId === 'walletlink') {
         return 'Coinbase Wallet';
+    }
+    if (connectorId === 'celo') {
+        return 'Celo Extension Wallet';
     }
     return 'Unknown';
 }
@@ -93,14 +93,14 @@ export function getConnectorLogo(connectorId: string): string {
     if (connectorId === 'fortmatic') {
         return fortmaticLogo;
     }
-    if (connectorId === 'portis') {
-        return portisLogo;
-    }
     if (connectorId === 'walletconnect') {
         return walletconnectLogo;
     }
     if (connectorId === 'walletlink') {
         return walletlinkLogo;
+    }
+    if (connectorId === 'celo') {
+        return celoLogo;
     }
     return defaultLogo;
 }

@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@centfinance/cent.dex_assets": "github:centfinance/symmetric.assets#master",
-    "@centfinance/sor_xdai": "0.0.9",
+    "@centfinance/sor_celo": "0.0.10",
     "@ethersproject/address": "^5.0.6",
     "@ethersproject/constants": "^5.0.6",
     "@ethersproject/contracts": "^5.0.6",
@@ -24,7 +24,6 @@
     "@ethersproject/providers": "^5.0.15",
     "@ethersproject/wallet": "^5.0.8",
     "@metamask/jazzicon": "^2.0.0",
-    "@portis/web3": "^2.0.0-beta.59",
     "@snapshot-labs/lock": "github:snapshot-labs/lock#a3694bb6b6e615968ee6e04e9a97007eace18c28",
     "@vueuse/core": "^4.0.0-beta.30",
     "@walletconnect/web3-provider": "^1.2.2",
