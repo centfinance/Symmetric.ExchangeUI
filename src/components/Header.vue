@@ -67,7 +67,7 @@ export default defineComponent({
                 return;
             }
             switch (config.network) {
-            case 100: // xdai
+            case "xdai":
                 window.ethereum.request({
                     method: 'wallet_addEthereumChain',
                     params: [
@@ -86,7 +86,7 @@ export default defineComponent({
                     id: 1,
                 }, console.log);
                 break;
-            case 42220: // celo
+            case "celo":
                 window.ethereum.request({
                     method: 'wallet_addEthereumChain',
                     params: [
@@ -100,6 +100,44 @@ export default defineComponent({
                                 'decimals': 18,
                             },
                             'blockExplorerUrls': ['https://explorer.celo.org'],
+                        },
+                    ],
+                    id: 1,
+                }, console.log);
+                break;
+            case "alfajores":
+                window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            'chainId': '0xaef3',
+                            'chainName': 'Celo (Alfajores Testnet)',
+                            'rpcUrls': ['https://alfajores-forno.celo-testnet.org'],
+                            'nativeCurrency': {
+                                'name': 'Celo',
+                                'symbol': 'CELO',
+                                'decimals': 18,
+                            },
+                            'blockExplorerUrls': ['https://alfajores-blockscout.celo-testnet.org'],
+                        },
+                    ],
+                    id: 1,
+                }, console.log);
+                break;
+            case "sokol":
+                window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            'chainId': '0x4d',
+                            'chainName': 'Sokol Testnet',
+                            'rpcUrls': ['https://sokol.poa.network'],
+                            'nativeCurrency': {
+                                'name': 'SPOA',
+                                'symbol': 'SPOA',
+                                'decimals': 18,
+                            },
+                            'blockExplorerUrls': ['https://blockscout.com/poa/sokol'],
                         },
                     ],
                     id: 1,

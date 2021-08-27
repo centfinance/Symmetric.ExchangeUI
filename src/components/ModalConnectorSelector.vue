@@ -57,7 +57,7 @@ export default defineComponent({
                     return true;
                 })
                 .filter(connectorId => {
-                    if(connectorId === 'walletconnect' || connectorId ==='injected'){
+                    if(connectorId === 'walletconnect' || connectorId ==='injected' || connectorId ==='celo'){
                         return true;
                     }
                 })

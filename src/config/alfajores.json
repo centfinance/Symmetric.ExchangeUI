@@ -17,9 +17,13 @@
   },
   "connectors": {
       "injected": {},
+      "celo": {
+        "id": "celo",
+        "name": "Celo Extension Wallet"
+      },
       "walletconnect": {
           "rpc": {
-            "44787": "https://celo-alfajores--rpc.datahub.figment.io/apikey/156ef461796cafbed135cb33f419b312/"
+            "44787": "https://alfajores-forno.celo-testnet.org"
           }
       }
   }

@@ -4,7 +4,7 @@
     "chainId": 100,
     "precision": 6,
     "infuraKey": "92df310bb7f5c38db174697344e5be533a420d34",
-    "rpcUrl": "https://rpc.xdaichain.com",
+    "rpcUrl": "https://rpc.xdaichain.com/",
     "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/cent-swap-xdai",
     "subgraphBackupUrl": "https://switch1983-team-bucket.storage.fleek.co/cent-exchange-xdai/pools",
     "addresses": {
@@ -19,7 +19,7 @@
       "injected": {},
       "walletconnect": {
         "rpc": {
-          "100": "https://rpc.xdaichain.com"
+          "100": "https://spring-hidden-river.xdai.quiknode.pro/ff85d990a61f2508241932c33fe37f5fe2027902/"
         }
       }
     }

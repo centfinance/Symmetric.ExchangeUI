@@ -17,6 +17,10 @@
   },
   "connectors": {
       "injected": {},
+      "celo": {
+        "id": "celo",
+        "name": "Celo Extension Wallet"
+      },
       "walletconnect": {
           "rpc": {
             "42220": "https://forno.celo.org"

@@ -138,9 +138,6 @@ export default defineComponent({
             if (props.modalKey !== 'input') {
                 return false;
             }
-            if (props.address === ETH_KEY) {
-                return false;
-            }
             const assets = store.getters['assets/metadata'];
             const { balances } = store.state.account;
             if (!balances) {
