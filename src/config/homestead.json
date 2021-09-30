@@ -18,6 +18,7 @@
     "connectors": {
         "injected": {},
         "walletconnect": {
+            "chainId": 1,
             "rpc": {
                 "1": "https://mainnet.infura.io/v3/237c3102f39b4940abbe12dc49165cd6"
             }
