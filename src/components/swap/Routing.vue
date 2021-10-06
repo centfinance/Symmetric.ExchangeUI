@@ -34,6 +34,9 @@
                                 {{ input.symbol }}
                             </div>
                         </div>
+                        <div class="asset-fee">
+                            {{ computeFee(routes) }}
+                        </div>
                         <div class="output-asset">
                             <div class="asset-amount">
                                 {{ output.amount }}
@@ -87,6 +90,9 @@
                             :key="route.hops[0].pool.address"
                             class="route"
                         >
+                            <div class="fee">
+                                {{ formatFee(route.swapFee) }}
+                            </div>
                             <div class="arrow-wrapper">
                                 <Icon
                                     :title="'triangle'"
@@ -133,6 +139,7 @@ import Icon from '@/components/Icon.vue';
 interface Route {
     share: number;
     hops: Hop[];
+    swapFee: BigNumber;
 }
 
 interface Hop {
@@ -258,24 +265,44 @@ export default defineComponent({
                                 return index < 2 || index > tokens.length - 3;
                             }),
                     };
+                    const swapFee = rawPool.swapFee;
                     return {
                         pool,
                         tokenIn,
                         tokenOut,
                         swapAmount,
+                        swapFee,
                     };
                 });
                 return {
                     share,
                     hops,
+                    swapFee: hops.reduce((prev, curr) => {
+                        if (curr.swapFee) {
+                            return prev.plus(new BigNumber(curr.swapFee));
+                        }
+                        return prev;
+                    }, new BigNumber(0)),
                 };
             }) as Route[];
 
             return routes;
         });
 
+        const fee = computed(() => {
+        });
+
         function formatShare(share: number): string {
-            return `${(share * 100).toFixed(2)}%`;
+            return `Share ${(share * 100).toFixed(2)}%`;
+        }
+
+        function formatFee(fee: BigNumber): string {
+            return `Fee ${(fee.dividedBy(10e15)).toFixed(2)}%`;
+        }
+
+        function computeFee(routes: Route[]): string {
+            const fee = routes.reduce((prev, curr) => prev.plus(curr.swapFee.times(curr.share)), new BigNumber(0));
+            return `${(fee.dividedBy(10e15)).toFixed(2)}% Fee`;
         }
 
         return {
@@ -287,6 +314,8 @@ export default defineComponent({
             routes,
 
             formatShare,
+            formatFee,
+            computeFee,
         };
     },
 });
@@ -447,10 +476,23 @@ div {
     margin-left: 6px;
 }
 
+.asset-fee {
+    font-size: var(--font-size-tiny);
+    width: 42px;
+    text-align: center;
+}
+
 .share {
     font-size: var(--font-size-tiny);
     width: 42px;
     margin-right: 16px;
     text-align: right;
+}
+
+.fee {
+    font-size: var(--font-size-tiny);
+    width: 42px;
+    margin-left: 16px;
+    text-align: left;
 }
 </style>
