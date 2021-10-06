@@ -22,6 +22,7 @@
         "name": "Celo Extension Wallet"
       },
       "walletconnect": {
+          "chainId": 44787,
           "rpc": {
             "44787": "https://alfajores-forno.celo-testnet.org"
           }

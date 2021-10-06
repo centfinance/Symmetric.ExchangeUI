@@ -18,6 +18,7 @@
     "connectors": {
         "injected": {},
         "walletconnect": {
+            "chainId": 77,
             "rpc": {
                 "77": "https://eth-sokol.alchemyapi.io/v2/C467LJc7Aa761LLxlcxXvhIG9HzDTtKw"
             }
