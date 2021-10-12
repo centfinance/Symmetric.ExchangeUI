@@ -11,7 +11,7 @@
                 />
                 <div class="title">SYMMETRIC </div><br>
             </router-link>
-            <Theme-Switcher/>
+            <Theme-Switcher class="switcher"/>
         </div>
         <div class="header-right">
             <a
@@ -219,6 +219,12 @@ a {
     }
 
     .link {
+        display: none;
+    }
+}
+
+@media(max-width: 1100px) {
+    .switcher {
         display: none;
     }
 }
