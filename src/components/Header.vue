@@ -11,6 +11,7 @@
                 />
                 <div class="title">SYMMETRIC </div><br>
             </router-link>
+            <Theme-Switcher/>
         </div>
         <div class="header-right">
             <a
@@ -43,10 +44,9 @@
 import { defineComponent, computed } from 'vue';
 
 import Icon from '@/components/Icon.vue';
-
 import Button from '@/components/Button.vue';
-
 import Account from '@/components/Account.vue';
+import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
 
 import config from '@/config';
 
@@ -55,6 +55,7 @@ export default defineComponent({
         Button,
         Account,
         Icon,
+        ThemeSwitcher
     },
     setup() {
         const networkUrl = computed(() => {
@@ -165,8 +166,9 @@ export default defineComponent({
 }
 .header-left {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
+
 .header-right {
     display: flex;
     align-items: center;
@@ -190,6 +192,7 @@ a {
     margin-left: 20px;
     display: flex;
     align-items: center;
+    margin-right: 20px;
 }
 
 

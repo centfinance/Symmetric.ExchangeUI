@@ -89,6 +89,27 @@ export default defineComponent({
     --block-height: 50px;
 }
 
+html[data-theme='light'] {
+    --background-primary: white;
+    --background-secondary: #ffffff;
+    --background-header: rgb(255 243 229);
+    --background-form: #ffffff;
+    --background-control: #2a2a2b;
+    --background-hover: #FB6706;
+    --border-form: #262626;
+    --border-input: #d3d3d3;
+    --accent: #4965ff;
+    --accent-dark: #3c56e3;
+    --text-primary: rgb(34, 34, 34);
+    --text-secondary: #4d4d4d;
+    --text-control: #999;
+    --text-inverted: rgb(255, 255, 255);
+    --success: #21b66f;
+    --info: #7685d5;
+    --warning: #ffc780;
+    --error: #F25B2A;
+}
+
 body {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
     font-size: var(--font-size-medium);
