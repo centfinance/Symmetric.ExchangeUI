@@ -44,7 +44,6 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-control);
     background: var(--background-secondary);
     border: 1px solid var(--border-input);
     border-radius: 50%;
@@ -53,6 +52,7 @@ export default defineComponent({
 
 .button:hover {
     background: var(--background-hover);
+    color: var(--text-inverted);
 }
 
 .icon {

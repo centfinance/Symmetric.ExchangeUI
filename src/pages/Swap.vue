@@ -46,7 +46,7 @@
             @select="handleAssetSelect"
         />
         <div class="text-secondary" style="font-size:11px">
-            Current Network:<span class="text-white">{{ network }} </span>
+            Current Network:<span>{{ network }} </span>
         </div><br>
     </div>
 </template>
@@ -726,4 +726,9 @@ export default defineComponent({
 .text-secondary {
 color: #acbbc3;
 } 
+
+.text-secondary span {
+    margin-left: 0.5rem;
+    color: var(--text-primary);
+}
 </style>
