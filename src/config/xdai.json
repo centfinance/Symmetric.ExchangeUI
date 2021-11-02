@@ -21,7 +21,8 @@
         "chainId": 100,
         "rpc": {
           "100": "https://spring-hidden-river.xdai.quiknode.pro/ff85d990a61f2508241932c33fe37f5fe2027902/"
-        }
+        },
+        "bridge": "https://walletconnect-relay.minerva.digital"
       }
     }
   }
