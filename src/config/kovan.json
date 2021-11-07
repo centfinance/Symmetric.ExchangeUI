@@ -21,7 +21,8 @@
             "chainId": 42,
             "rpc": {
                 "42": "https://eth-kovan.alchemyapi.io/v2/C467LJc7Aa761LLxlcxXvhIG9HzDTtKw"
-            }
+            },
+            "bridge": "https://walletconnect-relay.minerva.digital"
         },
         "portis": {
             "network": "kovan",

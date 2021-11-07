@@ -25,7 +25,8 @@
           "chainId": 44787,
           "rpc": {
             "44787": "https://alfajores-forno.celo-testnet.org"
-          }
+          },
+        "bridge": "https://walletconnect-relay.minerva.digital"
       }
   }
 }
