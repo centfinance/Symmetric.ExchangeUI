@@ -5,7 +5,7 @@
     "precision": 6,
     "infuraKey": "92df310bb7f5c38db174697344e5be533a420d34",
     "rpcUrl": "https://rpc.xdaichain.com/",
-    "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/cent-swap-xdai",
+    "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/symmetric-xdai",
     "subgraphBackupUrl": "https://storageapi.fleek.co/switch1983-team-bucket/cent-exchange-xdai/pools",
     "addresses": {
       "bFactory": "0x9B4214FD41cD24347A25122AC7bb6B479BED72Ac",
