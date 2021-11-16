@@ -333,6 +333,7 @@ export default defineComponent({
             store.dispatch('account/fetchAssets', [ assetInAddress, assetOutAddress ]);
             if (sor) {
                 sor.fetchPools();
+                assetInAmountInput.value = '';
                 onAmountChange(activeInput.value);
             }
         }
