@@ -62,6 +62,14 @@ export default class Helper {
             case 'celo':
             case 'alfajores':
                 break;
+            case 'avalanche':
+                break;
+            case 'fantom':
+                break;
+            case 'optimism':
+                break;
+            case 'polygon':
+                break;
             case 'ethereum':
             default:
                 const wethContract = new Contract(config.addresses.weth, WethAbi, provider.getSigner());
@@ -109,6 +117,14 @@ export default class Helper {
                 }
             case 'celo':
             case 'alfajores':
+                break;
+            case 'avalanche':
+                break;
+            case 'fantom':
+                break;
+            case 'optimism':
+                break;
+            case 'polygon':
                 break;
             case 'ethereum':
             default:

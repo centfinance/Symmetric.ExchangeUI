@@ -202,6 +202,14 @@ export default defineComponent({
                 case 'celo':
                 case 'alfajores':
                     break;
+                case 'avalanche':
+                    break;
+                case 'fantom':
+                    break;
+                case 'optimism':
+                    break;
+                case 'polygon':
+                    break;
                 case 'ethereum':
                 default:
                     if (assetIn === ETH_KEY && assetOut === config.addresses.weth) {

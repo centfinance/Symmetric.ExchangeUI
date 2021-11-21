@@ -4,6 +4,10 @@ import sokol from './sokol.json';
 import xdai from './xdai.json';
 import alfajores from './alfajores.json';
 import celo from './celo.json';
+import avalanche from './avalanche.json';
+import fantom from './fantom.json';
+import optimism from './optimism.json';
+import polygon from './polygon.json';
 
 interface Connector {
     id: string;
@@ -36,6 +40,10 @@ interface Config {
         weth: string;
         wxdai: string;
         celo: string;
+        avalanche: string;
+        fantom: string;
+        optimism: string;
+        polygon: string;
         wspoa: string;
         multicall: string;
     };
@@ -49,6 +57,10 @@ const configs = {
         untrusted: [],
         ...homestead,
     },
+    10:{
+        untrusted: [],
+        ...optimism,
+    },
     42:{
         untrusted: [],
         ...kovan,
@@ -61,6 +73,14 @@ const configs = {
         untrusted: [],
         ...xdai,
     },
+    137:{
+        untrusted: [],
+        ...polygon,
+    },
+    250:{
+        untrusted: [],
+        ...fantom,
+    },
     44787:{
         untrusted: [],
         ...alfajores,
@@ -68,6 +88,10 @@ const configs = {
     42220:{
         untrusted: [],
         ...celo,
+    },
+    43114:{
+        untrusted: [],
+        ...avalanche,
     },
 };
 // eslint-disable-next-line no-undef

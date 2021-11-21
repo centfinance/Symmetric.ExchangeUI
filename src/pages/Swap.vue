@@ -220,6 +220,18 @@ export default defineComponent({
                 case 'alfajores':
                     assetOutAddress = assetOutAddressInput.value;
                     break;
+                case 'avalanche':
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'fantom':
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'optimism':
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'polygon':
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
                 case 'ethereum':
                 default:
                     assetOutAddress = assetOutAddressInput.value === ETH_KEY
@@ -299,6 +311,14 @@ export default defineComponent({
                 case 'celo':
                 case 'alfajores':
                     break;
+                case 'avalanche':
+                    break;
+                case 'fantom':
+                    break;
+                case 'optimism':
+                    break;
+                case 'polygon':
+                    break;
                 case 'ethereum':
                 default:
                     if (assetInAddress === ETH_KEY) {
@@ -374,6 +394,22 @@ export default defineComponent({
                 assetInAddress = assetInAddressInput.value;
                 assetOutAddress = assetOutAddressInput.value;
                 break;
+            case 'avalanche':
+                assetInAddress = assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value;
+                break;
+            case 'fantom':
+                assetInAddress = assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value;
+                break;
+            case 'optimism':
+                assetInAddress = assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value;
+                break;
+            case 'polygon':
+                assetInAddress = assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value;
+                break;
             case 'ethereum':
             default:
                 assetInAddress = assetInAddressInput.value === ETH_KEY
@@ -443,6 +479,22 @@ export default defineComponent({
                 break;
             case 'celo':
             case 'alfajores':
+                assetInAddress = assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value;
+                break;
+            case 'avalanche':
+                assetInAddress = assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value;
+                break;
+            case 'fantom':
+                assetInAddress = assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value;
+                break;
+            case 'optimism':
+                assetInAddress = assetInAddressInput.value;
+                assetOutAddress = assetOutAddressInput.value;
+                break;
+            case 'polygon':
                 assetInAddress = assetInAddressInput.value;
                 assetOutAddress = assetOutAddressInput.value;
                 break;
@@ -617,6 +669,14 @@ export default defineComponent({
                 break;
             case 'celo':
             case 'alfajores':
+                break;
+            case 'avalanche':
+                break;
+            case 'fantom':
+                break;
+            case 'optimism':
+                break;
+            case 'polygon':
                 break;
             case 'ethereum':
             default:

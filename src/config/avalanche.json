@@ -1,0 +1,31 @@
+{
+  "network": "avalanche",
+  "eth_key": "avalanche",
+  "chainId": 43114,
+  "defaultPrecision": 6,
+  "infuraKey": "e68cb3352f7d4fb7848c4650917e4422",
+  "rpcUrl": "https://api.avax.network/ext/bc/C/rpc",
+  "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/symmetric-avalanche",
+  "subgraphBackupUrl": "https://storageapi.fleek.co/switch1983-team-bucket/cent-exchange-avalanche/pools",
+  "addresses": {
+    "bFactory": "0x6C2e59C3cCB1d81c0eC9Fb9d4d6a3CC3488Fd71c",
+    "bActions": "0xBe04ae09b9e41b8828b8866280bF882b42576b4e",
+    "dsProxyRegistry": "0xbC46037Ac210f9Ca1c2803a74e455d251D966BD7",
+    "exchangeProxy": "0x7EbE42906a5F1DD96E47E7152102A6aA0A0d2459",
+    "wavax": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
+    "multicall": "0xB3cb9Ec46bEDB9A85b79fBf52339de238a8e7f3e"
+  },
+  "connectors": {
+    "injected": {},
+    "walletconnect": {
+      "id": "walletconnect",
+      "options": {
+        "rpc": {
+          "43114": "https://api.avax.network/ext/bc/C/rpc"
+        },
+        "chainId": 43114
+      }
+    }
+  }
+}
+
