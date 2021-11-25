@@ -94,6 +94,10 @@ export function getAssetsFromTokenlist(chainId: number, list: TokenList): Record
             break;
         case 'celo':
         case 'alfajores':
+        case 'avalanche':
+        case 'fantom':
+        case 'optimism':
+        case 'polygon':
             for (const token of list.tokens) {
                 if (token.chainId !== chainId) {
                     continue;
