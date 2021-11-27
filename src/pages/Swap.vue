@@ -221,15 +221,19 @@ export default defineComponent({
                     assetOutAddress = assetOutAddressInput.value;
                     break;
                 case 'avalanche':
+                case 'fuji':
                     assetOutAddress = assetOutAddressInput.value;
                     break;
                 case 'fantom':
+                case 'fantom-testnet':
                     assetOutAddress = assetOutAddressInput.value;
                     break;
                 case 'optimism':
+                case 'optimism-kovan':
                     assetOutAddress = assetOutAddressInput.value;
                     break;
                 case 'polygon':
+                case 'polygon-mumbai':
                     assetOutAddress = assetOutAddressInput.value;
                     break;
                 case 'ethereum':
@@ -312,12 +316,16 @@ export default defineComponent({
                 case 'alfajores':
                     break;
                 case 'avalanche':
+                case 'fuji':
                     break;
                 case 'fantom':
+                case 'fantom-testnet':
                     break;
                 case 'optimism':
+                case 'optimism-kovan':
                     break;
                 case 'polygon':
+                case 'polygon-mumbai':
                     break;
                 case 'ethereum':
                 default:
@@ -395,18 +403,22 @@ export default defineComponent({
                 assetOutAddress = assetOutAddressInput.value;
                 break;
             case 'avalanche':
+            case 'fuji':
                 assetInAddress = assetInAddressInput.value;
                 assetOutAddress = assetOutAddressInput.value;
                 break;
             case 'fantom':
+            case 'fantom-testnet':
                 assetInAddress = assetInAddressInput.value;
                 assetOutAddress = assetOutAddressInput.value;
                 break;
             case 'optimism':
+            case 'optimism-kovan':
                 assetInAddress = assetInAddressInput.value;
                 assetOutAddress = assetOutAddressInput.value;
                 break;
             case 'polygon':
+            case 'polygon-mumbai':
                 assetInAddress = assetInAddressInput.value;
                 assetOutAddress = assetOutAddressInput.value;
                 break;
@@ -483,18 +495,22 @@ export default defineComponent({
                 assetOutAddress = assetOutAddressInput.value;
                 break;
             case 'avalanche':
+            case 'fuji':
                 assetInAddress = assetInAddressInput.value;
                 assetOutAddress = assetOutAddressInput.value;
                 break;
             case 'fantom':
+            case 'fantom-testnet':
                 assetInAddress = assetInAddressInput.value;
                 assetOutAddress = assetOutAddressInput.value;
                 break;
             case 'optimism':
+            case 'optimism-kovan':
                 assetInAddress = assetInAddressInput.value;
                 assetOutAddress = assetOutAddressInput.value;
                 break;
             case 'polygon':
+            case 'polygon-mumbai':
                 assetInAddress = assetInAddressInput.value;
                 assetOutAddress = assetOutAddressInput.value;
                 break;
@@ -671,12 +687,16 @@ export default defineComponent({
             case 'alfajores':
                 break;
             case 'avalanche':
+            case 'fuji':
                 break;
             case 'fantom':
+            case 'fantom-testnet':
                 break;
             case 'optimism':
+            case 'optimism-kovan':
                 break;
             case 'polygon':
+            case 'polygon-mumbai':
                 break;
             case 'ethereum':
             default:

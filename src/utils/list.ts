@@ -95,9 +95,13 @@ export function getAssetsFromTokenlist(chainId: number, list: TokenList): Record
         case 'celo':
         case 'alfajores':
         case 'avalanche':
+        case 'fuji':
         case 'fantom':
+        case 'fantom-testnet':
         case 'optimism':
+        case 'optimism-kovan':
         case 'polygon':
+        case 'polygon-mumbai':
             for (const token of list.tokens) {
                 if (token.chainId !== chainId) {
                     continue;

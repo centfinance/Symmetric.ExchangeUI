@@ -56,13 +56,17 @@ export function getEtherscanLink(txHash: string): string {
         1: 'https://etherscan.io/tx',
         10: 'https://optimism.symmetric.exchange/tx',
         42: 'https://kovan.etherscan.io/tx',
+        69: 'https://kovan-optimistic.etherscan.io/tx',
         77: 'https://blockscout.com/poa/sokol/tx',
         100: 'https://blockscout.com/xdai/mainnet/tx',
         137: 'https://polygonscan.com/tx',
         250: 'https://fantom.symmetric.exchange/tx',
+        4002: 'https://testnet.ftmscan.com/tx',
         42220: 'https://explorer.celo.org/tx',
+        43113: 'https://testnet.snowtrace.io/tx',
         43114: 'https://snowtrace.io/tx',
         44787: 'https://alfajores-blockscout.celo-testnet.org/tx',
+        80001: 'https://mumbai.polygonscan.com/tx',
     };
     const url = urlMap[chainId];
     const link = `${url}/${txHash}`;
@@ -75,13 +79,17 @@ export function getAccountLink(address: string): string {
         1: 'https://etherscan.io/address',
         10: 'https://optimism.symmetric.exchange/address',
         42: 'https://kovan.etherscan.io/address',
+        69: 'https://kovan-optimistic.etherscan.io/address',
         77: 'https://blockscout.com/poa/sokol/address',
         100: 'https://blockscout.com/xdai/mainnet/address',
         137: 'https://polygonscan.com/address',
         250: 'https://fantom.symmetric.exchange/address',
+        4002: 'https://testnet.ftmscan.com/address',
         42220: 'https://explorer.celo.org/address',
-        43114: 'https://snowtrace.io/tx',
+        43113: 'https://testnet.snowtrace.io/address',
+        43114: 'https://snowtrace.io/address',
         44787: 'https://alfajores-blockscout.celo-testnet.org/address',
+        80001: 'https://mumbai.polygonscan.com/address',
     };
     const url = urlMap[chainId];
     const link = `${url}/${address}`;
@@ -94,13 +102,17 @@ export function getPoolLink(pool: string): string {
         1: '',
         10: 'optimism',
         42: 'kovan.',
+        69: 'optimism-kovan.',
         77: 'sokol.',
         100: 'xdai.',
         137: 'polygon.',
         250: 'fantom,',
+        4002: 'fantom-testnet.',
         42220: 'celo',
+        43113: 'fuji.',
         43114: 'avalanche',
         44787: 'alfajores.',
+        80001: 'polygon-mumbai.',
     };
     const prefix = prefixMap[chainId];
     const link = `https://${prefix}-pools.symmetric.exchange/#/pool/${pool}`;
