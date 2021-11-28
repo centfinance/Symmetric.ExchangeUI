@@ -4,9 +4,13 @@ import sokol from './sokol.json';
 import xdai from './xdai.json';
 import alfajores from './alfajores.json';
 import celo from './celo.json';
+import fuji from './fuji.json';
 import avalanche from './avalanche.json';
+import fantomtestnet from './fantom-testnet.json';
 import fantom from './fantom.json';
+import optimismkovan from './optimism-kovan.json';
 import optimism from './optimism.json';
+import polygonmumbai from './polygon-mumbai.json';
 import polygon from './polygon.json';
 
 interface Connector {
@@ -65,6 +69,10 @@ const configs = {
         untrusted: [],
         ...kovan,
     },
+    69:{
+        untrusted: [],
+        ...optimismkovan,
+    },
     77:{
         untrusted: [],
         ...sokol,
@@ -81,6 +89,14 @@ const configs = {
         untrusted: [],
         ...fantom,
     },
+    4002:{
+        untrusted: [],
+        ...fantomtestnet,
+    },
+    43113:{
+        untrusted: [],
+        ...fuji,
+    },
     44787:{
         untrusted: [],
         ...alfajores,
@@ -92,6 +108,10 @@ const configs = {
     43114:{
         untrusted: [],
         ...avalanche,
+    },
+    80001:{
+        untrusted: [],
+        ...polygonmumbai,
     },
 };
 // eslint-disable-next-line no-undef

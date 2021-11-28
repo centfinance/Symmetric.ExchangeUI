@@ -125,6 +125,25 @@ export default defineComponent({
                     id: 1,
                 }, console.log);
                 break;
+            case "fuji":
+                window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            'chainId': '43113',
+                            'chainName': 'Avalanche Fuji Testnet',
+                            'rpcUrls': ['https://api.avax-test.network/ext/bc/C/rpc'],
+                            'nativeCurrency': {
+                                'name': 'Avax',
+                                'symbol': 'AVAX',
+                                'decimals': 18,
+                            },
+                            'blockExplorerUrls': ['https://testnet.snowtrace.io/'],
+                        },
+                    ],
+                    id: 1,
+                }, console.log);
+                break;
             case "fantom":
                 window.ethereum.request({
                     method: 'wallet_addEthereumChain',
@@ -139,6 +158,25 @@ export default defineComponent({
                                 'decimals': 18,
                             },
                             'blockExplorerUrls': ['https://ftmscan.com/'],
+                        },
+                    ],
+                    id: 1,
+                }, console.log);
+                break;
+            case "fantom-testnet":
+                window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            'chainId': '4002',
+                            'chainName': 'Fantom Test Network',
+                            'rpcUrls': ['https://rpc.testnet.fantom.network/'],
+                            'nativeCurrency': {
+                                'name': 'Ftm',
+                                'symbol': 'FTM',
+                                'decimals': 18,
+                            },
+                            'blockExplorerUrls': ['https://testnet.ftmscan.com'],
                         },
                     ],
                     id: 1,
@@ -163,6 +201,25 @@ export default defineComponent({
                     id: 1,
                 }, console.log);
                 break;
+            case "optimism-kovan":
+                window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            'chainId': '69',
+                            'chainName': 'Optimism Kovan',
+                            'rpcUrls': ['https://kovan.optimism.io'],
+                            'nativeCurrency': {
+                                'name': 'Ether',
+                                'symbol': 'ETH',
+                                'decimals': 18,
+                            },
+                            'blockExplorerUrls': ['https://kovan-optimistic.etherscan.io'],
+                        },
+                    ],
+                    id: 1,
+                }, console.log);
+                break;
             case "polygon":
                 window.ethereum.request({
                     method: 'wallet_addEthereumChain',
@@ -177,6 +234,25 @@ export default defineComponent({
                                 'decimals': 18,
                             },
                             'blockExplorerUrls': ['https://polygonscan.com/'],
+                        },
+                    ],
+                    id: 1,
+                }, console.log);
+                break;
+            case "polygon-mumbai":
+                window.ethereum.request({
+                    method: 'wallet_addEthereumChain',
+                    params: [
+                        {
+                            'chainId': '80001',
+                            'chainName': 'Polygon Mumbai Test Network',
+                            'rpcUrls': ['https://rpc-mumbai.maticvigil.com/'],
+                            'nativeCurrency': {
+                                'name': 'Matic',
+                                'symbol': 'MATIC',
+                                'decimals': 18,
+                            },
+                            'blockExplorerUrls': ['https://mumbai.polygonscan.com/'],
                         },
                     ],
                     id: 1,

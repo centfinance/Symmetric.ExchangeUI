@@ -63,12 +63,16 @@ export default class Helper {
             case 'alfajores':
                 break;
             case 'avalanche':
+            case 'fuji':
                 break;
             case 'fantom':
+            case 'fantom-testnet':
                 break;
             case 'optimism':
+            case 'optimism-kovan':
                 break;
             case 'polygon':
+            case 'polygon-mumbai':
                 break;
             case 'ethereum':
             default:
@@ -119,12 +123,16 @@ export default class Helper {
             case 'alfajores':
                 break;
             case 'avalanche':
+            case 'fuji':
                 break;
             case 'fantom':
+            case 'fantom-testnet':
                 break;
             case 'optimism':
+            case 'optimism-kovan':
                 break;
             case 'polygon':
+            case 'polygon-mumbai':
                 break;
             case 'ethereum':
             default:

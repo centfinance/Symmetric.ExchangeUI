@@ -68,15 +68,19 @@ export default class Ethereum {
               balances.celo = data[2 * assetCount].toString();
               break;
             case 'avalanche':
+            case 'fuji':
               balances.wavax = data[2 * assetCount].toString();
               break;
             case 'fantom':
+            case 'fantom-testnet':
               balances.wftm = data[2 * assetCount].toString();
               break;
             case 'optimism':
+            case 'optimism-kovan':
               balances.weth = data[2 * assetCount].toString();
               break;
             case 'polygon':
+            case 'polygon-mumbai':
               balances.wmatic = data[2 * assetCount].toString();
               break;
             case 'ethereum':
