@@ -16,17 +16,24 @@
     "multicall": "0xB3cb9Ec46bEDB9A85b79fBf52339de238a8e7f3e"
   },
   "connectors": {
-      "injected": {},
-      "celo": {
-        "id": "celo",
-        "name": "Celo Extension Wallet"
+    "injected": {},
+    "celo": {
+      "id": "celo",
+      "name": "Celo Extension Wallet"
+    },
+    "valora": {
+      "chainId": 42220,
+      "rpc": {
+        "42220": "https://forno.celo.org"
       },
-      "walletconnect": {
-          "chainId": 42220,
-          "rpc": {
-            "42220": "https://forno.celo.org"
-          },
-        "bridge": "https://walletconnect-relay.minerva.digital"
-      }
+      "bridge": "https://walletconnect-relay.minerva.digital"
+    },
+    "walletconnect": {
+      "chainId": 42220,
+      "rpc": {
+        "42220": "https://forno.celo.org"
+      },
+      "bridge": "https://walletconnect-relay.minerva.digital"
+    }
   }
 }
