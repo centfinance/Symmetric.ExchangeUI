@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="ReDoc logo" src="https://raw.githubusercontent.com/centfinance/Community/main/media-pack/logo.png" width="400px" />
+  <img alt="ReDoc logo" src="https://raw.githubusercontent.com/centfinance/Community/main/media-pack/symmetric_logo_256.png" width="400px" />
 
 </div>
 
