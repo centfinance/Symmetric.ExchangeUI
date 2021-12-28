@@ -20,7 +20,9 @@
                 class="amount"
             >
             <div class="section">
-                curentBalance: {{currentBalance}}
+                Your Balance: {{ currentBalance }}
+                <br>
+                Deposit Balance: {{ depositBalance }}
             </div>
             <div class="section">
                 <Button
@@ -28,6 +30,11 @@
                     :primary="false"
                     :loading="isProcess"
                     @click="deposit"
+                />
+                <Button
+                    :text="'Swap(v1 => v2)'"
+                    :primary="false"
+                    @click="swap"
                 />
             </div>
         </div>
@@ -60,6 +67,7 @@ export default defineComponent({
         const tokenIndex = ref(0);
         const amount = ref(0);
         const currentBalance = ref('0');
+        const depositBalance = ref('0');
         const isProcess = ref(false);
 
         async function onChange(): Promise<void> {
@@ -67,6 +75,8 @@ export default defineComponent({
             const address = store.state.account.address;
             const tokenContract = new Contract(tokens[tokenIndex.value], ERC20ABI, provider.getSigner());
             currentBalance.value = formatEther(await tokenContract.balanceOf(address));
+            const depositContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
+            depositBalance.value = formatEther(await depositContract.getBalance(tokens[tokenIndex.value]));
         }
         
         async function deposit(): Promise<void> {
@@ -76,15 +86,31 @@ export default defineComponent({
                 isProcess.value = true;
                 const provider = await store.getters['account/provider'];
                 const depositContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
-                const tokenContract = new Contract(tokens[tokenIndex.value], ERC20ABI, provider.getSigner());
+                const tokenContract = new Contract(tokens[0], ERC20ABI, provider.getSigner());
                 const tx = await tokenContract.approve(config.addresses.deposit, parseEther(amount.value.toString()));
                 
                 await tx.wait();
-                await depositContract.deposit(tokens[tokenIndex.value], parseEther(amount.value.toString()));
+                await depositContract.deposit(tokens[0], tokens[1], parseEther(amount.value.toString()));
             } catch(error) {
                 console.log({error});
             }
-            isProcess.value = true;
+            isProcess.value = false;
+            return;
+        }
+        async function swap(): Promise<void> {
+            if (isProcess.value) return;
+            
+            try {
+                const provider = await store.getters['account/provider'];
+                const swapContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
+                const tokenContract = new Contract(tokens[(tokenIndex.value + 1) % 2], ERC20ABI, provider.getSigner());
+                const tx = await tokenContract.approve(config.addresses.deposit, parseEther(amount.value.toString()));
+                
+                await tx.wait();
+                await swapContract.swap(tokens[tokenIndex.value], parseEther(amount.value.toString()));
+            } catch(error) {
+                console.log({error});
+            }
 
             return;
         }
@@ -93,9 +119,11 @@ export default defineComponent({
             tokenIndex,
             amount,
             currentBalance,
+            depositBalance,
             isProcess,
             deposit,
             onChange,
+            swap,
         };
     },
 });
