@@ -50,6 +50,7 @@ interface Config {
         polygon: string;
         wspoa: string;
         multicall: string;
+        deposit: string;
     };
     assets: Record<string, AssetMetadata>;
     untrusted: string[];
