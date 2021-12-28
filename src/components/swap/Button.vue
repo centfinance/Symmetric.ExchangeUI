@@ -13,7 +13,7 @@ import BigNumber from 'bignumber.js';
 import { PropType, defineComponent, toRefs, computed } from 'vue';
 import { useStore } from 'vuex';
 
-import config from '@/config';
+import config, { symmTokenAddresses } from '@/config';
 import { RootState } from '@/store';
 import { ETH_KEY, scale } from '@/utils/helpers';
 import { SwapValidation } from '@/utils/validation';
@@ -142,6 +142,7 @@ export default defineComponent({
         const isUnlocked = computed(() => {
             const { allowances } = store.state.account;
             const metadata = store.getters['assets/metadata'];
+
             if (!addressIn.value) {
                 return true;
             }
@@ -154,7 +155,11 @@ export default defineComponent({
             if (!amountIn.value) {
                 return true;
             }
-            const exchangeProxyAddress = config.addresses.exchangeProxy;
+            
+            let exchangeProxyAddress = config.addresses.exchangeProxy;
+            if (symmTokenAddresses.includes(addressIn.value) && symmTokenAddresses.includes(addressOut.value)) {
+                exchangeProxyAddress = config.addresses.deposit;
+            }
             if (!allowances[exchangeProxyAddress]) {
                 return true;
             }
