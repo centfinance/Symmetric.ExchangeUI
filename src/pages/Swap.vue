@@ -349,17 +349,23 @@ export default defineComponent({
             const assetInSymbol = metadata[assetInAddress].symbol;
             const assetOutSymbol = metadata[assetOutAddress].symbol;
             const text = `Swap ${assetInSymbol} for ${assetOutSymbol}`;
-            if (isExactIn.value) {
-                const assetOutAmountNumber = new BigNumber(assetOutAmountInput.value);
-                const assetOutAmount = scale(assetOutAmountNumber, assetOutDecimals);
-                const minAmount = assetOutAmount.div(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
-                const tx = await Swapper.swapIn(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmount, minAmount);
+            if (symmTokenAddresses.includes(assetInAddressInput.value) && symmTokenAddresses.includes(assetOutAddressInput.value)) {
+                const tx = await Swapper.swapSYMM(provider, assetInAddress, assetOutAddress, assetInAmount);
                 await handleTransaction(tx, text);
             } else {
-                const assetInAmountMax = assetInAmount.times(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
-                const tx = await Swapper.swapOut(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmountMax);
-                await handleTransaction(tx, text);
+                if (isExactIn.value) {
+                    const assetOutAmountNumber = new BigNumber(assetOutAmountInput.value);
+                    const assetOutAmount = scale(assetOutAmountNumber, assetOutDecimals);
+                    const minAmount = assetOutAmount.div(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
+                    const tx = await Swapper.swapIn(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmount, minAmount);
+                    await handleTransaction(tx, text);
+                } else {
+                    const assetInAmountMax = assetInAmount.times(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
+                    const tx = await Swapper.swapOut(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmountMax);
+                    await handleTransaction(tx, text);
+                }
             }
+           
             
             store.dispatch('account/fetchAssets', [ assetInAddress, assetOutAddress ]);
             if (sor) {
