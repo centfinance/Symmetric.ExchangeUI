@@ -14,7 +14,7 @@
     "exchangeProxy": "0x7EbE42906a5F1DD96E47E7152102A6aA0A0d2459",
     "celo": "0x471EcE3750Da237f93B8E339c536989b8978a438",
     "multicall": "0xB3cb9Ec46bEDB9A85b79fBf52339de238a8e7f3e",
-    "deposit": "0x2DB157dedd6f86c4e0FD69a06A6fDe4C5EAa4651"
+    "deposit": "0xF21150EC57c360dA61cE7900dbaFdE9884198026"
   },
   "connectors": {
     "injected": {},
