@@ -11,6 +11,13 @@
         <div class="header-right">
             <a
                 class="link"
+                href="/#/deposit"
+                style="padding-right:10px;"
+            >
+                Deposit
+            </a>
+            <a
+                class="link"
                 href="https://docs.symmetric.exchange"
                 target="_blank"
                 style="padding-right: 10px"
