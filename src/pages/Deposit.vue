@@ -86,11 +86,11 @@ export default defineComponent({
                 isProcess.value = true;
                 const provider = await store.getters['account/provider'];
                 const depositContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
-                const tokenContract = new Contract(tokens[0], ERC20ABI, provider.getSigner());
+                const tokenContract = new Contract(tokens[tokenIndex.value], ERC20ABI, provider.getSigner());
                 const tx = await tokenContract.approve(config.addresses.deposit, parseEther(amount.value.toString()));
                 
                 await tx.wait();
-                await depositContract.deposit(tokens[0], tokens[1], parseEther(amount.value.toString()));
+                await depositContract.deposit(tokens[tokenIndex.value], parseEther(amount.value.toString()));
             } catch(error) {
                 console.log({error});
             }
@@ -103,11 +103,11 @@ export default defineComponent({
             try {
                 const provider = await store.getters['account/provider'];
                 const swapContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
-                const tokenContract = new Contract(tokens[(tokenIndex.value + 1) % 2], ERC20ABI, provider.getSigner());
+                const tokenContract = new Contract(tokens[0], ERC20ABI, provider.getSigner());
                 const tx = await tokenContract.approve(config.addresses.deposit, parseEther(amount.value.toString()));
                 
                 await tx.wait();
-                await swapContract.swap(tokens[tokenIndex.value], parseEther(amount.value.toString()));
+                await swapContract.swap(tokens[0], tokens[1], parseEther(amount.value.toString()));
             } catch(error) {
                 console.log({error});
             }
