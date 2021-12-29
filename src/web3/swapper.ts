@@ -120,7 +120,7 @@ export default class Swapper {
                 amount.toString(),
                 overrides,
             );
-        } catch(e: any) {
+        } catch(e) {
             if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
                 const sender = await provider.getSigner().getAddress();
                 logRevertedTx(
