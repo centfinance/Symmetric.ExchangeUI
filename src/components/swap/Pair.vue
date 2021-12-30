@@ -42,7 +42,7 @@ import { PropType, ref, defineComponent, computed } from 'vue';
 import { useStore } from 'vuex';
 
 import { RootState } from '@/store';
-import config from '@/config';
+import config, { symmTokenAddresses } from '@/config';
 import { scale } from '@/utils/helpers';
 import { SwapValidation, ValidationError, validateNumberInput } from '@/utils/validation';
 
@@ -171,12 +171,18 @@ export default defineComponent({
             if (!assetIn || !assetOut) {
                 return '';
             }
+            
             const assetInAmount = new BigNumber(props.amountIn);
             const assetOutAmount = new BigNumber(props.amountOut);
             const rate = isInRate.value
                 ? assetOutAmount.div(assetInAmount)
                 : assetInAmount.div(assetOutAmount);
-            const rateString = rate.toFixed(config.precision);
+            let rateString = rate.toFixed(config.precision);
+
+            if (symmTokenAddresses.includes(assetIn.address) && symmTokenAddresses.includes(assetOut.address)) {
+                rateString = '1';
+            }
+
             return isInRate.value
                 ? `1 ${assetIn.symbol} = ${rateString} ${assetOut.symbol}`
                 : `1 ${assetOut.symbol} = ${rateString} ${assetIn.symbol}`;

@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts">
-import { MaxUint256 } from '@ethersproject/constants';
 import BigNumber from 'bignumber.js';
 import { PropType, defineComponent, toRefs, computed } from 'vue';
 import { useStore } from 'vuex';
