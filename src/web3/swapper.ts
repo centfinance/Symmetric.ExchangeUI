@@ -5,6 +5,7 @@ import { Web3Provider } from '@ethersproject/providers';
 import { Swap } from '@centfinance/sor_celo/dist/types';
 
 import ExchangeProxyABI from '../abi/ExchangeProxy.json';
+import DepositABI from '../abi/Deposit.json';
 
 import config from '@/config';
 import { ETH_KEY, logRevertedTx } from '@/utils/helpers';
@@ -96,6 +97,40 @@ export default class Swapper {
                         assetInAddress,
                         assetOutAddress,
                         assetInAmountMax.toString(),
+                    ],
+                    overrides,
+                );
+            }
+            return e;
+        }
+    }
+
+    static async swapSYMM(
+        provider: Web3Provider,
+        assetInAddress: string,
+        assetOutAddress: string,
+        amount: BigNumber,
+    ): Promise<any> {
+        const overrides: any = {};
+        const swapContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
+        try {
+            return await swapContract.swap(
+                assetInAddress,
+                assetOutAddress,
+                amount.toString(),
+                overrides,
+            );
+        } catch(e) {
+            if (e.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
+                const sender = await provider.getSigner().getAddress();
+                logRevertedTx(
+                    sender,
+                    swapContract,
+                    'swap',
+                    [
+                        assetInAddress,
+                        assetOutAddress,
+                        amount.toString(),
                     ],
                     overrides,
                 );

@@ -19,6 +19,7 @@ interface Connector {
     options: any;
 }
 
+export const symmTokenAddresses = ['0x7c64aD5F9804458B8c9F93f7300c15D55956Ac2a', '0x8427bD503dd3169cCC9aFF7326c15258Bc305478'];
 export interface AssetMetadata {
     address: string;
     name: string;

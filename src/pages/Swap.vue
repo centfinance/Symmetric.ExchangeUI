@@ -62,7 +62,7 @@ import { ErrorCode } from '@ethersproject/logger';
 import { SOR } from '@centfinance/sor_celo';
 import { Swap, Pool } from '@centfinance/sor_celo/dist/types';
 
-import config from '@/config';
+import config, { symmTokenAddresses } from '@/config';
 import provider from '@/utils/provider';
 import { ETH_KEY, scale, isAddress, getEtherscanLink } from '@/utils/helpers';
 import { ValidationError, SwapValidation, validateNumberInput } from '@/utils/validation';
@@ -266,7 +266,10 @@ export default defineComponent({
             transactionPending.value = true;
             const provider = await store.getters['account/provider'];
             const assetInAddress = assetInAddressInput.value;
-            const spender = config.addresses.exchangeProxy;
+            let spender = config.addresses.exchangeProxy;
+            if (symmTokenAddresses.includes(assetInAddressInput.value) && symmTokenAddresses.includes(assetOutAddressInput.value)) {
+                spender = config.addresses.deposit;
+            }
             const tx = await Helper.unlock(provider, assetInAddress, spender);
             const metadata = store.getters['assets/metadata'];
             const assetSymbol = metadata[assetInAddress].symbol;
@@ -346,17 +349,23 @@ export default defineComponent({
             const assetInSymbol = metadata[assetInAddress].symbol;
             const assetOutSymbol = metadata[assetOutAddress].symbol;
             const text = `Swap ${assetInSymbol} for ${assetOutSymbol}`;
-            if (isExactIn.value) {
-                const assetOutAmountNumber = new BigNumber(assetOutAmountInput.value);
-                const assetOutAmount = scale(assetOutAmountNumber, assetOutDecimals);
-                const minAmount = assetOutAmount.div(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
-                const tx = await Swapper.swapIn(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmount, minAmount);
+            if (symmTokenAddresses.includes(assetInAddressInput.value) && symmTokenAddresses.includes(assetOutAddressInput.value)) {
+                const tx = await Swapper.swapSYMM(provider, assetInAddress, assetOutAddress, assetInAmount);
                 await handleTransaction(tx, text);
             } else {
-                const assetInAmountMax = assetInAmount.times(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
-                const tx = await Swapper.swapOut(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmountMax);
-                await handleTransaction(tx, text);
+                if (isExactIn.value) {
+                    const assetOutAmountNumber = new BigNumber(assetOutAmountInput.value);
+                    const assetOutAmount = scale(assetOutAmountNumber, assetOutDecimals);
+                    const minAmount = assetOutAmount.div(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
+                    const tx = await Swapper.swapIn(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmount, minAmount);
+                    await handleTransaction(tx, text);
+                } else {
+                    const assetInAmountMax = assetInAmount.times(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
+                    const tx = await Swapper.swapOut(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmountMax);
+                    await handleTransaction(tx, text);
+                }
             }
+           
             
             store.dispatch('account/fetchAssets', [ assetInAddress, assetOutAddress ]);
             if (sor) {
