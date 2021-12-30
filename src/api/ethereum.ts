@@ -3,7 +3,7 @@ import { Provider, Contract } from 'ethcall';
 import dsProxyRegistryAbi from '../abi/DSProxyRegistry.json';
 import erc20Abi from '../abi/ERC20.json';
 
-import config, { AssetMetadata } from '@/config';
+import config, { AssetMetadata, symmTokenAddresses } from '@/config';
 import { ETH_KEY, getAssetLogo } from '@/utils/helpers';
 import provider from '@/utils/provider';
 
@@ -55,6 +55,29 @@ export default class Ethereum {
             allowances[exchangeProxyAddress][assetAddress] = data[2 * i + 1].toString();
             i++;
         }
+
+        // Fetch SYMM data
+        if (config.network === 'xdai') {
+            const symmCalls = [];
+            for (const assetAddress of symmTokenAddresses) {
+                const assetContract = new Contract(assetAddress, erc20Abi);
+                const balanceCall = assetContract.balanceOf(address);
+                const allowanceCall = assetContract.allowance(address, config.addresses.deposit);
+                symmCalls.push(balanceCall);
+                symmCalls.push(allowanceCall);
+            }
+        
+            const symmData = await ethcallProvider.all(symmCalls);
+            allowances[config.addresses.deposit] = {};
+            let i = 0;
+            for (const assetAddress of symmTokenAddresses) {
+                balances[assetAddress] = symmData[2 * i].toString();
+                allowances[config.addresses.deposit][assetAddress] = symmData[2 * i + 1].toString();
+                i++;
+            }
+
+            console.log({allowances})
+        }       
 
         switch (config.network) {
             case 'xdai':

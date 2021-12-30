@@ -9,6 +9,7 @@
 </template>
 
 <script lang="ts">
+import { MaxUint256 } from '@ethersproject/constants';
 import BigNumber from 'bignumber.js';
 import { PropType, defineComponent, toRefs, computed } from 'vue';
 import { useStore } from 'vuex';
@@ -157,6 +158,7 @@ export default defineComponent({
             }
             
             let exchangeProxyAddress = config.addresses.exchangeProxy;
+            
             if (symmTokenAddresses.includes(addressIn.value) && symmTokenAddresses.includes(addressOut.value)) {
                 exchangeProxyAddress = config.addresses.deposit;
             }
