@@ -57,7 +57,7 @@ export default class Ethereum {
         }
 
         // Fetch SYMM data
-        if (config.network === 'xdai') {
+        if (config.network === 'celo') {
             const symmCalls = [];
             for (const assetAddress of symmTokenAddresses) {
                 const assetContract = new Contract(assetAddress, erc20Abi);
@@ -75,9 +75,7 @@ export default class Ethereum {
                 allowances[config.addresses.deposit][assetAddress] = symmData[2 * i + 1].toString();
                 i++;
             }
-
-            console.log({allowances})
-        }       
+        }                        
 
         switch (config.network) {
             case 'xdai':
