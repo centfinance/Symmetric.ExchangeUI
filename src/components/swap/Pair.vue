@@ -117,6 +117,7 @@ export default defineComponent({
                 };
             }
             const text = `Price impact: ${(props.slippage * 100).toFixed(2)}%`;
+            
             const style = props.slippage < SLIPPAGE_WARNING
                 ? LabelStyle.Normal
                 : LabelStyle.Warning;
