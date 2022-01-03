@@ -477,6 +477,15 @@ export default defineComponent({
                 swaps.value = [];
                 return;
             }
+            
+            if (config.network === 'celo' && symmTokenAddresses.includes(assetInAddressInput.value) && symmTokenAddresses.includes(assetOutAddressInput.value)) {
+                if (isExactIn.value) {
+                    assetOutAmountInput.value = amount;
+                } else {
+                    assetInAmountInput.value = amount;
+                }
+                return;
+            }
 
             let assetInAddress;
             let assetOutAddress;
