@@ -80,12 +80,12 @@ export default defineComponent({
     },
     setup() {
         const store = useStore<RootState>();
+        const address = store.state.account.address;
 
         const tokenAddress = '0x7c64aD5F9804458B8c9F93f7300c15D55956Ac2a';
-        // const opticsBridge = '0xf244eA81F715F343040569398A4E7978De656bf6';
-        const opticsBridge = '0x1548cf5cf7dBd93f4dA11f45fCce315573d21B60';
+        const opticsBridge = '0xf244eA81F715F343040569398A4E7978De656bf6';
         const destNetworkId = ref(6648936);
-        const recipientAddress = ref('0xe456f9A32E5f11035ffBEa0e97D1aAFDA6e60F03');
+        const recipientAddress = ref(address);
         const amount = ref(1);
         const isProcess = ref(false);
 
@@ -98,14 +98,12 @@ export default defineComponent({
                 const bridgeContract = new Contract(opticsBridge, BridgeABI, provider.getSigner());
                 
                 const tokenContract = new Contract(tokenAddress, ERC20ABI, provider.getSigner());
-                const address = store.state.account.address;
                 const currentBalance = formatEther(await tokenContract.balanceOf(address));
                 if (parseFloat(currentBalance) < amount.value) {
                     alert('Not enough funds');
                     return;
                 }
                 const tx = await tokenContract.approve(opticsBridge, parseEther(amount.value.toString()));
-              
                 await tx.wait();
                 await bridgeContract.send(tokenAddress, parseEther(amount.value.toString()), destNetworkId.value, hexZeroPad(recipientAddress.value.toString(), 32));
             } catch(error) {
