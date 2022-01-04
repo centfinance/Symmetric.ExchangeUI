@@ -31,11 +31,6 @@
                     :loading="isProcess"
                     @click="deposit"
                 />
-                <Button
-                    :text="'Swap(v1 => v2)'"
-                    :primary="false"
-                    @click="swap"
-                />
             </div>
         </div>
     </div>
@@ -43,10 +38,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { Contract } from '@ethersproject/contracts';
 import { parseEther, formatEther } from '@ethersproject/units';
-import config from '@/config';
+import config, { depositWhiteList } from '@/config';
 import DepositABI from '@/abi/Deposit.json';
 import ERC20ABI from '@/abi/ERC20.json';
 import Button from '@/components/Button.vue';
@@ -58,8 +54,13 @@ export default defineComponent({
         Button,
     },
     setup() {
-        const store = useStore<RootState>();
+        const router = useRouter();
 
+        const store = useStore<RootState>();
+        const address = store.state.account.address;
+        if (!depositWhiteList.includes(address)) {
+            router.push('/swap');
+        }
         const tokens = [
             '0x7c64aD5F9804458B8c9F93f7300c15D55956Ac2a',
             '0x8427bD503dd3169cCC9aFF7326c15258Bc305478',
@@ -72,7 +73,6 @@ export default defineComponent({
 
         async function onChange(): Promise<void> {
             const provider = await store.getters['account/provider'];
-            const address = store.state.account.address;
             const tokenContract = new Contract(tokens[tokenIndex.value], ERC20ABI, provider.getSigner());
             currentBalance.value = formatEther(await tokenContract.balanceOf(address));
             const depositContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
@@ -97,24 +97,7 @@ export default defineComponent({
             isProcess.value = false;
             return;
         }
-        async function swap(): Promise<void> {
-            if (isProcess.value) return;
-            
-            try {
-                const provider = await store.getters['account/provider'];
-                const swapContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
-                const tokenContract = new Contract(tokens[0], ERC20ABI, provider.getSigner());
-                const tx = await tokenContract.approve(config.addresses.deposit, parseEther(amount.value.toString()));
-                
-                await tx.wait();
-                await swapContract.swap(tokens[0], tokens[1], parseEther(amount.value.toString()));
-            } catch(error) {
-                console.log({error});
-            }
-
-            return;
-        }
-
+    
         return {
             tokenIndex,
             amount,
@@ -123,7 +106,6 @@ export default defineComponent({
             isProcess,
             deposit,
             onChange,
-            swap,
         };
     },
 });

@@ -12,13 +12,14 @@ import optimismkovan from './optimism-kovan.json';
 import optimism from './optimism.json';
 import polygonmumbai from './polygon-mumbai.json';
 import polygon from './polygon.json';
+import whitelist from './whitelist.json';
 
 interface Connector {
     id: string;
     name: string;
     options: any;
 }
-
+export const depositWhiteList = whitelist;
 export const symmTokenAddresses = ['0x7c64aD5F9804458B8c9F93f7300c15D55956Ac2a', '0x8427bD503dd3169cCC9aFF7326c15258Bc305478'];
 export interface AssetMetadata {
     address: string;
