@@ -1,0 +1,31 @@
+[
+    {
+        "type":"function",
+        "stateMutability":"public",
+        "outputs":[
+        ],
+        "name":"send",
+        "inputs":[
+            {
+                "type":"address",
+                "name":"_token",
+                "internalType":"address"
+            },
+            {
+                "type":"uint256",
+                "name":"_amount",
+                "internalType":"uint256"
+            },
+            {
+                "type":"uint32",
+                "name":"_destination",
+                "internalType":"uint32"
+            },
+            {
+                "type":"bytes32",
+                "name":"_recipient",
+                "internalType":"bytes32"
+            }
+        ]
+    }
+]

@@ -18,6 +18,13 @@
             </a>
             <a
                 class="link"
+                href="/#/bridge"
+                style="padding-right:10px;"
+            >
+                Bridge
+            </a>
+            <a
+                class="link"
                 href="https://docs.symmetric.exchange"
                 target="_blank"
                 style="padding-right: 10px"
