@@ -6,6 +6,7 @@ import App from './App.vue';
 
 import Swap from './pages/Swap.vue';
 import Deposit from './pages/Deposit.vue';
+import Bridge from './pages/Bridge.vue';
 
 const routerHistory = createWebHashHistory();
 const router = createRouter({
@@ -14,6 +15,7 @@ const router = createRouter({
         { path: '/', redirect: '/swap' },
         { path: '/swap/:assetIn?/:assetOut?', name: 'swap', component: Swap },
         { path: '/deposit', name: 'deposit', component: Deposit },
+        { path: '/bridge', name: 'bridge', component: Bridge },
     ],
 });
 
