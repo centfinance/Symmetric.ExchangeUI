@@ -10,6 +10,7 @@
         </div>
         <div class="header-right">
             <a
+                v-if="isDeposit"
                 class="link"
                 href="/#/deposit"
                 style="padding-right:10px;"
@@ -82,6 +83,7 @@
 
 <script>
 import { defineComponent, computed, ref } from 'vue';
+import { useStore } from 'vuex';
 
 import Icon from '@/components/Icon.vue';
 import Button from '@/components/Button.vue';
@@ -89,7 +91,7 @@ import Account from '@/components/Account.vue';
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
 // import BurgerIcon from '@/assets/burger.svg';
 
-import config from '@/config';
+import config, { depositWhiteList } from '@/config';
 
 export default defineComponent({
     components: {
@@ -101,6 +103,12 @@ export default defineComponent({
     setup() {
         const networkUrl = computed(() => {
             return `https://${config.network}-pools.symmetric.exchange/`;
+        });
+        
+        const isDeposit = computed(() => {
+            const store = useStore();
+            const address = store.state.account.address;
+            return depositWhiteList.includes(address);
         });
 
         function switchNetwork() {
@@ -414,6 +422,7 @@ export default defineComponent({
         }
 
         return {
+            isDeposit,
             toggle,
             toggleBurger,
             networkUrl,
