@@ -1,17 +1,8 @@
 <template>
     <div>
         <div>
-            <div>
-                <span class="asset">
-                    SYMM1
-                </span>
-                
-                <input
-                    v-model="tokenAddress"
-                    disabled
-                    type="text"
-                    class="amount"
-                >
+            <div class="center">
+                SYMM1
             </div>
             
             <div>
@@ -28,18 +19,6 @@
             
             <div>
                 <span class="asset">
-                    Destination Network ID
-                </span>
-                
-                <input
-                    v-model="destNetworkId"
-                    type="number"
-                    class="amount"
-                >
-            </div>
-           
-            <div>
-                <span class="asset">
                     Recipient Address
                 </span>
                 
@@ -52,10 +31,16 @@
         
             <div class="section">
                 <Button
-                    :text="'Bridge'"
+                    :text="'Celo=>Ethereum'"
                     :primary="false"
-                    :loading="isProcess"
-                    @click="bridge"
+                    :loading="isCProcess"
+                    @click="bridgeCE"
+                />
+                <Button
+                    :text="'Ethereum=>Celo'"
+                    :primary="false"
+                    :loading="isEProcess"
+                    @click="bridgeEC"
                 />
             </div>
         </div>
@@ -63,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { Contract } from '@ethersproject/contracts';
 import { parseEther, formatEther } from '@ethersproject/units';
@@ -80,46 +65,72 @@ export default defineComponent({
     },
     setup() {
         const store = useStore<RootState>();
-        const address = store.state.account.address;
-
-        const tokenAddress = '0x7c64aD5F9804458B8c9F93f7300c15D55956Ac2a';
-        const opticsBridge = '0xf244eA81F715F343040569398A4E7978De656bf6';
-        const destNetworkId = ref(6648936);
+        const address = computed(() => store.state.account.address);
+        const tokenAddressC = '0x7c64aD5F9804458B8c9F93f7300c15D55956Ac2a';
+        const tokenAddressE = '0x57dB3FfCa78dBbE0eFa0EC745D55f62aa0Cbd345';
+        const opticsBridgeCE = '0xf244eA81F715F343040569398A4E7978De656bf6';
+        const opticsBridgeEC = '0x4fc16De11deAc71E8b2Db539d82d93BE4b486892';
         const recipientAddress = ref(address);
         const amount = ref(1);
-        const isProcess = ref(false);
+        const isCProcess = ref(false);
+        const isEProcess = ref(false);
 
-        async function bridge(): Promise<void> {
-            if (isProcess.value) return;
+        async function bridgeCE(): Promise<void> {
+            if (isCProcess.value) return;
             
             try {
-                isProcess.value = true;
+                isCProcess.value = true;
                 const provider = await store.getters['account/provider'];
-                const bridgeContract = new Contract(opticsBridge, BridgeABI, provider.getSigner());
+                const bridgeContract = new Contract(opticsBridgeCE, BridgeABI, provider.getSigner());
                 
-                const tokenContract = new Contract(tokenAddress, ERC20ABI, provider.getSigner());
-                const currentBalance = formatEther(await tokenContract.balanceOf(address));
+                const tokenContract = new Contract(tokenAddressC, ERC20ABI, provider.getSigner());
+                const currentBalance = formatEther(await tokenContract.balanceOf(address.value));
                 if (parseFloat(currentBalance) < amount.value) {
                     alert('Not enough funds');
                     return;
                 }
-                const tx = await tokenContract.approve(opticsBridge, parseEther(amount.value.toString()));
+                const tx = await tokenContract.approve(opticsBridgeCE, parseEther(amount.value.toString()));
                 await tx.wait();
-                await bridgeContract.send(tokenAddress, parseEther(amount.value.toString()), destNetworkId.value, hexZeroPad(recipientAddress.value.toString(), 32));
+                await bridgeContract.send(tokenAddressC, parseEther(amount.value.toString()), 6648936, hexZeroPad(recipientAddress.value.toString(), 32));
             } catch(error) {
                 console.log({error});
             }
-            isProcess.value = false;
+            isCProcess.value = false;
+            return;
+        }
+        
+        async function bridgeEC(): Promise<void> {
+            if (isEProcess.value) return;
+            
+            try {
+                isEProcess.value = true;
+                const provider = await store.getters['account/provider'];
+                const bridgeContract = new Contract(opticsBridgeEC, BridgeABI, provider.getSigner());
+                
+                const tokenContract = new Contract(tokenAddressE, ERC20ABI, provider.getSigner());
+                const currentBalance = formatEther(await tokenContract.balanceOf(address.value));
+
+                if (parseFloat(currentBalance) < amount.value) {
+                    alert('Not enough funds');
+                    return;
+                }
+                const tx = await tokenContract.approve(opticsBridgeEC, parseEther(amount.value.toString()));
+                await tx.wait();
+                await bridgeContract.send(tokenAddressE, parseEther(amount.value.toString()), 1667591279, hexZeroPad(recipientAddress.value.toString(), 32));
+            } catch(error) {
+                console.log({error});
+            }
+            isEProcess.value = false;
             return;
         }
 
         return {
             amount,
-            tokenAddress,
-            destNetworkId,
-            isProcess,
+            isCProcess,
+            isEProcess,
             recipientAddress,
-            bridge,
+            bridgeCE,
+            bridgeEC,
         };
     },
 });
@@ -137,7 +148,7 @@ export default defineComponent({
     border-right: 1px solid #2b3741;
     border-bottom-right-radius: 0%;
     border-top-right-radius: 0%;
-    width: 170px;
+    width: 130px;
     display: inline-block;
 }
 .amount {
@@ -157,7 +168,10 @@ export default defineComponent({
 
 .section {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 10px;
+}
+.center {
+     text-align: center;
 }
 </style>
