@@ -484,6 +484,13 @@ export default defineComponent({
                 } else {
                     assetInAmountInput.value = amount;
                 }
+                swaps.value[0] = [];
+                swaps.value[0][0] = {
+                    pool: config.addresses.deposit,
+                    tokenIn: assetInAddressInput.value,
+                    tokenOut: assetOutAddressInput.value,
+                    swapAmount: assetInAmountInput.value,
+                };
                 return;
             }
 
