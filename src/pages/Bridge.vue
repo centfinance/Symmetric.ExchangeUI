@@ -49,6 +49,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { Contract } from '@ethersproject/contracts';
 import { parseEther, formatEther } from '@ethersproject/units';
@@ -57,6 +58,7 @@ import BridgeABI from '@/abi/Bridge.json';
 import ERC20ABI from '@/abi/ERC20.json';
 import Button from '@/components/Button.vue';
 import { RootState } from '@/store';
+import { bridgeWhiteList } from '@/config';
 
 
 export default defineComponent({
@@ -64,8 +66,13 @@ export default defineComponent({
         Button,
     },
     setup() {
+        const router = useRouter();
         const store = useStore<RootState>();
         const address = computed(() => store.state.account.address);
+        if (!bridgeWhiteList.includes(address.value)) {
+            router.push('/swap');
+        }
+
         const tokenAddressC = '0x7c64aD5F9804458B8c9F93f7300c15D55956Ac2a';
         const tokenAddressE = '0x57dB3FfCa78dBbE0eFa0EC745D55f62aa0Cbd345';
         const opticsBridgeCE = '0xf244eA81F715F343040569398A4E7978De656bf6';
