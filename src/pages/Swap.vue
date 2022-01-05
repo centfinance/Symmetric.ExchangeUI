@@ -53,6 +53,7 @@
 
 <script lang="ts">
 import { ref, defineComponent, onMounted, watch, computed } from 'vue';
+import { formatEther } from '@ethersproject/units';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useIntervalFn } from '@vueuse/core';
@@ -61,6 +62,7 @@ import { getAddress } from '@ethersproject/address';
 import { ErrorCode } from '@ethersproject/logger';
 import { SOR } from '@centfinance/sor_celo';
 import { Swap, Pool } from '@centfinance/sor_celo/dist/types';
+import { Contract } from '@ethersproject/contracts';
 
 import config, { symmTokenAddresses } from '@/config';
 import provider from '@/utils/provider';
@@ -76,7 +78,7 @@ import Routing from '@/components/swap/Routing.vue';
 import Settings from '@/components/Settings.vue';
 import SwapButton from '@/components/swap/Button.vue';
 import SwapPair from '@/components/swap/Pair.vue';
-
+import ERC20ABI from '@/abi/ERC20.json';
 // eslint-disable-next-line no-undef
 const GAS_PRICE = process.env.APP_GAS_PRICE || '100000000000';
 const MAX_POOLS = 4;
@@ -479,10 +481,20 @@ export default defineComponent({
             }
             
             if (config.network === 'celo' && symmTokenAddresses.includes(assetInAddressInput.value) && symmTokenAddresses.includes(assetOutAddressInput.value)) {
+                let maxPrice = '0';
+                const provider = await store.getters['account/provider'];
+                
                 if (isExactIn.value) {
                     assetOutAmountInput.value = amount;
+                    const symmContract = new Contract(assetInAddressInput.value, ERC20ABI, provider.getSigner());
+                    maxPrice = formatEther(await symmContract.balanceOf(getAddress(config.addresses.deposit)));
                 } else {
                     assetInAmountInput.value = amount;
+                    const symmContract = new Contract(assetInAmountInput.value, ERC20ABI, provider.getSigner());
+                    maxPrice = formatEther(await symmContract.balanceOf(getAddress(config.addresses.deposit)));
+                }
+                if (maxPrice < amount) {
+                    return;
                 }
                 swaps.value[0] = [];
                 swaps.value[0][0] = {
@@ -490,6 +502,8 @@ export default defineComponent({
                     tokenIn: assetInAddressInput.value,
                     tokenOut: assetOutAddressInput.value,
                     swapAmount: assetInAmountInput.value,
+                    limitReturnAmount: '0',
+                    maxPrice,
                 };
                 return;
             }
