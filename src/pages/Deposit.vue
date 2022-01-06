@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { Contract } from '@ethersproject/contracts';
@@ -55,28 +55,40 @@ export default defineComponent({
     },
     setup() {
         const router = useRouter();
-
-        const store = useStore<RootState>();
-        const address = store.state.account.address;
-        if (!depositWhiteList.includes(address)) {
-            router.push('/swap');
-        }
-        const tokens = [
-            '0x7c64aD5F9804458B8c9F93f7300c15D55956Ac2a',
-            '0x8427bD503dd3169cCC9aFF7326c15258Bc305478',
-        ];
+        let provider: any;
         const tokenIndex = ref(0);
         const amount = ref(0);
         const currentBalance = ref('0');
         const depositBalance = ref('0');
         const isProcess = ref(false);
+        const tokens = [
+            '0x7c64aD5F9804458B8c9F93f7300c15D55956Ac2a',
+            '0x8427bD503dd3169cCC9aFF7326c15258Bc305478',
+        ];
+        onMounted(async () => {
+            provider = await store.getters['account/provider'];
+            onChange();            
+        });
+        const store = useStore<RootState>();
+        const address = computed(() => {
+            onChange();
+            return store.state.account.address;
+        });
 
+        if (!depositWhiteList.includes(address.value)) {
+            router.push('/swap');
+        }
+        
+       
         async function onChange(): Promise<void> {
-            const provider = await store.getters['account/provider'];
+            if (!provider) {
+                provider = await store.getters['account/provider'];
+            }
             const tokenContract = new Contract(tokens[tokenIndex.value], ERC20ABI, provider.getSigner());
-            currentBalance.value = formatEther(await tokenContract.balanceOf(address));
-            const depositContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
-            depositBalance.value = formatEther(await depositContract.getBalance(tokens[tokenIndex.value]));
+            if (address.value) {
+                currentBalance.value = formatEther(await tokenContract.balanceOf(address.value));
+            }
+            depositBalance.value = formatEther(await tokenContract.balanceOf(config.addresses.deposit));
         }
         
         async function deposit(): Promise<void> {
@@ -84,7 +96,6 @@ export default defineComponent({
             
             try {
                 isProcess.value = true;
-                const provider = await store.getters['account/provider'];
                 const depositContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
                 const tokenContract = new Contract(tokens[tokenIndex.value], ERC20ABI, provider.getSigner());
                 const tx = await tokenContract.approve(config.addresses.deposit, parseEther(amount.value.toString()));

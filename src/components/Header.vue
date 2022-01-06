@@ -18,6 +18,7 @@
                 Deposit
             </a>
             <a
+                v-if="isBridge"
                 class="link"
                 href="/#/bridge"
                 style="padding-right:10px;"
@@ -98,7 +99,7 @@ import Account from '@/components/Account.vue';
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
 // import BurgerIcon from '@/assets/burger.svg';
 
-import config, { depositWhiteList } from '@/config';
+import config, { depositWhiteList, bridgeWhiteList } from '@/config';
 
 export default defineComponent({
     components: {
@@ -116,6 +117,12 @@ export default defineComponent({
             const store = useStore();
             const address = store.state.account.address;
             return depositWhiteList.includes(address);
+        });
+        
+        const isBridge = computed(() => {
+            const store = useStore();
+            const address = store.state.account.address;
+            return bridgeWhiteList.includes(address);
         });
 
         function switchNetwork() {
@@ -430,6 +437,7 @@ export default defineComponent({
 
         return {
             isDeposit,
+            isBridge,
             toggle,
             toggleBurger,
             networkUrl,

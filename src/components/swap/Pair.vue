@@ -104,6 +104,18 @@ export default defineComponent({
         const isInRate = ref(true);
 
         const slippageLabel = computed(() => {
+            const metadata = store.getters['assets/metadata'];
+            const assetIn = metadata[props.addressIn];
+            const assetOut = metadata[props.addressOut];
+            if (!assetIn || !assetOut) {
+                return '';
+            }
+            if (symmTokenAddresses.includes(assetIn.address) && symmTokenAddresses.includes(assetOut.address)) {
+                return {
+                    text: '',
+                    style: LabelStyle.Normal,
+                };
+            }
             if (props.slippage === 0) {
                 return {
                     text: '',
