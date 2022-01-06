@@ -490,7 +490,6 @@ export default defineComponent({
                     maxPrice = formatEther(await symmContract.balanceOf(getAddress(config.addresses.deposit)));
                 } else {
                     assetInAmountInput.value = amount;
-                    console.log(assetInAmountInput.value);
                     const symmContract = new Contract(assetOutAddressInput.value, ERC20ABI, provider.getSigner());
                     maxPrice = formatEther(await symmContract.balanceOf(getAddress(config.addresses.deposit)));
                 }
