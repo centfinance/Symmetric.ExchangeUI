@@ -56,9 +56,9 @@ jobs:
                 ID=$(aws deploy create-deployment \
                     --application-name $APP_NAME \
                     --deployment-config-name CodeDeployDefault.AllAtOnce \
-                    --deployment-group-name $DEPLOYMENT_GROUP_UC \
+                    --deployment-group-name $DEPLOYMENT_GROUP_U_X_C \
                     --s3-location bucket=symmetric-pools-ui-bucket,bundleType=zip,key=uat/$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM-$APP_NETWORK_CELO.zip \
-                    --description "$GIT_COMMIT_MSG" \
+                    --description "Build triggered through CICD" \
                     --output text \
                     --query 'deploymentId')
                 echo $ID      
@@ -83,9 +83,9 @@ jobs:
                 ID=$(aws deploy create-deployment \
                     --application-name $APP_NAME \
                     --deployment-config-name CodeDeployDefault.AllAtOnce \
-                    --deployment-group-name $DEPLOYMENT_GROUP_CELO \
+                    --deployment-group-name $DEPLOYMENT_GROUP_XCHANGE_CELO \
                     --s3-location bucket=symmetric-pools-ui-bucket,bundleType=zip,key=uat/$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM-$APP_NETWORK_CELO.zip \
-                    --description "$GIT_COMMIT_MSG" \
+                    --description "Build triggered through CICD" \
                     --output text \
                     --query 'deploymentId')
               echo $ID      
@@ -157,9 +157,9 @@ jobs:
                 ID=$(aws deploy create-deployment \
                     --application-name $APP_NAME \
                     --deployment-config-name CodeDeployDefault.AllAtOnce \
-                    --deployment-group-name $DEPLOYMENT_GROUP_UX \
+                    --deployment-group-name $DEPLOYMENT_GROUP_U_XCHANGE_XDAI \
                     --s3-location bucket=symmetric-pools-ui-bucket,bundleType=zip,key=uat/$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM-$APP_NETWORK_XDAI.zip \
-                    --description "$GIT_COMMIT_MSG" \
+                    --description "Build triggered through CICD" \
                     --output text \
                     --query 'deploymentId')
                 echo $ID      
@@ -183,9 +183,9 @@ jobs:
                 ID=$(aws deploy create-deployment \
                     --application-name $APP_NAME \
                     --deployment-config-name CodeDeployDefault.AllAtOnce \
-                    --deployment-group-name $DEPLOYMENT_GROUP_X \
+                    --deployment-group-name $DEPLOYMENT_GROUP_XCHANGE_XDAI \
                     --s3-location bucket=symmetric-pools-ui-bucket,bundleType=zip,key=uat/$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM-$APP_NETWORK_XDAI.zip \
-                    --description "$GIT_COMMIT_MSG" \
+                    --description "Build triggered through CICD" \
                     --output text \
                     --query 'deploymentId')
               echo $ID      
