@@ -15,7 +15,7 @@
     "stylelint": "stylelint \"src/**/*.vue\""
   },
   "dependencies": {
-    "@centfinance/cent.dex_assets": "github:centfinance/symmetric.assets#master",
+    "@centfinance/cent.dex_assets": "github:centfinance/symmetric.assets#generated",
     "@centfinance/sor_celo": "0.0.10",
     "@ethersproject/address": "^5.0.6",
     "@ethersproject/constants": "^5.0.6",
