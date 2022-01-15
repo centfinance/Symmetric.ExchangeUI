@@ -25,7 +25,7 @@ jobs:
         #     override-ci-command: npm install --force
         - run:
             name: Install package
-            Command: npm install
+            command: npm install
 
         - run:
             name: Setting Env Variable
@@ -130,7 +130,7 @@ jobs:
         #     override-ci-command: npm install --force
         - run:
             name: Install package
-            Command: npm install
+            command: npm install
         - run:
             name: Setting Env Variable
             command: |
