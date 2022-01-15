@@ -3,7 +3,7 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@5.0.0
+  # node: circleci/node@5.0.0
   aws-s3: circleci/aws-s3@3.0.0
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
         #     pkg-manager: npm
         #     override-ci-command: npm install --force
         - run:
-            name: Install package
+            name: Install packages
             command: npm install
 
         - run:
