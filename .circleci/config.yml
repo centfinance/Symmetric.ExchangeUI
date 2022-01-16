@@ -3,7 +3,7 @@
 version: 2.1
 
 orbs:
-  # node: circleci/node@5.0.0
+  node: circleci/node@5.0.0
   aws-s3: circleci/aws-s3@3.0.0
 
 jobs:
@@ -19,14 +19,10 @@ jobs:
         - checkout
         # Next, the node orb's install-packages step will install the dependencies from a package.json.
         # The orb install-packages step will also automatically cache them for faster future runs.
-        # - node/install-packages:
-        #     # If you are using yarn, change the line below from "npm" to "yarn"
-        #     pkg-manager: npm
-        #     override-ci-command: npm install --force
-        - run:
-            name: Install packages
-            command: npm install
-
+        - node/install-packages:
+            # If you are using yarn, change the line below from "npm" to "yarn"
+            pkg-manager: npm
+            override-ci-command: npm install --force
         - run:
             name: Setting Env Variable
             command: |
@@ -124,13 +120,10 @@ jobs:
         - checkout
         # Next, the node orb's install-packages step will install the dependencies from a package.json.
         # The orb install-packages step will also automatically cache them for faster future runs.
-        # - node/install-packages:
-        #     # If you are using yarn, change the line below from "npm" to "yarn"
-        #     pkg-manager: npm
-        #     override-ci-command: npm install --force
-        - run:
-            name: Install package
-            command: npm install
+        - node/install-packages:
+            # If you are using yarn, change the line below from "npm" to "yarn"
+            pkg-manager: npm
+            override-ci-command: npm install --force
         - run:
             name: Setting Env Variable
             command: |
