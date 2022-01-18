@@ -223,3 +223,6 @@ workflows:
             - AWS
           requires:
            - build-and-deploy-celo
+      - notify:
+          webhooks:
+              - url: $TEAMS_WEBHOOK
