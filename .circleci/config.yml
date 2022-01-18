@@ -5,7 +5,7 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.0
   aws-s3: circleci/aws-s3@3.0.0
-  ms-teams-orbs: vpelissi/ms-teams-orbs@1.0.1
+  ms-teams: cloudradar-monitoring/ms-teams@0.0.1
 
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
@@ -109,7 +109,8 @@ jobs:
               fi
                     aws deploy get-deployment --deployment-id $ID
                     exit $EXITCODE
-        - ms-teams-orbs/report:
+        - ms-teams/report:
+            only_on_fail: false
             webhook_url: $TEAMS_WEBHOOK
   build-and-deploy-xdai:
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
@@ -208,7 +209,8 @@ jobs:
                     aws deploy get-deployment --deployment-id $ID
                     exit $EXITCODE
               fi
-        - ms-teams-orbs/report:
+        - ms-teams/report:
+            only_on_fail: false
             webhook_url: $TEAMS_WEBHOOK
 
 workflows:
