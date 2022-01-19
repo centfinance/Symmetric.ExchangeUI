@@ -13,7 +13,7 @@
                 v-if="isDeposit"
                 class="link"
                 href="/#/deposit"
-                style="padding-right:10px;"
+                style="padding-right: 10px"
             >
                 Deposit
             </a>
@@ -21,7 +21,7 @@
                 v-if="isBridge"
                 class="link"
                 href="/#/bridge"
-                style="padding-right:10px;"
+                style="padding-right: 10px"
             >
                 Bridge
             </a>
@@ -29,11 +29,10 @@
                 class="link"
                 href="https://docs.symmetric.exchange"
                 target="_blank"
-                style="padding-right: 10px"
             >
                 Documentation
             </a>
-            <div style="padding-right: 10px" class="divider">|</div>
+            <!-- <div style="padding-right: 10px" class="divider">|</div> -->
             <a class="link" :href="networkUrl" target="_blank">
                 Add Liquidity
             </a>
@@ -112,13 +111,13 @@ export default defineComponent({
         const networkUrl = computed(() => {
             return `https://${config.network}-pools.symmetric.exchange/`;
         });
-        
+
         const isDeposit = computed(() => {
             const store = useStore();
             const address = store.state.account.address;
             return depositWhiteList.includes(address);
         });
-        
+
         const isBridge = computed(() => {
             const store = useStore();
             const address = store.state.account.address;
@@ -473,7 +472,8 @@ export default defineComponent({
     font-weight: 200;
 }
 .link {
-    margin-right: 8px;
+    margin-right: 16px;
+    min-width: 93px;
 }
 
 a {

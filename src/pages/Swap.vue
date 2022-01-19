@@ -2,9 +2,7 @@
     <div class="page">
         <div class="pair">
             <div class="header">
-                <div class="header-text">
-                    Swap
-                </div>
+                <div class="header-text">Swap</div>
                 <Settings />
             </div>
             <SwapPair
@@ -16,9 +14,11 @@
                 :slippage="slippage"
                 :swaps-loading="swapsLoading"
                 :validation="validation"
-                @change="value => {
-                    handleAmountChange(value);
-                }"
+                @change="
+                    value => {
+                        handleAmountChange(value);
+                    }
+                "
             />
             <SwapButton
                 class="swap-button"
@@ -45,13 +45,12 @@
             :hidden="[assetInAddressInput, assetOutAddressInput]"
             @select="handleAssetSelect"
         />
-        <div
-            class="text-secondary"
-            style="font-size:11px"
-        >
-            Current Network:<span>{{ network }} </span>
-            <br>
-            # {{ buildNumber }}
+        <div class="text-secondary" style="font-size: 11px">
+            Current Network:<span
+                >{{ network === 'xdai' ? 'Gnosis' : network }}
+            </span>
+            <br />
+            Build:<span>{{ buildNumber }}</span>
         </div>
     </div>
 </template>
@@ -72,7 +71,11 @@ import { Contract } from '@ethersproject/contracts';
 import config, { symmTokenAddresses } from '@/config';
 import provider from '@/utils/provider';
 import { ETH_KEY, scale, isAddress, getEtherscanLink } from '@/utils/helpers';
-import { ValidationError, SwapValidation, validateNumberInput } from '@/utils/validation';
+import {
+    ValidationError,
+    SwapValidation,
+    validateNumberInput,
+} from '@/utils/validation';
 import Storage from '@/utils/storage';
 import Swapper from '@/web3/swapper';
 import Helper from '@/web3/helper';
@@ -124,10 +127,10 @@ export default defineComponent({
         const network = computed(() => {
             return `${config.network}`;
         });
-         
+
         const account = computed(() => {
             const { connector, address } = store.state.account;
-            
+
             if (!connector || !connector.id || !address) {
                 return '';
             }
@@ -143,8 +146,12 @@ export default defineComponent({
                 return SwapValidation.INVALID_INPUT;
             }
             // No swaps
-            if ((swapsLoading.value || swaps.value.length === 0) &&
-                !isWrapPair(assetInAddressInput.value, assetOutAddressInput.value)
+            if (
+                (swapsLoading.value || swaps.value.length === 0) &&
+                !isWrapPair(
+                    assetInAddressInput.value,
+                    assetOutAddressInput.value,
+                )
             ) {
                 return SwapValidation.NO_SWAPS;
             }
@@ -214,42 +221,45 @@ export default defineComponent({
             if (sor) {
                 let assetOutAddress = '';
                 switch (config.network) {
-                case 'xdai':
-                    assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                        ? config.addresses.wxdai
-                        : assetOutAddressInput.value;
-                    break;
-                case 'sokol':
-                    assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                        ? config.addresses.wspoa
-                        : assetOutAddressInput.value;
-                    break;
-                case 'celo':
-                case 'alfajores':
-                    assetOutAddress = assetOutAddressInput.value;
-                    break;
-                case 'avalanche':
-                case 'fuji':
-                    assetOutAddress = assetOutAddressInput.value;
-                    break;
-                case 'fantom':
-                case 'fantom-testnet':
-                    assetOutAddress = assetOutAddressInput.value;
-                    break;
-                case 'optimism':
-                case 'optimism-kovan':
-                    assetOutAddress = assetOutAddressInput.value;
-                    break;
-                case 'polygon':
-                case 'polygon-mumbai':
-                    assetOutAddress = assetOutAddressInput.value;
-                    break;
-                case 'ethereum':
-                default:
-                    assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                        ? config.addresses.weth
-                        : assetOutAddressInput.value;
-                    break;
+                    case 'xdai':
+                        assetOutAddress =
+                            assetOutAddressInput.value === ETH_KEY
+                                ? config.addresses.wxdai
+                                : assetOutAddressInput.value;
+                        break;
+                    case 'sokol':
+                        assetOutAddress =
+                            assetOutAddressInput.value === ETH_KEY
+                                ? config.addresses.wspoa
+                                : assetOutAddressInput.value;
+                        break;
+                    case 'celo':
+                    case 'alfajores':
+                        assetOutAddress = assetOutAddressInput.value;
+                        break;
+                    case 'avalanche':
+                    case 'fuji':
+                        assetOutAddress = assetOutAddressInput.value;
+                        break;
+                    case 'fantom':
+                    case 'fantom-testnet':
+                        assetOutAddress = assetOutAddressInput.value;
+                        break;
+                    case 'optimism':
+                    case 'optimism-kovan':
+                        assetOutAddress = assetOutAddressInput.value;
+                        break;
+                    case 'polygon':
+                    case 'polygon-mumbai':
+                        assetOutAddress = assetOutAddressInput.value;
+                        break;
+                    case 'ethereum':
+                    default:
+                        assetOutAddress =
+                            assetOutAddressInput.value === ETH_KEY
+                                ? config.addresses.weth
+                                : assetOutAddressInput.value;
+                        break;
                 }
                 await sor.setCostOutputToken(assetOutAddress);
             }
@@ -275,7 +285,10 @@ export default defineComponent({
             const provider = await store.getters['account/provider'];
             const assetInAddress = assetInAddressInput.value;
             let spender = config.addresses.exchangeProxy;
-            if (symmTokenAddresses.includes(assetInAddressInput.value) && symmTokenAddresses.includes(assetOutAddressInput.value)) {
+            if (
+                symmTokenAddresses.includes(assetInAddressInput.value) &&
+                symmTokenAddresses.includes(assetOutAddressInput.value)
+            ) {
                 spender = config.addresses.deposit;
             }
             const tx = await Helper.unlock(provider, assetInAddress, spender);
@@ -283,7 +296,7 @@ export default defineComponent({
             const assetSymbol = metadata[assetInAddress].symbol;
             const text = `Unlock ${assetSymbol}`;
             await handleTransaction(tx, text);
-            store.dispatch('account/fetchAssets', [ assetInAddress ]);
+            store.dispatch('account/fetchAssets', [assetInAddress]);
         }
 
         async function swap(): Promise<void> {
@@ -299,83 +312,139 @@ export default defineComponent({
             const provider = await store.getters['account/provider'];
             if (isWrapPair(assetInAddress, assetOutAddress)) {
                 switch (config.network) {
-                case 'xdai':
-                    if (assetInAddress === ETH_KEY) {
-                        const tx = await Helper.wrap(provider, assetInAmount);
-                        const text = 'Wrap xdai';
-                        await handleTransaction(tx, text);
-                    } else {
-                        const tx = await Helper.unwrap(provider, assetInAmount);
-                        const text = 'Unwrap xdai';
-                        await handleTransaction(tx, text);
-                    }
-                    store.dispatch('account/fetchAssets', [ config.addresses.wxdai ]);
-                    break;
-                case 'sokol':
-                    if (assetInAddress === ETH_KEY) {
-                        const tx = await Helper.wrap(provider, assetInAmount);
-                        const text = 'Wrap spoa';
-                        await handleTransaction(tx, text);
-                    } else {
-                        const tx = await Helper.unwrap(provider, assetInAmount);
-                        const text = 'Unwrap spoa';
-                        await handleTransaction(tx, text);
-                    }
-                    store.dispatch('account/fetchAssets', [ config.addresses.wspoa ]);
-                    break;
-                case 'celo':
-                case 'alfajores':
-                    break;
-                case 'avalanche':
-                case 'fuji':
-                    break;
-                case 'fantom':
-                case 'fantom-testnet':
-                    break;
-                case 'optimism':
-                case 'optimism-kovan':
-                    break;
-                case 'polygon':
-                case 'polygon-mumbai':
-                    break;
-                case 'ethereum':
-                default:
-                    if (assetInAddress === ETH_KEY) {
-                        const tx = await Helper.wrap(provider, assetInAmount);
-                        const text = 'Wrap ether';
-                        await handleTransaction(tx, text);
-                    } else {
-                        const tx = await Helper.unwrap(provider, assetInAmount);
-                        const text = 'Unwrap ether';
-                        await handleTransaction(tx, text);
-                    }
-                    store.dispatch('account/fetchAssets', [ config.addresses.weth ]);
-                    break;
+                    case 'xdai':
+                        if (assetInAddress === ETH_KEY) {
+                            const tx = await Helper.wrap(
+                                provider,
+                                assetInAmount,
+                            );
+                            const text = 'Wrap xdai';
+                            await handleTransaction(tx, text);
+                        } else {
+                            const tx = await Helper.unwrap(
+                                provider,
+                                assetInAmount,
+                            );
+                            const text = 'Unwrap xdai';
+                            await handleTransaction(tx, text);
+                        }
+                        store.dispatch('account/fetchAssets', [
+                            config.addresses.wxdai,
+                        ]);
+                        break;
+                    case 'sokol':
+                        if (assetInAddress === ETH_KEY) {
+                            const tx = await Helper.wrap(
+                                provider,
+                                assetInAmount,
+                            );
+                            const text = 'Wrap spoa';
+                            await handleTransaction(tx, text);
+                        } else {
+                            const tx = await Helper.unwrap(
+                                provider,
+                                assetInAmount,
+                            );
+                            const text = 'Unwrap spoa';
+                            await handleTransaction(tx, text);
+                        }
+                        store.dispatch('account/fetchAssets', [
+                            config.addresses.wspoa,
+                        ]);
+                        break;
+                    case 'celo':
+                    case 'alfajores':
+                        break;
+                    case 'avalanche':
+                    case 'fuji':
+                        break;
+                    case 'fantom':
+                    case 'fantom-testnet':
+                        break;
+                    case 'optimism':
+                    case 'optimism-kovan':
+                        break;
+                    case 'polygon':
+                    case 'polygon-mumbai':
+                        break;
+                    case 'ethereum':
+                    default:
+                        if (assetInAddress === ETH_KEY) {
+                            const tx = await Helper.wrap(
+                                provider,
+                                assetInAmount,
+                            );
+                            const text = 'Wrap ether';
+                            await handleTransaction(tx, text);
+                        } else {
+                            const tx = await Helper.unwrap(
+                                provider,
+                                assetInAmount,
+                            );
+                            const text = 'Unwrap ether';
+                            await handleTransaction(tx, text);
+                        }
+                        store.dispatch('account/fetchAssets', [
+                            config.addresses.weth,
+                        ]);
+                        break;
                 }
                 return;
             }
             const assetInSymbol = metadata[assetInAddress].symbol;
             const assetOutSymbol = metadata[assetOutAddress].symbol;
             const text = `Swap ${assetInSymbol} for ${assetOutSymbol}`;
-            if (symmTokenAddresses.includes(assetInAddressInput.value) && symmTokenAddresses.includes(assetOutAddressInput.value)) {
-                const tx = await Swapper.swapSYMM(provider, assetInAddress, assetOutAddress, assetInAmount);
+            if (
+                symmTokenAddresses.includes(assetInAddressInput.value) &&
+                symmTokenAddresses.includes(assetOutAddressInput.value)
+            ) {
+                const tx = await Swapper.swapSYMM(
+                    provider,
+                    assetInAddress,
+                    assetOutAddress,
+                    assetInAmount,
+                );
                 await handleTransaction(tx, text);
             } else {
                 if (isExactIn.value) {
-                    const assetOutAmountNumber = new BigNumber(assetOutAmountInput.value);
-                    const assetOutAmount = scale(assetOutAmountNumber, assetOutDecimals);
-                    const minAmount = assetOutAmount.div(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
-                    const tx = await Swapper.swapIn(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmount, minAmount);
+                    const assetOutAmountNumber = new BigNumber(
+                        assetOutAmountInput.value,
+                    );
+                    const assetOutAmount = scale(
+                        assetOutAmountNumber,
+                        assetOutDecimals,
+                    );
+                    const minAmount = assetOutAmount
+                        .div(1 + slippageBufferRate)
+                        .integerValue(BigNumber.ROUND_DOWN);
+                    const tx = await Swapper.swapIn(
+                        provider,
+                        swaps.value,
+                        assetInAddress,
+                        assetOutAddress,
+                        assetInAmount,
+                        minAmount,
+                    );
                     await handleTransaction(tx, text);
                 } else {
-                    const assetInAmountMax = assetInAmount.times(1 + slippageBufferRate).integerValue(BigNumber.ROUND_DOWN);
-                    const tx = await Swapper.swapOut(provider, swaps.value, assetInAddress, assetOutAddress, assetInAmountMax);
+                    const assetInAmountMax = assetInAmount
+                        .times(1 + slippageBufferRate)
+                        .integerValue(BigNumber.ROUND_DOWN);
+                    const tx = await Swapper.swapOut(
+                        provider,
+                        swaps.value,
+                        assetInAddress,
+                        assetOutAddress,
+                        assetInAmountMax,
+                    );
                     await handleTransaction(tx, text);
                 }
             }
-           
-            
-            store.dispatch('account/fetchAssets', [ assetInAddress, assetOutAddress ]);
+
+            store.dispatch('account/fetchAssets', [
+                assetInAddress,
+                assetOutAddress,
+            ]);
             if (sor) {
                 sor.fetchPools();
                 assetInAmountInput.value = '';
@@ -384,7 +453,9 @@ export default defineComponent({
         }
 
         async function initSor(): Promise<void> {
-            const poolsUrl = `${config.subgraphBackupUrl}?timestamp=${Date.now()}`;
+            const poolsUrl = `${
+                config.subgraphBackupUrl
+            }?timestamp=${Date.now()}`;
             // const poolsUrl = `https://ipfs.fleek.co/ipns/balancer-bucket.storage.fleek.co/balancer-exchange-kovan/pools?timestamp=${Date.now()}`;
             sor = new SOR(
                 provider,
@@ -398,63 +469,73 @@ export default defineComponent({
             let assetOutAddress;
 
             switch (config.network) {
-            case 'xdai':
-                assetInAddress = assetInAddressInput.value === ETH_KEY
-                    ? config.addresses.wxdai
-                    : assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                    ? config.addresses.wxdai
-                    : assetOutAddressInput.value;
-                break;
-            case 'sokol':
-                assetInAddress = assetInAddressInput.value === ETH_KEY
-                    ? config.addresses.wspoa
-                    : assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                    ? config.addresses.wspoa
-                    : assetOutAddressInput.value;
-                break;
-            case 'celo':
-            case 'alfajores':
-                assetInAddress = assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value;
-                break;
-            case 'avalanche':
-            case 'fuji':
-                assetInAddress = assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value;
-                break;
-            case 'fantom':
-            case 'fantom-testnet':
-                assetInAddress = assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value;
-                break;
-            case 'optimism':
-            case 'optimism-kovan':
-                assetInAddress = assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value;
-                break;
-            case 'polygon':
-            case 'polygon-mumbai':
-                assetInAddress = assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value;
-                break;
-            case 'ethereum':
-            default:
-                assetInAddress = assetInAddressInput.value === ETH_KEY
-                    ? config.addresses.weth
-                    : assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                    ? config.addresses.weth
-                    : assetOutAddressInput.value;
-                break;
+                case 'xdai':
+                    assetInAddress =
+                        assetInAddressInput.value === ETH_KEY
+                            ? config.addresses.wxdai
+                            : assetInAddressInput.value;
+                    assetOutAddress =
+                        assetOutAddressInput.value === ETH_KEY
+                            ? config.addresses.wxdai
+                            : assetOutAddressInput.value;
+                    break;
+                case 'sokol':
+                    assetInAddress =
+                        assetInAddressInput.value === ETH_KEY
+                            ? config.addresses.wspoa
+                            : assetInAddressInput.value;
+                    assetOutAddress =
+                        assetOutAddressInput.value === ETH_KEY
+                            ? config.addresses.wspoa
+                            : assetOutAddressInput.value;
+                    break;
+                case 'celo':
+                case 'alfajores':
+                    assetInAddress = assetInAddressInput.value;
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'avalanche':
+                case 'fuji':
+                    assetInAddress = assetInAddressInput.value;
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'fantom':
+                case 'fantom-testnet':
+                    assetInAddress = assetInAddressInput.value;
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'optimism':
+                case 'optimism-kovan':
+                    assetInAddress = assetInAddressInput.value;
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'polygon':
+                case 'polygon-mumbai':
+                    assetInAddress = assetInAddressInput.value;
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'ethereum':
+                default:
+                    assetInAddress =
+                        assetInAddressInput.value === ETH_KEY
+                            ? config.addresses.weth
+                            : assetInAddressInput.value;
+                    assetOutAddress =
+                        assetOutAddressInput.value === ETH_KEY
+                            ? config.addresses.weth
+                            : assetOutAddressInput.value;
+                    break;
             }
             console.time(`[SOR] setCostOutputToken: ${assetOutAddress}`);
             await sor.setCostOutputToken(assetOutAddress);
             console.timeEnd(`[SOR] setCostOutputToken: ${assetOutAddress}`);
-            console.time(`[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`);
+            console.time(
+                `[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`,
+            );
             await sor.fetchFilteredPairPools(assetInAddress, assetOutAddress);
-            console.timeEnd(`[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`);
+            console.timeEnd(
+                `[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`,
+            );
             await onAmountChange(activeInput.value);
             console.time('[SOR] fetchPools');
             await sor.fetchPools();
@@ -476,7 +557,12 @@ export default defineComponent({
                 return;
             }
 
-            if (isWrapPair(assetInAddressInput.value, assetOutAddressInput.value)) {
+            if (
+                isWrapPair(
+                    assetInAddressInput.value,
+                    assetOutAddressInput.value,
+                )
+            ) {
                 if (isExactIn.value) {
                     assetOutAmountInput.value = amount;
                 } else {
@@ -485,19 +571,39 @@ export default defineComponent({
                 swaps.value = [];
                 return;
             }
-            
-            if (config.network === 'celo' && symmTokenAddresses.includes(assetInAddressInput.value) && symmTokenAddresses.includes(assetOutAddressInput.value)) {
+
+            if (
+                config.network === 'celo' &&
+                symmTokenAddresses.includes(assetInAddressInput.value) &&
+                symmTokenAddresses.includes(assetOutAddressInput.value)
+            ) {
                 let maxPrice = '0';
                 const provider = await store.getters['account/provider'];
-                
+
                 if (isExactIn.value) {
                     assetOutAmountInput.value = amount;
-                    const symmContract = new Contract(assetInAddressInput.value, ERC20ABI, provider.getSigner());
-                    maxPrice = formatEther(await symmContract.balanceOf(getAddress(config.addresses.deposit)));
+                    const symmContract = new Contract(
+                        assetInAddressInput.value,
+                        ERC20ABI,
+                        provider.getSigner(),
+                    );
+                    maxPrice = formatEther(
+                        await symmContract.balanceOf(
+                            getAddress(config.addresses.deposit),
+                        ),
+                    );
                 } else {
                     assetInAmountInput.value = amount;
-                    const symmContract = new Contract(assetOutAddressInput.value, ERC20ABI, provider.getSigner());
-                    maxPrice = formatEther(await symmContract.balanceOf(getAddress(config.addresses.deposit)));
+                    const symmContract = new Contract(
+                        assetOutAddressInput.value,
+                        ERC20ABI,
+                        provider.getSigner(),
+                    );
+                    maxPrice = formatEther(
+                        await symmContract.balanceOf(
+                            getAddress(config.addresses.deposit),
+                        ),
+                    );
                 }
                 if (maxPrice < amount) {
                     return;
@@ -518,56 +624,62 @@ export default defineComponent({
             let assetOutAddress;
 
             switch (config.network) {
-            case 'xdai':
-                assetInAddress = assetInAddressInput.value === ETH_KEY
-                    ? config.addresses.wxdai
-                    : assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                    ? config.addresses.wxdai
-                    : assetOutAddressInput.value;
-                break;
-            case 'sokol':
-                assetInAddress = assetInAddressInput.value === ETH_KEY
-                    ? config.addresses.wspoa
-                    : assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                    ? config.addresses.wspoa
-                    : assetOutAddressInput.value;
-                break;
-            case 'celo':
-            case 'alfajores':
-                assetInAddress = assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value;
-                break;
-            case 'avalanche':
-            case 'fuji':
-                assetInAddress = assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value;
-                break;
-            case 'fantom':
-            case 'fantom-testnet':
-                assetInAddress = assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value;
-                break;
-            case 'optimism':
-            case 'optimism-kovan':
-                assetInAddress = assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value;
-                break;
-            case 'polygon':
-            case 'polygon-mumbai':
-                assetInAddress = assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value;
-                break;
-            case 'ethereum':
-            default:
-                assetInAddress = assetInAddressInput.value === ETH_KEY
-                    ? config.addresses.weth
-                    : assetInAddressInput.value;
-                assetOutAddress = assetOutAddressInput.value === ETH_KEY
-                    ? config.addresses.weth
-                    : assetOutAddressInput.value;
-                break;
+                case 'xdai':
+                    assetInAddress =
+                        assetInAddressInput.value === ETH_KEY
+                            ? config.addresses.wxdai
+                            : assetInAddressInput.value;
+                    assetOutAddress =
+                        assetOutAddressInput.value === ETH_KEY
+                            ? config.addresses.wxdai
+                            : assetOutAddressInput.value;
+                    break;
+                case 'sokol':
+                    assetInAddress =
+                        assetInAddressInput.value === ETH_KEY
+                            ? config.addresses.wspoa
+                            : assetInAddressInput.value;
+                    assetOutAddress =
+                        assetOutAddressInput.value === ETH_KEY
+                            ? config.addresses.wspoa
+                            : assetOutAddressInput.value;
+                    break;
+                case 'celo':
+                case 'alfajores':
+                    assetInAddress = assetInAddressInput.value;
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'avalanche':
+                case 'fuji':
+                    assetInAddress = assetInAddressInput.value;
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'fantom':
+                case 'fantom-testnet':
+                    assetInAddress = assetInAddressInput.value;
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'optimism':
+                case 'optimism-kovan':
+                    assetInAddress = assetInAddressInput.value;
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'polygon':
+                case 'polygon-mumbai':
+                    assetInAddress = assetInAddressInput.value;
+                    assetOutAddress = assetOutAddressInput.value;
+                    break;
+                case 'ethereum':
+                default:
+                    assetInAddress =
+                        assetInAddressInput.value === ETH_KEY
+                            ? config.addresses.weth
+                            : assetInAddressInput.value;
+                    assetOutAddress =
+                        assetOutAddressInput.value === ETH_KEY
+                            ? config.addresses.weth
+                            : assetOutAddressInput.value;
+                    break;
             }
 
             if (assetInAddress === assetOutAddress) {
@@ -587,18 +699,25 @@ export default defineComponent({
                 const assetInAmountRaw = new BigNumber(amount);
                 const assetInAmount = scale(assetInAmountRaw, assetInDecimals);
 
-                console.time(`[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`);
+                console.time(
+                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`,
+                );
                 const [tradeSwaps, tradeAmount, spotPrice] = await sor.getSwaps(
                     assetInAddress,
                     assetOutAddress,
                     'swapExactIn',
                     assetInAmount,
                 );
-                console.timeEnd(`[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`);
+                console.timeEnd(
+                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`,
+                );
                 swaps.value = tradeSwaps;
                 const assetOutAmountRaw = scale(tradeAmount, -assetOutDecimals);
                 const assetOutPrecision = config.precision;
-                assetOutAmountInput.value = assetOutAmountRaw.toFixed(assetOutPrecision, BigNumber.ROUND_DOWN);
+                assetOutAmountInput.value = assetOutAmountRaw.toFixed(
+                    assetOutPrecision,
+                    BigNumber.ROUND_DOWN,
+                );
                 if (tradeSwaps.length === 0) {
                     slippage.value = 0;
                 } else {
@@ -610,20 +729,30 @@ export default defineComponent({
                 }
             } else {
                 const assetOutAmountRaw = new BigNumber(amount);
-                const assetOutAmount = scale(assetOutAmountRaw, assetOutDecimals);
+                const assetOutAmount = scale(
+                    assetOutAmountRaw,
+                    assetOutDecimals,
+                );
 
-                console.time(`[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`);
+                console.time(
+                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`,
+                );
                 const [tradeSwaps, tradeAmount, spotPrice] = await sor.getSwaps(
                     assetInAddress,
                     assetOutAddress,
                     'swapExactOut',
                     assetOutAmount,
                 );
-                console.timeEnd(`[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`);
+                console.timeEnd(
+                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`,
+                );
                 swaps.value = tradeSwaps;
                 const assetInAmountRaw = scale(tradeAmount, -assetInDecimals);
                 const assetInPrecision = config.precision;
-                assetInAmountInput.value = assetInAmountRaw.toFixed(assetInPrecision, BigNumber.ROUND_UP);
+                assetInAmountInput.value = assetInAmountRaw.toFixed(
+                    assetInPrecision,
+                    BigNumber.ROUND_UP,
+                );
 
                 if (tradeSwaps.length === 0) {
                     slippage.value = 0;
@@ -638,7 +767,10 @@ export default defineComponent({
             swapsLoading.value = false;
         }
 
-        async function handleTransaction(transaction: any, text: string): Promise<void> {
+        async function handleTransaction(
+            transaction: any,
+            text: string,
+        ): Promise<void> {
             if (transaction.code) {
                 transactionPending.value = false;
                 if (transaction.code === ErrorCode.UNPREDICTABLE_GAS_LIMIT) {
@@ -656,16 +788,17 @@ export default defineComponent({
                 text,
             });
 
-            const transactionReceipt = await provider.waitForTransaction(transaction.hash, 1);
+            const transactionReceipt = await provider.waitForTransaction(
+                transaction.hash,
+                1,
+            );
             transactionPending.value = false;
             store.dispatch('account/saveMinedTransaction', {
                 receipt: transactionReceipt,
                 timestamp: Date.now(),
             });
 
-            const type = transactionReceipt.status === 1
-                ? 'success'
-                : 'error';
+            const type = transactionReceipt.status === 1 ? 'success' : 'error';
             const link = getEtherscanLink(transactionReceipt.transactionHash);
             store.dispatch('ui/notify', {
                 text,
@@ -674,7 +807,10 @@ export default defineComponent({
             });
         }
 
-        async function fetchAssetMetadata(assetIn: string, assetOut: string): Promise<void> {
+        async function fetchAssetMetadata(
+            assetIn: string,
+            assetOut: string,
+        ): Promise<void> {
             const metadata = store.getters['assets/metadata'];
             const unknownAssets = [];
             if (!metadata[assetIn]) {
@@ -692,11 +828,11 @@ export default defineComponent({
 
         function getInitialPair(): Pair {
             const pair = Storage.getPair(config.chainId);
-            let assetIn = 
-                router.currentRoute.value.params.assetIn as string ||
+            let assetIn =
+                (router.currentRoute.value.params.assetIn as string) ||
                 pair.inputAsset;
-            let assetOut = 
-                router.currentRoute.value.params.assetOut as string ||
+            let assetOut =
+                (router.currentRoute.value.params.assetOut as string) ||
                 pair.outputAsset;
             if (isAddress(assetIn)) {
                 assetIn = getAddress(assetIn);
@@ -712,46 +848,64 @@ export default defineComponent({
 
         function isWrapPair(assetIn: string, assetOut: string): boolean {
             switch (config.network) {
-            case 'xdai':
-                if (assetIn === ETH_KEY && assetOut === config.addresses.wxdai) {
-                    return true;
-                }
-                if (assetOut === ETH_KEY && assetIn === config.addresses.wxdai) {
-                    return true;
-                }
-                break;
-            case 'sokol':
-                if (assetIn === ETH_KEY && assetOut === config.addresses.wspoa) {
-                    return true;
-                }
-                if (assetOut === ETH_KEY && assetIn === config.addresses.wspoa) {
-                    return true;
-                }
-                break;
-            case 'celo':
-            case 'alfajores':
-                break;
-            case 'avalanche':
-            case 'fuji':
-                break;
-            case 'fantom':
-            case 'fantom-testnet':
-                break;
-            case 'optimism':
-            case 'optimism-kovan':
-                break;
-            case 'polygon':
-            case 'polygon-mumbai':
-                break;
-            case 'ethereum':
-            default:
-                if (assetIn === ETH_KEY && assetOut === config.addresses.weth) {
-                    return true;
-                }
-                if (assetOut === ETH_KEY && assetIn === config.addresses.weth) {
-                    return true;
-                }
-                break;
+                case 'xdai':
+                    if (
+                        assetIn === ETH_KEY &&
+                        assetOut === config.addresses.wxdai
+                    ) {
+                        return true;
+                    }
+                    if (
+                        assetOut === ETH_KEY &&
+                        assetIn === config.addresses.wxdai
+                    ) {
+                        return true;
+                    }
+                    break;
+                case 'sokol':
+                    if (
+                        assetIn === ETH_KEY &&
+                        assetOut === config.addresses.wspoa
+                    ) {
+                        return true;
+                    }
+                    if (
+                        assetOut === ETH_KEY &&
+                        assetIn === config.addresses.wspoa
+                    ) {
+                        return true;
+                    }
+                    break;
+                case 'celo':
+                case 'alfajores':
+                    break;
+                case 'avalanche':
+                case 'fuji':
+                    break;
+                case 'fantom':
+                case 'fantom-testnet':
+                    break;
+                case 'optimism':
+                case 'optimism-kovan':
+                    break;
+                case 'polygon':
+                case 'polygon-mumbai':
+                    break;
+                case 'ethereum':
+                default:
+                    if (
+                        assetIn === ETH_KEY &&
+                        assetOut === config.addresses.weth
+                    ) {
+                        return true;
+                    }
+                    if (
+                        assetOut === ETH_KEY &&
+                        assetIn === config.addresses.weth
+                    ) {
+                        return true;
+                    }
+                    break;
             }
             return false;
         }
@@ -851,8 +1005,8 @@ export default defineComponent({
     color: white;
 }
 .text-secondary {
-color: #acbbc3;
-} 
+    color: #acbbc3;
+}
 
 .text-secondary span {
     margin-left: 0.5rem;
