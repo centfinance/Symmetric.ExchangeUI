@@ -51,7 +51,6 @@ export default defineComponent({
             return Object.keys(config.connectors)
                 .filter(connectorId => {
                     if (connectorId === 'injected') {
-                        console.log(`Connector3 ${connectorId}`);
                         return hasInjectedProvider();
                     }
                     return true;
@@ -62,7 +61,6 @@ export default defineComponent({
                     }
                 })
                 .map(connectorId => {
-                    console.log(`Connector2 ${connectorId}`);
                     return {
                         id: connectorId,
                         name: getConnectorName(connectorId),
