@@ -49,24 +49,22 @@
             Current Network:<span
                 >{{ network === 'xdai' ? 'Gnosis' : network }}
             </span>
-            <br />
-            Build:<span>{{ buildNumber }}</span>
         </div>
     </div>
 </template>
 
 <script lang="ts">
 import { ref, defineComponent, onMounted, watch, computed } from 'vue';
-import { formatEther } from '@ethersproject/units';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useIntervalFn } from '@vueuse/core';
 import BigNumber from 'bignumber.js';
-import { getAddress } from '@ethersproject/address';
-import { ErrorCode } from '@ethersproject/logger';
 import { SOR } from '@centfinance/sor_celo';
 import { Swap, Pool } from '@centfinance/sor_celo/dist/types';
+import { getAddress } from '@ethersproject/address';
 import { Contract } from '@ethersproject/contracts';
+import { ErrorCode } from '@ethersproject/logger';
+import { formatEther } from '@ethersproject/units';
 
 import config, { symmTokenAddresses } from '@/config';
 import provider from '@/utils/provider';
@@ -87,10 +85,9 @@ import Settings from '@/components/Settings.vue';
 import SwapButton from '@/components/swap/Button.vue';
 import SwapPair from '@/components/swap/Pair.vue';
 import ERC20ABI from '@/abi/ERC20.json';
+
 // eslint-disable-next-line no-undef
 const GAS_PRICE = process.env.APP_GAS_PRICE || '100000000000';
-// eslint-disable-next-line no-undef
-const BUILD_NUMBER = process.env.APP_BUILD_NUMBER || '001';
 const MAX_POOLS = 4;
 
 interface Pair {
@@ -932,7 +929,6 @@ export default defineComponent({
             unlock,
             swap,
             network,
-            buildNumber: BUILD_NUMBER,
         };
     },
 });

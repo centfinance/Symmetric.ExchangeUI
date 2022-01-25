@@ -6,7 +6,6 @@
                 <div class="title">SYMMETRIC</div>
                 <br />
             </router-link>
-            <Theme-Switcher class="switcher" />
         </div>
         <div class="header-right">
             <a
@@ -32,7 +31,6 @@
             >
                 Documentation
             </a>
-            <!-- <div style="padding-right: 10px" class="divider">|</div> -->
             <a class="link" :href="networkUrl" target="_blank">
                 Add Liquidity
             </a>
@@ -43,6 +41,7 @@
                 class="switch-network-button"
             />
             <Account class="account" />
+            <Theme-Switcher class="switcher" />
         </div>
         <img
             src="@/assets/burger.svg"
