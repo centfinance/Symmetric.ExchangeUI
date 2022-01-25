@@ -1,4 +1,4 @@
-import tokenlist from '@centfinance/cent.dex_assets/generated/listed.tokenlist.json';
+import tokenlist from '../data/listed.tokenlist.json';
 
 import config, { AssetMetadata } from '@/config';
 
