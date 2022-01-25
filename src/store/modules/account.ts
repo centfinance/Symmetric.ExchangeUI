@@ -169,7 +169,6 @@ const actions = {
         dispatch('fetchState');
     },
     fetchState: async({ commit, state, rootGetters }: ActionContext<AccountState, RootState>): Promise<void> => {
-        console.log("fethcstate");
         const { address } = state;
         const metadata = rootGetters['assets/metadata'];
         const assets = Object.keys(metadata);
@@ -181,7 +180,6 @@ const actions = {
         commit('addAllowances', allowances);
     },
     fetchAssets: async({ commit, state }: ActionContext<AccountState, RootState>, assets: string[]): Promise<void> => {
-        console.log("fethcAssets");
         const { address } = state;
         if (!address) {
             return;
