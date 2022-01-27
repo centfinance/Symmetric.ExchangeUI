@@ -72,6 +72,7 @@
                 Add Liquidity
             </a>
             <div
+                v-if="isWrongNetwork"
                 @click="switchNetwork"
                 style="padding-right: 10px; margin-right: 8px; cursor: pointer"
             >
@@ -107,19 +108,22 @@ export default defineComponent({
         ThemeSwitcher,
     },
     setup() {
+        const store = useStore();
+        const { chainId, address } = store.state.account;
+
+        const isWrongNetwork = computed(() => {
+            return config.chainId !== chainId;
+        });
+
         const networkUrl = computed(() => {
             return `https://${config.network}-pools.symmetric.exchange/`;
         });
 
         const isDeposit = computed(() => {
-            const store = useStore();
-            const address = store.state.account.address;
             return depositWhiteList.includes(address);
         });
 
         const isBridge = computed(() => {
-            const store = useStore();
-            const address = store.state.account.address;
             return bridgeWhiteList.includes(address);
         });
 
@@ -434,6 +438,7 @@ export default defineComponent({
         }
 
         return {
+            isWrongNetwork,
             isDeposit,
             isBridge,
             toggle,
@@ -532,7 +537,6 @@ a {
         width: calc(100% - 20px);
         display: flex;
         flex-direction: column;
-        /* justify-content: flex-end; */
         align-items: flex-end;
     }
 
