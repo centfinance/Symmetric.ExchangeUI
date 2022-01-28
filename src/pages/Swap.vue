@@ -49,6 +49,8 @@
             Current Network:<span
                 >{{ network === 'xdai' ? 'Gnosis' : network }}
             </span>
+            <br />
+            Build:<span>{{ buildNumber }}</span>
         </div>
     </div>
 </template>
@@ -88,6 +90,8 @@ import ERC20ABI from '@/abi/ERC20.json';
 
 // eslint-disable-next-line no-undef
 const GAS_PRICE = process.env.APP_GAS_PRICE || '100000000000';
+// eslint-disable-next-line no-undef
+const BUILD_NUMBER = process.env.APP_BUILD_NUMBER || '001';
 const MAX_POOLS = 4;
 
 interface Pair {
@@ -929,6 +933,7 @@ export default defineComponent({
             unlock,
             swap,
             network,
+            buildNumber: BUILD_NUMBER,
         };
     },
 });
