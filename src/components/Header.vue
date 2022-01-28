@@ -35,6 +35,7 @@
                 Add Liquidity
             </a>
             <Button
+                v-if="isWrongNetwork === true"
                 :text="'Switch Network'"
                 :primary="false"
                 @click="switchNetwork"
@@ -88,10 +89,11 @@
     </div>
 </template>
 
-<script>
-import { defineComponent, computed, ref } from 'vue';
+<script lang="ts">
+import { defineComponent, computed, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 
+import { RootState } from '@/store';
 import Icon from '@/components/Icon.vue';
 import Button from '@/components/Button.vue';
 import Account from '@/components/Account.vue';
@@ -108,11 +110,27 @@ export default defineComponent({
         ThemeSwitcher,
     },
     setup() {
-        const store = useStore();
-        const { chainId, address } = store.state.account;
+        const store = useStore<RootState>();
+
+        watch(
+            () => store.getters['account/chainId'],
+            function () {
+                // console.log('value changes detected');
+            },
+        );
+
+        // store.watch(
+        //     (state, getters) => getters['account/chainId'],
+        //     () => {
+        //         console.log('value changes detected via vuex watch');
+        //     },
+        // );
 
         const isWrongNetwork = computed(() => {
-            return config.chainId !== chainId;
+            return (
+                store.state.account.address &&
+                config.chainId !== store.getters['account/chainId']
+            );
         });
 
         const networkUrl = computed(() => {
@@ -120,11 +138,11 @@ export default defineComponent({
         });
 
         const isDeposit = computed(() => {
-            return depositWhiteList.includes(address);
+            return depositWhiteList.includes(store.state.account.address);
         });
 
         const isBridge = computed(() => {
-            return bridgeWhiteList.includes(address);
+            return bridgeWhiteList.includes(store.state.account.address);
         });
 
         function switchNetwork() {

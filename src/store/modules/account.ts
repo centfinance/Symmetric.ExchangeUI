@@ -76,7 +76,10 @@ const mutations = {
             }
         }
     },
-    setTransactions: (_state: AccountState, transactions: Record<string, Transaction>): void => {
+    setTransactions: (
+        _state: AccountState,
+        transactions: Record<string, Transaction>,
+    ): void => {
         _state.transactions = transactions;
     },
     setTransaction: (_state: AccountState, transaction: Transaction): void => {
@@ -94,12 +97,17 @@ const mutations = {
 };
 
 const actions = {
-    init: async({ dispatch }: ActionContext<AccountState, RootState>): Promise<void> => {
+    init: async ({
+        dispatch,
+    }: ActionContext<AccountState, RootState>): Promise<void> => {
         // Save Web3 provider if available
         const connectorId = Storage.getConnector();
         dispatch('connect', connectorId);
     },
-    connect: async({ commit, dispatch }: ActionContext<AccountState, RootState>, connectorId: string): Promise<void> => {
+    connect: async (
+        { commit, dispatch }: ActionContext<AccountState, RootState>,
+        connectorId: string,
+    ): Promise<void> => {
         if (!connectorId) {
             return;
         }
@@ -126,7 +134,9 @@ const actions = {
         dispatch('saveProvider', provider);
         Storage.saveConnector(connectorId);
     },
-    disconnect: async({ commit }: ActionContext<AccountState, RootState>): Promise<void> => {
+    disconnect: async ({
+        commit,
+    }: ActionContext<AccountState, RootState>): Promise<void> => {
         const connectorId = Storage.getConnector();
         if (connectorId) {
             const connector = lock.getConnector(connectorId);
@@ -141,7 +151,10 @@ const actions = {
         commit('setChainId', 0);
         commit('clear');
     },
-    saveProvider: async({ commit, dispatch }: ActionContext<AccountState, RootState>, provider: any): Promise<void> => {
+    saveProvider: async (
+        { commit, dispatch }: ActionContext<AccountState, RootState>,
+        provider: any,
+    ): Promise<void> => {
         if (provider.removeAllListeners) {
             provider.removeAllListeners();
         }
@@ -168,32 +181,48 @@ const actions = {
         commit('setTransactions', transactions);
         dispatch('fetchState');
     },
-    fetchState: async({ commit, state, rootGetters }: ActionContext<AccountState, RootState>): Promise<void> => {
+    fetchState: async ({
+        commit,
+        state,
+        rootGetters,
+    }: ActionContext<AccountState, RootState>): Promise<void> => {
         const { address } = state;
         const metadata = rootGetters['assets/metadata'];
         const assets = Object.keys(metadata);
-        console.time(`[API] fetchAccountState: ${address}`);
-        const { proxy, balances, allowances } = await Ethereum.fetchAccountState(address, assets);
-        console.timeEnd(`[API] fetchAccountState: ${address}`);
+        // console.time(`[API] fetchAccountState: ${address}`);
+        const { proxy, balances, allowances } =
+            await Ethereum.fetchAccountState(address, assets);
+        // console.timeEnd(`[API] fetchAccountState: ${address}`);
         commit('setProxy', proxy);
         commit('addBalances', balances);
         commit('addAllowances', allowances);
     },
-    fetchAssets: async({ commit, state }: ActionContext<AccountState, RootState>, assets: string[]): Promise<void> => {
+    fetchAssets: async (
+        { commit, state }: ActionContext<AccountState, RootState>,
+        assets: string[],
+    ): Promise<void> => {
         const { address } = state;
         if (!address) {
             return;
         }
-        console.time(`[API] fetchAccountState: ${address}`);
-        const { balances, allowances } = await Ethereum.fetchAccountState(address, assets);
-        console.timeEnd(`[API] fetchAccountState: ${address}`);
+        // console.time(`[API] fetchAccountState: ${address}`);
+        const { balances, allowances } = await Ethereum.fetchAccountState(
+            address,
+            assets,
+        );
+        // console.timeEnd(`[API] fetchAccountState: ${address}`);
         commit('addBalances', balances);
         commit('addAllowances', allowances);
     },
-    clearTransactions: async({ commit }: ActionContext<AccountState, RootState>): Promise<void> => {
+    clearTransactions: async ({
+        commit,
+    }: ActionContext<AccountState, RootState>): Promise<void> => {
         commit('clearTransactions');
     },
-    saveTransaction: async({ commit }: ActionContext<AccountState, RootState>, transactionData: TransactionData): Promise<void> => {
+    saveTransaction: async (
+        { commit }: ActionContext<AccountState, RootState>,
+        transactionData: TransactionData,
+    ): Promise<void> => {
         const { text } = transactionData;
         const { hash } = transactionData.transaction;
         const transaction = {
@@ -204,12 +233,16 @@ const actions = {
         };
         commit('setTransaction', transaction);
     },
-    saveMinedTransaction: async({ state, commit }: ActionContext<AccountState, RootState>, transaction: MinedTransaction): Promise<void> => {
+    saveMinedTransaction: async (
+        { state, commit }: ActionContext<AccountState, RootState>,
+        transaction: MinedTransaction,
+    ): Promise<void> => {
         const { receipt, timestamp } = transaction;
         const hash = receipt.transactionHash;
-        const status = receipt.status === 1
-            ? TransactionStatus.OK
-            : TransactionStatus.FAILED;
+        const status =
+            receipt.status === 1
+                ? TransactionStatus.OK
+                : TransactionStatus.FAILED;
         const oldTransaction = state.transactions[hash];
         const updatedTransaction = {
             text: oldTransaction.text,
@@ -218,18 +251,25 @@ const actions = {
             timestamp,
         };
         commit('setTransaction', updatedTransaction);
-        Storage.saveTransaction(state.address, state.chainId, updatedTransaction);
+        Storage.saveTransaction(
+            state.address,
+            state.chainId,
+            updatedTransaction,
+        );
     },
 };
 
 const getters = {
-    provider: async(state: AccountState): Promise<Provider> => {
+    provider: async (state: AccountState): Promise<Provider> => {
         if (state.connector && state.connector.id) {
             const connector = lock.getConnector(state.connector.id);
             const provider = await connector.connect();
             return new Web3Provider(provider);
         }
         return provider;
+    },
+    chainId: (state: AccountState) => {
+        return state.chainId;
     },
 };
 

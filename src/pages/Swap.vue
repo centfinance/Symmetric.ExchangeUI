@@ -196,9 +196,9 @@ export default defineComponent({
 
         useIntervalFn(async () => {
             if (sor) {
-                console.time('[SOR] fetchPools');
+                // console.time('[SOR] fetchPools');
                 await sor.fetchPools();
-                console.timeEnd('[SOR] fetchPools');
+                // console.timeEnd('[SOR] fetchPools');
                 await onAmountChange(activeInput.value);
             }
         }, 60 * 1000);
@@ -523,20 +523,20 @@ export default defineComponent({
                             : assetOutAddressInput.value;
                     break;
             }
-            console.time(`[SOR] setCostOutputToken: ${assetOutAddress}`);
+            // console.time(`[SOR] setCostOutputToken: ${assetOutAddress}`);
             await sor.setCostOutputToken(assetOutAddress);
-            console.timeEnd(`[SOR] setCostOutputToken: ${assetOutAddress}`);
-            console.time(
-                `[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`,
-            );
+            // console.timeEnd(`[SOR] setCostOutputToken: ${assetOutAddress}`);
+            // console.time(
+            //     `[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`,
+            // );
             await sor.fetchFilteredPairPools(assetInAddress, assetOutAddress);
-            console.timeEnd(
-                `[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`,
-            );
+            // console.timeEnd(
+            //     `[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`,
+            // );
             await onAmountChange(activeInput.value);
-            console.time('[SOR] fetchPools');
+            // console.time('[SOR] fetchPools');
             await sor.fetchPools();
-            console.timeEnd('[SOR] fetchPools');
+            // console.timeEnd('[SOR] fetchPools');
             await onAmountChange(activeInput.value);
             pools.value = sor.onChainCache.pools;
         }
@@ -696,18 +696,18 @@ export default defineComponent({
                 const assetInAmountRaw = new BigNumber(amount);
                 const assetInAmount = scale(assetInAmountRaw, assetInDecimals);
 
-                console.time(
-                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`,
-                );
+                // console.time(
+                //     `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`,
+                // );
                 const [tradeSwaps, tradeAmount, spotPrice] = await sor.getSwaps(
                     assetInAddress,
                     assetOutAddress,
                     'swapExactIn',
                     assetInAmount,
                 );
-                console.timeEnd(
-                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`,
-                );
+                // console.timeEnd(
+                //     `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`,
+                // );
                 swaps.value = tradeSwaps;
                 const assetOutAmountRaw = scale(tradeAmount, -assetOutDecimals);
                 const assetOutPrecision = config.precision;
@@ -731,18 +731,18 @@ export default defineComponent({
                     assetOutDecimals,
                 );
 
-                console.time(
-                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`,
-                );
+                // console.time(
+                //     `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`,
+                // );
                 const [tradeSwaps, tradeAmount, spotPrice] = await sor.getSwaps(
                     assetInAddress,
                     assetOutAddress,
                     'swapExactOut',
                     assetOutAmount,
                 );
-                console.timeEnd(
-                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`,
-                );
+                // console.timeEnd(
+                //     `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`,
+                // );
                 swaps.value = tradeSwaps;
                 const assetInAmountRaw = scale(tradeAmount, -assetInDecimals);
                 const assetInPrecision = config.precision;

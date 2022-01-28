@@ -1,27 +1,15 @@
 <template>
     <div>
         <div>
-            <select 
-                v-model="tokenIndex"
-                class="asset"
-                @change="onChange"
-            >
-                <option value="0">
-                    SYMM1
-                </option>
-                <option value="1">
-                    SYMM2
-                </option>
+            <select v-model="tokenIndex" class="asset" @change="onChange">
+                <option value="0">SYMM1</option>
+                <option value="1">SYMM2</option>
             </select>
-            
-            <input
-                v-model="amount"
-                type="number"
-                class="amount"
-            >
+
+            <input v-model="amount" type="number" class="amount" />
             <div class="section">
                 Your Balance: {{ currentBalance }}
-                <br>
+                <br />
                 Deposit Balance: {{ depositBalance }}
             </div>
             <div class="section">
@@ -48,7 +36,6 @@ import ERC20ABI from '@/abi/ERC20.json';
 import Button from '@/components/Button.vue';
 import { RootState } from '@/store';
 
-
 export default defineComponent({
     components: {
         Button,
@@ -67,7 +54,7 @@ export default defineComponent({
         ];
         onMounted(async () => {
             provider = await store.getters['account/provider'];
-            onChange();            
+            onChange();
         });
         const store = useStore<RootState>();
         const address = computed(() => {
@@ -78,37 +65,58 @@ export default defineComponent({
         if (!depositWhiteList.includes(address.value)) {
             router.push('/swap');
         }
-        
-       
+
         async function onChange(): Promise<void> {
             if (!provider) {
                 provider = await store.getters['account/provider'];
             }
-            const tokenContract = new Contract(tokens[tokenIndex.value], ERC20ABI, provider.getSigner());
+            const tokenContract = new Contract(
+                tokens[tokenIndex.value],
+                ERC20ABI,
+                provider.getSigner(),
+            );
             if (address.value) {
-                currentBalance.value = formatEther(await tokenContract.balanceOf(address.value));
+                currentBalance.value = formatEther(
+                    await tokenContract.balanceOf(address.value),
+                );
             }
-            depositBalance.value = formatEther(await tokenContract.balanceOf(config.addresses.deposit));
+            depositBalance.value = formatEther(
+                await tokenContract.balanceOf(config.addresses.deposit),
+            );
         }
-        
+
         async function deposit(): Promise<void> {
             if (isProcess.value) return;
-            
+
             try {
                 isProcess.value = true;
-                const depositContract = new Contract(config.addresses.deposit, DepositABI, provider.getSigner());
-                const tokenContract = new Contract(tokens[tokenIndex.value], ERC20ABI, provider.getSigner());
-                const tx = await tokenContract.approve(config.addresses.deposit, parseEther(amount.value.toString()));
-                
+                const depositContract = new Contract(
+                    config.addresses.deposit,
+                    DepositABI,
+                    provider.getSigner(),
+                );
+                const tokenContract = new Contract(
+                    tokens[tokenIndex.value],
+                    ERC20ABI,
+                    provider.getSigner(),
+                );
+                const tx = await tokenContract.approve(
+                    config.addresses.deposit,
+                    parseEther(amount.value.toString()),
+                );
+
                 await tx.wait();
-                await depositContract.deposit(tokens[tokenIndex.value], parseEther(amount.value.toString()));
-            } catch(error) {
-                console.log({error});
+                await depositContract.deposit(
+                    tokens[tokenIndex.value],
+                    parseEther(amount.value.toString()),
+                );
+            } catch (error) {
+                console.log({ error });
             }
             isProcess.value = false;
             return;
         }
-    
+
         return {
             tokenIndex,
             amount,
