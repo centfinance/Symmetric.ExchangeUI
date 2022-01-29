@@ -6,7 +6,6 @@
                 <div class="title">SYMMETRIC</div>
                 <br />
             </router-link>
-            <Theme-Switcher class="switcher" />
         </div>
         <div class="header-right">
             <a
@@ -32,17 +31,18 @@
             >
                 Documentation
             </a>
-            <!-- <div style="padding-right: 10px" class="divider">|</div> -->
             <a class="link" :href="networkUrl" target="_blank">
                 Add Liquidity
             </a>
             <Button
+                v-if="isWrongNetwork === true"
                 :text="'Switch Network'"
                 :primary="false"
                 @click="switchNetwork"
                 class="switch-network-button"
             />
             <Account class="account" />
+            <Theme-Switcher class="switcher" />
         </div>
         <img
             src="@/assets/burger.svg"
@@ -73,6 +73,7 @@
                 Add Liquidity
             </a>
             <div
+                v-if="isWrongNetwork"
                 @click="switchNetwork"
                 style="padding-right: 10px; margin-right: 8px; cursor: pointer"
             >
@@ -88,10 +89,11 @@
     </div>
 </template>
 
-<script>
-import { defineComponent, computed, ref } from 'vue';
+<script lang="ts">
+import { defineComponent, computed, ref, watch } from 'vue';
 import { useStore } from 'vuex';
 
+import { RootState } from '@/store';
 import Icon from '@/components/Icon.vue';
 import Button from '@/components/Button.vue';
 import Account from '@/components/Account.vue';
@@ -108,20 +110,39 @@ export default defineComponent({
         ThemeSwitcher,
     },
     setup() {
+        const store = useStore<RootState>();
+
+        watch(
+            () => store.getters['account/chainId'],
+            function () {
+                // console.log('value changes detected');
+            },
+        );
+
+        // store.watch(
+        //     (state, getters) => getters['account/chainId'],
+        //     () => {
+        //         console.log('value changes detected via vuex watch');
+        //     },
+        // );
+
+        const isWrongNetwork = computed(() => {
+            return (
+                store.state.account.address &&
+                config.chainId !== store.getters['account/chainId']
+            );
+        });
+
         const networkUrl = computed(() => {
             return `https://${config.network}-pools.symmetric.exchange/`;
         });
 
         const isDeposit = computed(() => {
-            const store = useStore();
-            const address = store.state.account.address;
-            return depositWhiteList.includes(address);
+            return depositWhiteList.includes(store.state.account.address);
         });
 
         const isBridge = computed(() => {
-            const store = useStore();
-            const address = store.state.account.address;
-            return bridgeWhiteList.includes(address);
+            return bridgeWhiteList.includes(store.state.account.address);
         });
 
         function switchNetwork() {
@@ -435,6 +456,7 @@ export default defineComponent({
         }
 
         return {
+            isWrongNetwork,
             isDeposit,
             isBridge,
             toggle,
@@ -533,7 +555,6 @@ a {
         width: calc(100% - 20px);
         display: flex;
         flex-direction: column;
-        /* justify-content: flex-end; */
         align-items: flex-end;
     }
 

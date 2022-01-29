@@ -1,34 +1,20 @@
 <template>
     <div>
         <div>
-            <div class="center">
-                SYMM1
-            </div>
-            
+            <div class="center">SYMM1</div>
+
             <div>
-                <span class="asset">
-                    Amount
-                </span>
-                
-                <input
-                    v-model="amount"
-                    type="number"
-                    class="amount"
-                >
+                <span class="asset"> Amount </span>
+
+                <input v-model="amount" type="number" class="amount" />
             </div>
-            
+
             <div>
-                <span class="asset">
-                    Recipient Address
-                </span>
-                
-                <input
-                    v-model="recipientAddress"
-                    type="text"
-                    class="amount"
-                >
+                <span class="asset"> Recipient Address </span>
+
+                <input v-model="recipientAddress" type="text" class="amount" />
             </div>
-        
+
             <div class="section">
                 <Button
                     :text="'Celo=>Ethereum'"
@@ -60,7 +46,6 @@ import Button from '@/components/Button.vue';
 import { RootState } from '@/store';
 import { bridgeWhiteList } from '@/config';
 
-
 export default defineComponent({
     components: {
         Button,
@@ -84,48 +69,84 @@ export default defineComponent({
 
         async function bridgeCE(): Promise<void> {
             if (isCProcess.value) return;
-            
+
             try {
                 isCProcess.value = true;
                 const provider = await store.getters['account/provider'];
-                const bridgeContract = new Contract(opticsBridgeCE, BridgeABI, provider.getSigner());
-                
-                const tokenContract = new Contract(tokenAddressC, ERC20ABI, provider.getSigner());
-                const currentBalance = formatEther(await tokenContract.balanceOf(address.value));
+                const bridgeContract = new Contract(
+                    opticsBridgeCE,
+                    BridgeABI,
+                    provider.getSigner(),
+                );
+
+                const tokenContract = new Contract(
+                    tokenAddressC,
+                    ERC20ABI,
+                    provider.getSigner(),
+                );
+                const currentBalance = formatEther(
+                    await tokenContract.balanceOf(address.value),
+                );
                 if (parseFloat(currentBalance) < amount.value) {
                     alert('Not enough funds');
                     return;
                 }
-                const tx = await tokenContract.approve(opticsBridgeCE, parseEther(amount.value.toString()));
+                const tx = await tokenContract.approve(
+                    opticsBridgeCE,
+                    parseEther(amount.value.toString()),
+                );
                 await tx.wait();
-                await bridgeContract.send(tokenAddressC, parseEther(amount.value.toString()), 6648936, hexZeroPad(recipientAddress.value.toString(), 32));
-            } catch(error) {
-                console.log({error});
+                await bridgeContract.send(
+                    tokenAddressC,
+                    parseEther(amount.value.toString()),
+                    6648936,
+                    hexZeroPad(recipientAddress.value.toString(), 32),
+                );
+            } catch (error) {
+                console.log({ error });
             }
             isCProcess.value = false;
             return;
         }
-        
+
         async function bridgeEC(): Promise<void> {
             if (isEProcess.value) return;
-            
+
             try {
                 isEProcess.value = true;
                 const provider = await store.getters['account/provider'];
-                const bridgeContract = new Contract(opticsBridgeEC, BridgeABI, provider.getSigner());
-                
-                const tokenContract = new Contract(tokenAddressE, ERC20ABI, provider.getSigner());
-                const currentBalance = formatEther(await tokenContract.balanceOf(address.value));
+                const bridgeContract = new Contract(
+                    opticsBridgeEC,
+                    BridgeABI,
+                    provider.getSigner(),
+                );
+
+                const tokenContract = new Contract(
+                    tokenAddressE,
+                    ERC20ABI,
+                    provider.getSigner(),
+                );
+                const currentBalance = formatEther(
+                    await tokenContract.balanceOf(address.value),
+                );
 
                 if (parseFloat(currentBalance) < amount.value) {
                     alert('Not enough funds');
                     return;
                 }
-                const tx = await tokenContract.approve(opticsBridgeEC, parseEther(amount.value.toString()));
+                const tx = await tokenContract.approve(
+                    opticsBridgeEC,
+                    parseEther(amount.value.toString()),
+                );
                 await tx.wait();
-                await bridgeContract.send(tokenAddressE, parseEther(amount.value.toString()), 1667591279, hexZeroPad(recipientAddress.value.toString(), 32));
-            } catch(error) {
-                console.log({error});
+                await bridgeContract.send(
+                    tokenAddressE,
+                    parseEther(amount.value.toString()),
+                    1667591279,
+                    hexZeroPad(recipientAddress.value.toString(), 32),
+                );
+            } catch (error) {
+                console.log({ error });
             }
             isEProcess.value = false;
             return;
@@ -179,6 +200,6 @@ export default defineComponent({
     margin-top: 10px;
 }
 .center {
-     text-align: center;
+    text-align: center;
 }
 </style>

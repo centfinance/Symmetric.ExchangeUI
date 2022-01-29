@@ -57,16 +57,16 @@
 
 <script lang="ts">
 import { ref, defineComponent, onMounted, watch, computed } from 'vue';
-import { formatEther } from '@ethersproject/units';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useIntervalFn } from '@vueuse/core';
 import BigNumber from 'bignumber.js';
-import { getAddress } from '@ethersproject/address';
-import { ErrorCode } from '@ethersproject/logger';
 import { SOR } from '@centfinance/sor_celo';
 import { Swap, Pool } from '@centfinance/sor_celo/dist/types';
+import { getAddress } from '@ethersproject/address';
 import { Contract } from '@ethersproject/contracts';
+import { ErrorCode } from '@ethersproject/logger';
+import { formatEther } from '@ethersproject/units';
 
 import config, { symmTokenAddresses } from '@/config';
 import provider from '@/utils/provider';
@@ -87,6 +87,7 @@ import Settings from '@/components/Settings.vue';
 import SwapButton from '@/components/swap/Button.vue';
 import SwapPair from '@/components/swap/Pair.vue';
 import ERC20ABI from '@/abi/ERC20.json';
+
 // eslint-disable-next-line no-undef
 const GAS_PRICE = process.env.APP_GAS_PRICE || '100000000000';
 // eslint-disable-next-line no-undef
@@ -199,9 +200,9 @@ export default defineComponent({
 
         useIntervalFn(async () => {
             if (sor) {
-                console.time('[SOR] fetchPools');
+                // console.time('[SOR] fetchPools');
                 await sor.fetchPools();
-                console.timeEnd('[SOR] fetchPools');
+                // console.timeEnd('[SOR] fetchPools');
                 await onAmountChange(activeInput.value);
             }
         }, 60 * 1000);
@@ -526,20 +527,20 @@ export default defineComponent({
                             : assetOutAddressInput.value;
                     break;
             }
-            console.time(`[SOR] setCostOutputToken: ${assetOutAddress}`);
+            // console.time(`[SOR] setCostOutputToken: ${assetOutAddress}`);
             await sor.setCostOutputToken(assetOutAddress);
-            console.timeEnd(`[SOR] setCostOutputToken: ${assetOutAddress}`);
-            console.time(
-                `[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`,
-            );
+            // console.timeEnd(`[SOR] setCostOutputToken: ${assetOutAddress}`);
+            // console.time(
+            //     `[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`,
+            // );
             await sor.fetchFilteredPairPools(assetInAddress, assetOutAddress);
-            console.timeEnd(
-                `[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`,
-            );
+            // console.timeEnd(
+            //     `[SOR] fetchFilteredPairPools: ${assetInAddress}, ${assetOutAddress}`,
+            // );
             await onAmountChange(activeInput.value);
-            console.time('[SOR] fetchPools');
+            // console.time('[SOR] fetchPools');
             await sor.fetchPools();
-            console.timeEnd('[SOR] fetchPools');
+            // console.timeEnd('[SOR] fetchPools');
             await onAmountChange(activeInput.value);
             pools.value = sor.onChainCache.pools;
         }
@@ -699,18 +700,18 @@ export default defineComponent({
                 const assetInAmountRaw = new BigNumber(amount);
                 const assetInAmount = scale(assetInAmountRaw, assetInDecimals);
 
-                console.time(
-                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`,
-                );
+                // console.time(
+                //     `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`,
+                // );
                 const [tradeSwaps, tradeAmount, spotPrice] = await sor.getSwaps(
                     assetInAddress,
                     assetOutAddress,
                     'swapExactIn',
                     assetInAmount,
                 );
-                console.timeEnd(
-                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`,
-                );
+                // console.timeEnd(
+                //     `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactIn`,
+                // );
                 swaps.value = tradeSwaps;
                 const assetOutAmountRaw = scale(tradeAmount, -assetOutDecimals);
                 const assetOutPrecision = config.precision;
@@ -734,18 +735,18 @@ export default defineComponent({
                     assetOutDecimals,
                 );
 
-                console.time(
-                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`,
-                );
+                // console.time(
+                //     `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`,
+                // );
                 const [tradeSwaps, tradeAmount, spotPrice] = await sor.getSwaps(
                     assetInAddress,
                     assetOutAddress,
                     'swapExactOut',
                     assetOutAmount,
                 );
-                console.timeEnd(
-                    `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`,
-                );
+                // console.timeEnd(
+                //     `[SOR] getSwaps ${assetInAddress} ${assetOutAddress} exactOut`,
+                // );
                 swaps.value = tradeSwaps;
                 const assetInAmountRaw = scale(tradeAmount, -assetInDecimals);
                 const assetInPrecision = config.precision;
