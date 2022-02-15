@@ -1412,14 +1412,6 @@
             "logoURI": ""
         },
         {
-            "address": "SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt",
-            "chainId": 245022934,
-            "name": "Serum",
-            "symbol": "SRM",
-            "decimals": 6,
-            "logoURI": "https://raw.githubusercontent.com/centfinance/assets/master/blockchains/ethereum/assets/0x476c5E26a75bd202a9683ffD34359C0CC15be0fF/logo.png"
-        },
-        {
             "address": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
             "chainId": 245022934,
             "name": "Tether USD",
@@ -1482,14 +1474,6 @@
             "symbol": "SOL",
             "decimals": 6,
             "logoURI": ""
-        },
-        {
-            "address": "SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt",
-            "chainId": 9999,
-            "name": "Serum",
-            "symbol": "SRM",
-            "decimals": 6,
-            "logoURI": "https://raw.githubusercontent.com/centfinance/assets/master/blockchains/ethereum/assets/0x476c5E26a75bd202a9683ffD34359C0CC15be0fF/logo.png"
         },
         {
             "address": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
