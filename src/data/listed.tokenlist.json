@@ -1132,14 +1132,6 @@
             "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B3595068778DD592e39A122f4f5a5cF09C90fE2/logo.png"
         },
         {
-            "address": "",
-            "chainId": 43114,
-            "name": "Symmetric",
-            "symbol": "SYMM",
-            "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/centfinance/assets/master/blockchains/ethereum/assets/0x57dB3FfCa78dBbE0eFa0EC745D55f62aa0Cbd345/logo.png"
-        },
-        {
             "address": "0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7",
             "chainId": 43114,
             "name": "Tether USD",
@@ -1212,14 +1204,6 @@
             "logoURI": "https://avatars.githubusercontent.com/u/81034545?s=200&v=4"
         },
         {
-            "address": "",
-            "chainId": 250,
-            "name": "Symmetric",
-            "symbol": "SYMM",
-            "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/centfinance/assets/master/blockchains/ethereum/assets/0x57dB3FfCa78dBbE0eFa0EC745D55f62aa0Cbd345/logo.png"
-        },
-        {
             "address": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
             "chainId": 250,
             "name": "Wrapped Fantom",
@@ -1250,14 +1234,6 @@
             "symbol": "WETH",
             "decimals": 18,
             "logoURI": "https://raw.githubusercontent.com/centfinance/Symmetric.Assets/master/assets/asset_WETH.png"
-        },
-        {
-            "address": "",
-            "chainId": 10,
-            "name": "Symmetric",
-            "symbol": "SYMM",
-            "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/centfinance/assets/master/blockchains/ethereum/assets/0x57dB3FfCa78dBbE0eFa0EC745D55f62aa0Cbd345/logo.png"
         },
         {
             "address": "0x8700daec35af8ff88c16bdf0418774cb3d7599b4",
@@ -1380,14 +1356,6 @@
             "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B3595068778DD592e39A122f4f5a5cF09C90fE2/logo.png"
         },
         {
-            "address": "",
-            "chainId": 137,
-            "name": "Symmetric",
-            "symbol": "SYMM",
-            "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/centfinance/assets/master/blockchains/ethereum/assets/0x57dB3FfCa78dBbE0eFa0EC745D55f62aa0Cbd345/logo.png"
-        },
-        {
             "address": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
             "chainId": 137,
             "name": "Tether USD",
@@ -1458,14 +1426,6 @@
             "symbol": "USDT",
             "decimals": 6,
             "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png"
-        },
-        {
-            "address": "",
-            "chainId": 245022934,
-            "name": "Symmetric",
-            "symbol": "SYMM",
-            "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/centfinance/assets/master/blockchains/ethereum/assets/0x57dB3FfCa78dBbE0eFa0EC745D55f62aa0Cbd345/logo.png"
         },
         {
             "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
