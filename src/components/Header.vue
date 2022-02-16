@@ -24,15 +24,15 @@
             >
                 Bridge
             </a>
+            <a class="link" :href="networkUrl" target="_blank">
+                Add Liquidity
+            </a>
             <a
                 class="link"
                 href="https://docs.symmetric.exchange"
                 target="_blank"
             >
-                Documentation
-            </a>
-            <a class="link" :href="networkUrl" target="_blank">
-                Add Liquidity
+                Docs
             </a>
             <Button
                 v-if="isWrongNetwork === true"
@@ -43,23 +43,16 @@
             />
             <Account class="account" />
             <Theme-Switcher class="switcher" />
+            <img
+                src="@/assets/burger.svg"
+                alt="burger"
+                @click="toggleBurger"
+                style="cursor: pointer"
+                class="burger-icon"
+            />
         </div>
-        <img
-            src="@/assets/burger.svg"
-            alt="burger"
-            @click="toggleBurger"
-            style="margin-right: 10px; cursor: pointer"
-            class="burger-icon"
-        />
+
         <div v-if="toggle === true" class="header-right-mobile">
-            <a
-                class="link"
-                href="https://docs.symmetric.exchange"
-                target="_blank"
-                style="padding-right: 10px"
-            >
-                Documentation
-            </a>
             <a
                 class="link"
                 :href="networkUrl"
@@ -71,6 +64,18 @@
                 "
             >
                 Add Liquidity
+            </a>
+            <a
+                class="link"
+                href="https://docs.symmetric.exchange"
+                target="_blank"
+                style="
+                    padding-right: 10px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                "
+            >
+                Docs
             </a>
             <div
                 v-if="isWrongNetwork"
@@ -539,6 +544,11 @@ a {
         display: none;
     }
 
+    .header {
+        padding-right: 10px;
+        width: calc(100% - 10px);
+    }
+
     .header-right .link,
     .header-right .divider,
     .header-right .switch-network-button {
@@ -563,9 +573,9 @@ a {
     }
 }
 
-@media (max-width: 1100px) {
+/* @media (max-width: 1100px) {
     .switcher {
         display: none;
     }
-}
+} */
 </style>
