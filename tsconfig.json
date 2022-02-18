@@ -6,16 +6,13 @@
         "jsx": "preserve",
         "baseUrl": "src",
         "paths": {
-            "@/*": [ "*" ]
+            "@/*": ["*"]
         },
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "allowSyntheticDefaultImports": true,
-        "suppressImplicitAnyIndexErrors": true
+        "suppressImplicitAnyIndexErrors": true,
+        "skipLibCheck": true
     },
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.vue",
-        "tests/**/*.ts"
-    ]
+    "include": ["src/**/*.ts", "src/**/*.vue", "tests/**/*.ts"]
 }

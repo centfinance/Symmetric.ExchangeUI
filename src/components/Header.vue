@@ -34,6 +34,19 @@
             >
                 Docs
             </a>
+            <SelectNetwork>
+                <div class="option">
+                    <a class="link" href="https://xdai.symmetric.exchange/">
+                        Gnosis
+                    </a>
+                </div>
+
+                <div class="option">
+                    <a class="link" href="https://celo.symmetric.exchange/">
+                        Celo
+                    </a>
+                </div>
+            </SelectNetwork>
             <Button
                 v-if="isWrongNetwork === true"
                 :text="'Switch Network'"
@@ -42,7 +55,7 @@
                 class="switch-network-button"
             />
             <Account class="account" />
-            <Theme-Switcher class="switcher" />
+            <ThemeSwitcher class="switcher" />
             <img
                 src="@/assets/burger.svg"
                 alt="burger"
@@ -103,7 +116,7 @@ import Icon from '@/components/Icon.vue';
 import Button from '@/components/Button.vue';
 import Account from '@/components/Account.vue';
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
-// import BurgerIcon from '@/assets/burger.svg';
+import SelectNetwork from '@/components/SelectNetwork.vue';
 
 import config, { depositWhiteList, bridgeWhiteList } from '@/config';
 
@@ -113,6 +126,7 @@ export default defineComponent({
         Account,
         Icon,
         ThemeSwitcher,
+        SelectNetwork,
     },
     setup() {
         const store = useStore<RootState>();
@@ -500,7 +514,8 @@ export default defineComponent({
 }
 .link {
     margin-right: 16px;
-    min-width: 93px;
+    /* min-width: 93px; */
+    width: fit-content;
 }
 
 a {
@@ -523,8 +538,12 @@ a {
 }
 
 .account {
-    margin-left: 8px;
+    /* margin-left: 8px; */
     margin-right: 16px;
+}
+
+.option {
+    margin: 5px 0px;
 }
 
 .header-right-mobile {

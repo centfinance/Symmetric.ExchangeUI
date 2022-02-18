@@ -1,9 +1,8 @@
 import { createApp } from 'vue';
 import { createWebHashHistory, createRouter } from 'vue-router';
+
 import store from './store';
-
 import App from './App.vue';
-
 import Swap from './pages/Swap.vue';
 import Deposit from './pages/Deposit.vue';
 import Bridge from './pages/Bridge.vue';
@@ -32,8 +31,4 @@ app.use(store);
 
 app.mount('#app');
 
-export {
-    routerHistory,
-    router,
-    store,
-};
+export { routerHistory, router, store };
