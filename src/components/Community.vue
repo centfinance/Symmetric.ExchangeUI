@@ -1,9 +1,9 @@
 <template>
-    <div class="community" @click="handleModal" v-click-outside="closeModal">
+    <div class="community" @click="handleModal" >
         <img v-if="theme" src="@/assets/threeDotsBlack.svg" alt="community">
         <img v-else src="@/assets/threeDotsWhite.svg" alt="community">
     </div>
-    <CommunityModal v-if="modalState" />
+    <CommunityModal v-if="modalState" v-click-outside="closeModal"/>
 </template>
 
 <script lang="ts">
@@ -35,6 +35,7 @@
             }
 
             function closeModal() {
+                console.log('hello');
                 modalState.value = false;
             }
 
