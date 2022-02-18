@@ -78,6 +78,7 @@ export default defineComponent({
             openConnectorModal,
         };
     },
+
 });
 </script>
 

@@ -43,6 +43,7 @@
             />
             <Account class="account" />
             <Theme-Switcher class="switcher" />
+            <Community />
         </div>
         <img
             src="@/assets/burger.svg"
@@ -98,6 +99,7 @@ import Icon from '@/components/Icon.vue';
 import Button from '@/components/Button.vue';
 import Account from '@/components/Account.vue';
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
+import Community from '@/components/Community.vue';
 // import BurgerIcon from '@/assets/burger.svg';
 
 import config, { depositWhiteList, bridgeWhiteList } from '@/config';
@@ -108,6 +110,7 @@ export default defineComponent({
         Account,
         Icon,
         ThemeSwitcher,
+        Community,
     },
     setup() {
         const store = useStore<RootState>();
