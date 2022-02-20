@@ -15,11 +15,9 @@
             {{ network }}
         </button>
 
-        <!-- <div
-            class="iconWrapper"
-            :class="{ 'iconWrapper--noTitle': !network }"
-        >
-            <div
+        <div class="iconWrapper">
+            <Icon class="chevron-icon" :title="'chevron'" />
+            <!-- <div
                 class="bar1"
                 :class="{ 'bar1--open': isOpen, 'bar1--dark': isDarkMode }"
             />
@@ -30,8 +28,8 @@
             <div
                 class="bar3"
                 :class="{ 'bar3--open': isOpen, 'bar3--dark': isDarkMode }"
-            />
-        </div> -->
+            /> -->
+        </div>
 
         <section
             class="dropdownMenu"
@@ -46,9 +44,13 @@
 
 <script>
 import { ref, defineComponent } from 'vue';
+import Icon from '@/components/Icon.vue';
 import config from '@/config';
 
 export default defineComponent({
+    components: {
+        Icon,
+    },
     setup() {
         const isDarkMode = ref(true);
         const menu = ref(null);
@@ -107,6 +109,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.chevron-icon {
+    width: 12px;
+    height: 12px;
+}
 .dropDownMenuWrapper {
     position: relative;
     border-radius: 5px;
@@ -130,7 +136,7 @@ export default defineComponent({
     border-radius: 4px;
     display: flex;
     align-items: center;
-    padding: 0 70px 0 20px;
+    padding: 8px;
     margin: 0;
     line-height: 1;
     width: 100%;
@@ -139,15 +145,14 @@ export default defineComponent({
     cursor: pointer;
 }
 .dropDownMenuWrapper .dropDownMenuButton--dark {
-    color: #eee;
+    color: var(--text-primary);
 }
 .dropDownMenuWrapper .iconWrapper {
     width: 25px;
     height: 25px;
     position: absolute;
-    right: 30px;
-    top: 50%;
-    transform: translate(0, -50%);
+    right: 0px;
+    top: 18px;
     z-index: 1;
 }
 .dropDownMenuWrapper .iconWrapper .bar1 {
@@ -228,7 +233,7 @@ export default defineComponent({
     border: 1px solid #eee;
     box-shadow: 10px 10px 0 0 rgba(0, 0, 0, 0.03);
     background: white;
-    padding: 10px 20px;
+    padding: 0px;
     animation: menu 0.3s ease forwards;
 }
 .dropDownMenuWrapper .dropdownMenu .menuArrow {

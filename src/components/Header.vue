@@ -543,7 +543,15 @@ a {
 }
 
 .option {
-    margin: 5px 0px;
+    padding: 16px;
+}
+
+.option:hover {
+    background: var(--text-primary);
+}
+
+.option:hover a {
+    color: var(--background-primary);
 }
 
 .header-right-mobile {
