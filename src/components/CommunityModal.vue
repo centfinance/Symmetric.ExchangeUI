@@ -65,7 +65,7 @@
     .communityModal {
         position: absolute;
         width: 186px;
-        height: 200px;
+        height: 186px;
         top: 80px;
         right: 0px;
         display: flex;
@@ -86,7 +86,7 @@
         width: 140px;
         text-decoration: none;
         color: var(--text-primary);
-        padding: 0.5rem;
+        padding: 0.6rem;
         opacity: 0.7;
     }
 
