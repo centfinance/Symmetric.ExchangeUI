@@ -4,17 +4,19 @@
             <div>
                 <div>Twitter</div>
                 <div>
-                    <img v-if="theme" src="@/assets/twitterDark.svg" alt="Twitter">
-                    <img v-else src="@/assets/twitterWhite.svg" alt="Twitter">
+                    <img v-if="theme"  src="@/assets/twitterWhite.svg" alt="Twitter">
+                    <img v-else class="twitterDark" src="@/assets/twitterDark.svg" alt="Twitter">
+                    
+                    <!-- <img v-else src="https://img.icons8.com/external-tal-revivo-regular-tal-revivo/19/000000/external-twitter-an-american-online-news-and-social-networking-service-logo-regular-tal-revivo.png" alt="Twitter"> -->
                 </div>
             </div>
         </a>
         <a class="link" href="https://github.com/centfinance" target="_blank" >
             <div>
                 <div>Github</div>
-                <div class="github">
-                    <img v-if="theme" src="@/assets/githubDark.svg" alt="Github">
-                    <img v-else src="@/assets/githubWhite.svg" alt="Github">
+                <div >
+                    <img v-if="theme" class="githubDark" src="@/assets/githubDark.svg" alt="Github">
+                    <img v-else class="githubWhite" src="@/assets/githubWhite.svg" alt="Github">
                 </div>
             </div>
         </a>
@@ -22,8 +24,8 @@
             <div>
                 <div>Discord</div>
                 <div>
-                    <img v-if="theme" src="@/assets/discordDark.svg" alt="Discord">
-                    <img v-else src="@/assets/discordWhite.svg" alt="Discord">
+                    <img v-if="theme" class="discordDark" src="@/assets/discordDark.svg" alt="Discord">
+                    <img v-else class="discordWhite" src="@/assets/discordWhite.svg" alt="Discord">
                 </div>
             </div>
         </a>
@@ -98,8 +100,16 @@
         color: var(--text-primary);
     }
 
-    .github {
-        padding-right: 2px;
+    .githubWhite .dircordWhite {
+        margin-right: 0px;
+    }
+
+    .twitterDark {
+        margin-right: 1px;
+    }
+
+    .githubDark .dircordDark {
+        margin-right: 0px;
     }
 
     .communityModal a:hover {
