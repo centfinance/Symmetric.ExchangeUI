@@ -27,15 +27,6 @@
                 </div>
             </div>
         </a>
-        <a class="link" href="https://t.me/SymmetricFinanceAnnouncements" target="_blank" >
-            <div>
-                <div>Telegram</div>
-                <div>
-                    <img v-if="theme" src="@/assets/telegramDark.svg" alt="Telegram">
-                    <img v-else src="@/assets/telegramWhite.svg" alt="Telegram">
-                </div>
-            </div>
-        </a>
         <a class="link" href="https://medium.com/@Symmetric.Finance" target="_blank" >
             <div>
                 <div>Medium</div>
