@@ -35,7 +35,6 @@
             }
 
             function closeModal() {
-                console.log('hello');
                 modalState.value = false;
             }
 
