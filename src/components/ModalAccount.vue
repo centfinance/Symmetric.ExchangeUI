@@ -21,7 +21,8 @@
                     </div>
                     <div class="account-wallet">
                         <div class="account-address">
-                            {{ formatAddress(address) }}
+                            <span v-if="name" >{{ name }}</span>
+                            <span v-else>{{ formatAddress(address) }}</span>
                             <div
                                 class="account-wallet-icon"
                             >
@@ -129,6 +130,8 @@ export default defineComponent({
 
         const address = computed(() => store.state.account.address);
 
+        const name = computed(() => store.state.account.name);
+
         const balances = computed(() => {
             const metadata = store.getters['assets/metadata'];
             const { balances } = store.state.account;
@@ -170,6 +173,7 @@ export default defineComponent({
         return {
             connector,
             address,
+            name,
             balances,
 
             formatAddress,

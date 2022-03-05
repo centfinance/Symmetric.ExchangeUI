@@ -10,7 +10,10 @@
                 :address="address"
                 :size="28"
             />
-            <div class="account-address">
+            <div v-if="name" class="account-address">
+                {{ name }}
+            </div>
+            <div v-else class="account-address">
                 {{ formatAddress(address) }}
             </div>
         </div>
@@ -57,6 +60,11 @@ export default defineComponent({
             return address;
         });
 
+        const name = computed(() => {
+            const { name } = store.state.account;
+            return name;
+        });
+
         const loading = computed(() => {
             const { connector, address } = store.state.account;
             return !!connector && !!connector.id && !address;
@@ -72,6 +80,7 @@ export default defineComponent({
 
         return {
             address,
+            name,
             loading,
             formatAddress,
             openAccountModal,
