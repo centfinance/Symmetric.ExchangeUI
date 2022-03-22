@@ -984,6 +984,10 @@ export default defineComponent({
     width: 100%;
 }
 
+button.swap-button {
+    color: #ffffff !important;
+}
+
 .routing {
     max-width: 385px;
     margin-top: 40px;

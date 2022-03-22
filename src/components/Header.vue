@@ -24,16 +24,29 @@
             >
                 Bridge
             </a>
+            <a class="link" :href="networkUrl" target="_blank">
+                Add Liquidity
+            </a>
             <a
                 class="link"
                 href="https://docs.symmetric.exchange"
                 target="_blank"
             >
-                Documentation
+                Docs
             </a>
-            <a class="link" :href="networkUrl" target="_blank">
-                Add Liquidity
-            </a>
+            <SelectNetwork>
+                <div class="option">
+                    <a class="link" href="https://xdai.symmetric.exchange/">
+                        Gnosis
+                    </a>
+                </div>
+
+                <div class="option">
+                    <a class="link" href="https://celo.symmetric.exchange/">
+                        Celo
+                    </a>
+                </div>
+            </SelectNetwork>
             <Button
                 v-if="isWrongNetwork === true"
                 :text="'Switch Network'"
@@ -42,25 +55,17 @@
                 class="switch-network-button"
             />
             <Account class="account" />
-            <Theme-Switcher class="switcher" />
-            <Community />
+            <ThemeSwitcher class="switcher" />
+            <img
+                src="@/assets/burger.svg"
+                alt="burger"
+                @click="toggleBurger"
+                style="cursor: pointer"
+                class="burger-icon"
+            />
         </div>
-        <img
-            src="@/assets/burger.svg"
-            alt="burger"
-            @click="toggleBurger"
-            style="margin-right: 10px; cursor: pointer"
-            class="burger-icon"
-        />
+
         <div v-if="toggle === true" class="header-right-mobile">
-            <a
-                class="link"
-                href="https://docs.symmetric.exchange"
-                target="_blank"
-                style="padding-right: 10px"
-            >
-                Documentation
-            </a>
             <a
                 class="link"
                 :href="networkUrl"
@@ -72,6 +77,18 @@
                 "
             >
                 Add Liquidity
+            </a>
+            <a
+                class="link"
+                href="https://docs.symmetric.exchange"
+                target="_blank"
+                style="
+                    padding-right: 10px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                "
+            >
+                Docs
             </a>
             <div
                 v-if="isWrongNetwork"
@@ -99,8 +116,7 @@ import Icon from '@/components/Icon.vue';
 import Button from '@/components/Button.vue';
 import Account from '@/components/Account.vue';
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue';
-import Community from '@/components/Community.vue';
-// import BurgerIcon from '@/assets/burger.svg';
+import SelectNetwork from '@/components/SelectNetwork.vue';
 
 import config, { depositWhiteList, bridgeWhiteList } from '@/config';
 
@@ -110,7 +126,7 @@ export default defineComponent({
         Account,
         Icon,
         ThemeSwitcher,
-        Community,
+        SelectNetwork,
     },
     setup() {
         const store = useStore<RootState>();
@@ -498,7 +514,8 @@ export default defineComponent({
 }
 .link {
     margin-right: 16px;
-    min-width: 93px;
+    /* min-width: 93px; */
+    width: fit-content;
 }
 
 a {
@@ -521,8 +538,20 @@ a {
 }
 
 .account {
-    margin-left: 8px;
+    /* margin-left: 8px; */
     margin-right: 16px;
+}
+
+.option {
+    padding: 16px;
+}
+
+.option:hover {
+    background: var(--text-primary);
+}
+
+.option:hover a {
+    color: var(--background-primary);
 }
 
 .header-right-mobile {
@@ -540,6 +569,11 @@ a {
 
     .title {
         display: none;
+    }
+
+    .header {
+        padding-right: 10px;
+        width: calc(100% - 10px);
     }
 
     .header-right .link,
@@ -566,9 +600,9 @@ a {
     }
 }
 
-@media (max-width: 1100px) {
+/* @media (max-width: 1100px) {
     .switcher {
         display: none;
     }
-}
+} */
 </style>
