@@ -11,15 +11,21 @@
 
 <script>
 import { ref, defineComponent } from 'vue';
+import { useStore } from 'vuex';
 
 export default defineComponent({
     setup() {
         const isEnabled = ref(true);
+        const store = useStore();
 
         const storedTheme = localStorage.getItem('theme');
         if (storedTheme) {
             setTheme(storedTheme);
-            if (storedTheme === 'light') isEnabled.value = false;
+            store.dispatch('theme/setThemeDark');
+            if (storedTheme === 'light'){
+                isEnabled.value = false;
+                store.dispatch('theme/setThemeLight');
+            }
         }
 
         // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -31,11 +37,14 @@ export default defineComponent({
                 localStorage.setItem('theme', 'dark');
                 setTheme(null);
                 isEnabled.value = true;
+                store.dispatch('theme/setThemeDark');
             } else {
                 localStorage.setItem('theme', 'light');
                 setTheme('light');
                 isEnabled.value = false;
+                store.dispatch('theme/setThemeLight');
             }
+
         }
 
         // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
