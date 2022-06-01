@@ -6,7 +6,7 @@
   "infuraKey": "e68cb3352f7d4fb7848c4650917e4422",
   "rpcUrl": "https://rpc.testnet.fantom.network/",
   "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/symmetric-fantom-testnet",
-  "subgraphBackupUrl": "https://storageapi.fleek.co/switch1983-team-bucket/cent-exchange-fantom-testnet/pools",
+  "subgraphBackupUrl": "https://fantom-testnet.symmetric.exchange/pooldata.json",
   "addresses": {
     "bFactory": "0x6C2e59C3cCB1d81c0eC9Fb9d4d6a3CC3488Fd71c",
     "bActions": "0xBe04ae09b9e41b8828b8866280bF882b42576b4e",

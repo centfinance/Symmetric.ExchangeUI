@@ -6,7 +6,7 @@
   "infuraKey": "e68cb3352f7d4fb7848c4650917e4422",
   "rpcUrl": "https://alfajores-forno.celo-testnet.org",
   "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/cent-swap-alfajores",
-  "subgraphBackupUrl": "https://switch1983-team-bucket.storage.fleek.co/cent-exchange-alfajores/pools",
+  "subgraphBackupUrl": "https://alfajores.symmetric.exchange/pooldata.json",
   "addresses": {
     "bFactory": "0x07Fa70d4560663E64b44a217AD40a926Dc5BdA5c",
     "bActions": "0x05d52ee5455FDe856f7932B3ec58060484201cD6",

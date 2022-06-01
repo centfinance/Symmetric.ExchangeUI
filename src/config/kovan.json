@@ -6,7 +6,7 @@
     "infuraKey": "e68cb3352f7d4fb7848c4650917e4422",
     "rpcUrl": "https://kovan.infura.io/v3/e68cb3352f7d4fb7848c4650917e4422",
     "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/cent-swap-kovan",
-    "subgraphBackupUrl": "https://switch1983-team-bucket.storage.fleek.co/cent-exchange-kovan/pools",
+    "subgraphBackupUrl": "https://kovan.symmetric.exchange/pooldata.json",
     "addresses": {
         "bFactory": "0xf5fc5042d8424619BB318bAeDd0f0F1A591f2a3A",
         "bActions": "0x57562A82F2Fd9Eb21E7edf87b62e8353027f280E",
