@@ -4,7 +4,7 @@
     "chainId": 100,
     "precision": 6,
     "infuraKey": "92df310bb7f5c38db174697344e5be533a420d34",
-    "rpcUrl": "https://rpc.xdaichain.com/",
+    "rpcUrl": "https://rpc.gnosischain.com/",
     "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/symmetric-xdai",
     "subgraphBackupUrl": "https://storageapi.fleek.co/b1fabc47-baed-4431-ad28-2914a0ff0dbf-bucket/symmetric-xdai/pools",
     "addresses": {
