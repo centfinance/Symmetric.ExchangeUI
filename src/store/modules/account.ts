@@ -6,7 +6,6 @@ import { RootState } from '@/store';
 import lock, { getConnectorName, getConnectorLogo } from '@/utils/connectors';
 import provider from '@/utils/provider';
 import Storage from '@/utils/storage';
-import { getName } from '@/utils/nomspace';
 
 enum TransactionStatus {
     PENDING,
@@ -55,7 +54,6 @@ const mutations = {
     },
     setAddress: async (_state: AccountState, address: string): Promise<void> => {
         _state.address = address;
-        _state.name = await getName(address);
     },
     setChainId: (_state: AccountState, chainId: number): void => {
         _state.chainId = chainId;

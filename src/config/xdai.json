@@ -4,7 +4,7 @@
     "chainId": 100,
     "precision": 6,
     "infuraKey": "92df310bb7f5c38db174697344e5be533a420d34",
-    "rpcUrl": "https://rpc.xdaichain.com/",
+    "rpcUrl": "https://damp-black-dawn.xdai.quiknode.pro/01e1836b90fe8480ab14353cef700b0aec6ca85e/",
     "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/symmetric-xdai",
     "subgraphBackupUrl": "https://storageapi.fleek.co/b1fabc47-baed-4431-ad28-2914a0ff0dbf-bucket/symmetric-xdai/pools",
     "addresses": {
@@ -20,7 +20,7 @@
       "walletconnect": {
         "chainId": 100,
         "rpc": {
-          "100": "https://spring-hidden-river.xdai.quiknode.pro/ff85d990a61f2508241932c33fe37f5fe2027902/"
+          "100": "https://damp-black-dawn.xdai.quiknode.pro/01e1836b90fe8480ab14353cef700b0aec6ca85e/"
         },
         "bridge": "https://walletconnect-relay.minerva.digital"
       }
