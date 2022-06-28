@@ -6,7 +6,7 @@
     "infuraKey": "92df310bb7f5c38db174697344e5be533a420d34",
     "rpcUrl": "https://damp-black-dawn.xdai.quiknode.pro/01e1836b90fe8480ab14353cef700b0aec6ca85e/",
     "subgraphUrl": "https://api.thegraph.com/subgraphs/name/centfinance/symmetric-xdai",
-    "subgraphBackupUrl": "https://storageapi.fleek.co/b1fabc47-baed-4431-ad28-2914a0ff0dbf-bucket/symmetric-xdai/pools",
+    "subgraphBackupUrl": "https://xdai.symmetric.exchange/pooldata.json",
     "addresses": {
       "bFactory": "0x9B4214FD41cD24347A25122AC7bb6B479BED72Ac",
       "bActions": "0x88602D7ef1a3026daF96729938d6184cDAbbED95",
